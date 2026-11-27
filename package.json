@@ -4,7 +4,7 @@
   "description": "Osservabilità locale per OpenCode V2: token, modelli, costi, tool, errori.",
   "type": "module",
   "private": true,
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "engines": {
     "node": ">=22.13"
   },
