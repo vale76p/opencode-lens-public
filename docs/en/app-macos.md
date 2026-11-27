@@ -8,7 +8,7 @@
 
 - **Optional.** The lens works the same without it: same service, same dashboard in the browser, same data. `install.sh` copies the app's sources into `~/Applications/opencode-lens/extras/macos/`. The app is installed from **Settings › Update** or with the command below; from then on `install.sh` keeps it at the lens's version.
 - **An HTTP client of the lens.** It does not open the database and does not read the lens's files: it learns where the lens is from the LaunchAgent's plist and talks to it over HTTP on loopback. No new API: it uses the dashboard, `/healthz` and `/api/budget`.
-- **Next to OpenCode Lens Monitor, not instead of it.** Monitor keeps the menu bar: the budget percentage, the panel, the widgets, Start and Stop of the LaunchAgent and its own launch at login. The app keeps the dashboard's window, the Dock icon, the notifications and the window's launch at login. It has no menu bar icon and neither starts nor stops the lens. The two apps have different names and bundle ids (`local.opencode-lens-monitor`, `local.opencode-lens.app`) and live side by side; neither needs the other.
+- **Next to [OpenCode Lens Monitor](https://github.com/vale76p/opencode-lens-monitor-public), not instead of it.** Monitor keeps the menu bar: the budget percentage, the panel, the widgets, Start and Stop of the LaunchAgent and its own launch at login. The app keeps the dashboard's window, the Dock icon, the notifications and the window's launch at login. It has no menu bar icon and neither starts nor stops the lens. The two apps have different names and bundle ids (`local.opencode-lens-monitor`, `local.opencode-lens.app`) and live side by side; neither needs the other.
 
 ## Requirements
 
@@ -181,7 +181,7 @@ npm run test:macos                            # real build, signature, version a
 ```
 
 - `app.sh build` without `--out` builds into the cache, `~/Library/Caches/opencode-lens-app`. Pick an `--out` folder outside iCloud (`~/Documents` may be in it): extended attributes break the signature and the script says so. The build itself happens in a temporary folder.
-- `npm run test:macos` (`test/macos/app.test.js`) really builds the app and checks bundle, ad-hoc signature with hardened runtime, version, icon and architecture, without ever starting it. It is skipped off macOS or without the Command Line Tools. It is part of the checks before a release; it does not run in CI.
+- `npm run test:macos` (`test/macos/app.test.js`) really builds the app and checks bundle, ad-hoc signature with hardened runtime, version, icon and architecture, without ever starting it. It is skipped off macOS or without the Command Line Tools. In CI it runs in the `macos` job (macOS 26 runner), which fails if the test is skipped; it also stays among the checks before a release.
 - `npm test` (CI included) has the static checks `test/macos-app.test.js` (script, `Info.plist`, sources without injected JavaScript, no lens file depending on the app) and `test/macos-app-contract.test.js` (the lens APIs the app uses).
 - Variables for testing, passed with `open -n --env …`:
 

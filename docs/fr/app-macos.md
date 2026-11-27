@@ -8,7 +8,7 @@
 
 - **Facultative.** La lens fonctionne à l'identique sans elle : même service, même dashboard dans le navigateur, mêmes données. `install.sh` copie les sources de l'app dans `~/Applications/opencode-lens/extras/macos/`. L'app s'installe depuis **Paramètres › Mise à jour** ou avec la commande ci-dessous ; ensuite `install.sh` la garde à la version de la lens.
 - **Un client HTTP de la lens.** Elle n'ouvre pas la base de données et ne lit pas les fichiers de la lens : elle sait où est la lens grâce au plist du LaunchAgent et lui parle en HTTP sur loopback. Aucune API nouvelle : elle utilise le dashboard, `/healthz` et `/api/budget`.
-- **À côté d'OpenCode Lens Monitor, pas à sa place.** Monitor garde la barre des menus : le pourcentage du budget, le panneau, les widgets, Démarrer et Arrêter du LaunchAgent et sa propre ouverture à la connexion. L'app garde la fenêtre du dashboard, l'icône du Dock, les notifications et l'ouverture à la connexion de la fenêtre. Elle n'a pas d'icône dans la barre des menus et ne démarre ni n'arrête la lens. Les deux apps ont des noms et des bundle id différents (`local.opencode-lens-monitor`, `local.opencode-lens.app`) et cohabitent ; aucune n'a besoin de l'autre.
+- **À côté d'[OpenCode Lens Monitor](https://github.com/vale76p/opencode-lens-monitor-public), pas à sa place.** Monitor garde la barre des menus : le pourcentage du budget, le panneau, les widgets, Démarrer et Arrêter du LaunchAgent et sa propre ouverture à la connexion. L'app garde la fenêtre du dashboard, l'icône du Dock, les notifications et l'ouverture à la connexion de la fenêtre. Elle n'a pas d'icône dans la barre des menus et ne démarre ni n'arrête la lens. Les deux apps ont des noms et des bundle id différents (`local.opencode-lens-monitor`, `local.opencode-lens.app`) et cohabitent ; aucune n'a besoin de l'autre.
 
 ## Prérequis
 
@@ -181,7 +181,7 @@ npm run test:macos                            # vraie build, signature, version 
 ```
 
 - `app.sh build` sans `--out` compile dans le cache, `~/Library/Caches/opencode-lens-app`. Choisissez un dossier `--out` hors d'iCloud (`~/Documents` peut l'être) : les attributs étendus cassent la signature et le script le signale. La compilation elle-même se fait dans un dossier temporaire.
-- `npm run test:macos` (`test/macos/app.test.js`) compile vraiment l'app et vérifie bundle, signature ad hoc avec hardened runtime, version, icône et architecture, sans jamais la démarrer. Il est ignoré hors de macOS ou sans Command Line Tools. Il fait partie des contrôles avant une release ; il ne tourne pas en CI.
+- `npm run test:macos` (`test/macos/app.test.js`) compile vraiment l'app et vérifie bundle, signature ad hoc avec hardened runtime, version, icône et architecture, sans jamais la démarrer. Il est ignoré hors de macOS ou sans Command Line Tools. En CI il tourne dans le job `macos` (runner macOS 26), qui échoue si le test est ignoré ; il reste aussi parmi les contrôles avant une release.
 - `npm test` (CI compris) contient les contrôles statiques `test/macos-app.test.js` (script, `Info.plist`, sources sans JavaScript injecté, aucun fichier de la lens qui dépende de l'app) et `test/macos-app-contract.test.js` (les API de la lens que l'app utilise).
 - Variables pour les essais, à passer avec `open -n --env …` :
 

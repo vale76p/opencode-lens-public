@@ -8,7 +8,7 @@
 
 - **Facoltativa.** La lens funziona identica senza: stesso servizio, stessa dashboard nel browser, stessi dati. `install.sh` copia i sorgenti dell'app in `~/Applications/opencode-lens/extras/macos/`. L'app si installa da **Impostazioni › Aggiornamento** o con il comando qui sotto; da lì in poi `install.sh` la tiene alla versione della lens.
 - **Un client HTTP della lens.** Non apre il database e non legge i file della lens: sa dov'è la lens dal plist del LaunchAgent e le parla in HTTP su loopback. Nessuna API nuova: usa la dashboard, `/healthz` e `/api/budget`.
-- **Accanto a OpenCode Lens Monitor, non al suo posto.** Monitor tiene la barra dei menu: la percentuale del budget, il pannello, i widget, Avvia e Ferma del LaunchAgent e il suo avvio al login. L'app tiene la finestra della dashboard, l'icona nel Dock, le notifiche e l'avvio al login della finestra. Non ha un'icona nella barra dei menu e non avvia né ferma la lens. Le due app hanno nomi e bundle id diversi (`local.opencode-lens-monitor`, `local.opencode-lens.app`) e convivono; nessuna delle due serve all'altra.
+- **Accanto a [OpenCode Lens Monitor](https://github.com/vale76p/opencode-lens-monitor-public), non al suo posto.** Monitor tiene la barra dei menu: la percentuale del budget, il pannello, i widget, Avvia e Ferma del LaunchAgent e il suo avvio al login. L'app tiene la finestra della dashboard, l'icona nel Dock, le notifiche e l'avvio al login della finestra. Non ha un'icona nella barra dei menu e non avvia né ferma la lens. Le due app hanno nomi e bundle id diversi (`local.opencode-lens-monitor`, `local.opencode-lens.app`) e convivono; nessuna delle due serve all'altra.
 
 ## Requisiti
 
@@ -181,7 +181,7 @@ npm run test:macos                            # build vera, firma, versione e ic
 ```
 
 - `app.sh build` senza `--out` costruisce nella cache, `~/Library/Caches/opencode-lens-app`. Scegli una cartella `--out` fuori da iCloud (`~/Documents` può esserlo): gli attributi estesi rompono la firma e lo script lo segnala. La compilazione stessa avviene in una cartella temporanea.
-- `npm run test:macos` (`test/macos/app.test.js`) costruisce l'app davvero e controlla bundle, firma ad-hoc con hardened runtime, versione, icona e architettura, senza mai avviarla. Si salta fuori da macOS o senza Command Line Tools. Fa parte dei controlli prima di un rilascio; in CI non gira.
+- `npm run test:macos` (`test/macos/app.test.js`) costruisce l'app davvero e controlla bundle, firma ad-hoc con hardened runtime, versione, icona e architettura, senza mai avviarla. Si salta fuori da macOS o senza Command Line Tools. In CI gira nel job `macos` (runner macOS 26), che fallisce se il test si salta; resta anche fra i controlli prima di un rilascio.
 - In `npm test` (anche in CI) ci sono i controlli statici `test/macos-app.test.js` (script, `Info.plist`, sorgenti senza JavaScript iniettato, nessun file della lens che dipenda dall'app) e `test/macos-app-contract.test.js` (le API della lens che l'app usa).
 - Variabili per le prove, da passare con `open -n --env …`:
 
