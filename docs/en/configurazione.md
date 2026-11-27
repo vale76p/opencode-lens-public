@@ -89,7 +89,7 @@ LENS_LIMIT_TOKENS=5000000 LENS_LIMIT_STEPS=300 npm start
 
 With the LaunchAgent add them to the plist's `EnvironmentVariables` and reload the service; running `opencode-lens service install` again does not delete them. The same values are in `/metrics` (`opencode_lens_daily_limit`) to build an alert on them.
 
-Week and month have budgets of their own, by calendar in local time (week from Monday 00:00, month from day 1). The OpenCode Lens Monitor app uses them for the percentage in the bar, the cards and the widgets, reading them from `/api/budget`. Example, 50 million tokens a week and 200 million a month:
+Week and month have budgets of their own, by calendar in local time (week from Monday 00:00, month from day 1). The [OpenCode Lens Monitor](https://github.com/vale76p/opencode-lens-monitor-public) app uses them for the percentage in the bar, the cards and the widgets, reading them from `/api/budget`. Example, 50 million tokens a week and 200 million a month:
 
 ```bash
 LENS_LIMIT_TOKENS_WEEKLY=50000000 LENS_LIMIT_TOKENS_MONTHLY=200000000 npm start

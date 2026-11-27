@@ -20,7 +20,7 @@ Tutto resta sul tuo computer: nessun servizio esterno, nessun account, zero dipe
 - **Server MCP per OpenCode.** I modelli possono chiedere a Lens budget, errori aggregati, uso e sessioni («confronta questa settimana con la scorsa»).
 - **API, Prometheus e OTLP.** Un'API JSON locale, `/metrics` con contatori che non calano mai, e l'export OTLP verso un collector OpenTelemetry.
 - **Moduli facoltativi.** Pagine in più da accendere quando servono: Vibe Coding, Sistema, Security, IBM Bob e Skill, più quelli che scrivi tu (vedi [Moduli](#moduli)).
-- **Extra.** Il plugin OpenCode **lens-guard**, che passa a un modello di riserva quando il provider esaurisce la quota o non risponde, e un'app macOS facoltativa con la dashboard in una finestra nativa.
+- **Extra.** Il plugin OpenCode **lens-guard**, che passa a un modello di riserva quando il provider esaurisce la quota o non risponde, un'app macOS facoltativa con la dashboard in una finestra nativa e, come progetto a parte, [OpenCode Lens Monitor](https://github.com/vale76p/opencode-lens-monitor-public), l'app nella barra dei menu con budget, pannello e widget.
 
 L'interfaccia è in italiano, inglese e francese: la lingua e il formato di date e numeri seguono il browser o si scelgono nelle Impostazioni.
 

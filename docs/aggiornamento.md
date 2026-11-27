@@ -159,7 +159,7 @@ rm -rf ~/Library/Application\ Support/opencode-lens/backup
 - Non cancellare `~/Library/Application Support/opencode-lens`, né `lens.db-wal` e `lens.db-shm` mentre la lens gira: contengono dati non ancora scritti in `lens.db`.
 - Non cancellare il plist prima di aver reinstallato: contiene le tue impostazioni. Se è già successo, recupera la copia in `backup/` (vedi sotto).
 
-L'app OpenCode Lens Monitor continua a funzionare senza modifiche: il nome del servizio e la porta sono gli stessi.
+L'app [OpenCode Lens Monitor](https://github.com/vale76p/opencode-lens-monitor-public) continua a funzionare senza modifiche: il nome del servizio e la porta sono gli stessi.
 
 ## Ripristinare una copia di sicurezza
 
