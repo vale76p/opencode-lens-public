@@ -19,7 +19,7 @@ export default {
   // The oldest lens that can run this module (x.y.z). With an older lens the module stays in «error» and says so.
   // Set it to the version of the lens you wrote the module on: this example needs the widgets of the modules.
   // (The marker at the end of the line lets the lens's releases keep this example on their own version.)
-  lens: "0.51.0", // x-release-please-version
+  lens: "0.51.1", // x-release-please-version
 
   // The menu entry. `group` is "dati" (Data) or "lens"; `order` sorts inside the group (the modules go last);
   // `icon` is the inside of an <svg viewBox="0 0 24 24">, drawn with the page's colours.

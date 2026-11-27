@@ -2,7 +2,7 @@
 
 🌐 Italiano · [English](README.en.md) · [Français](README.fr.md)
 
-**Versione 0.51.0** <!-- x-release-please-version --> · [Novità](CHANGELOG.md) · [Release](https://github.com/vale76p/opencode-lens-public/releases) · Licenza [MIT](LICENSE)
+**Versione 0.51.1** <!-- x-release-please-version --> · [Novità](CHANGELOG.md) · [Release](https://github.com/vale76p/opencode-lens-public/releases) · Licenza [MIT](LICENSE)
 
 **Osservabilità locale per [OpenCode](https://opencode.ai) V2.** OpenCode Lens si collega in sola lettura al servizio di OpenCode che gira in background, conta token, costi, modelli, tool, errori e tempi di ogni sessione, e li mostra in una dashboard su `http://127.0.0.1:4777`, in un'API JSON e su `/metrics` per Prometheus.
 
