@@ -1,0 +1,29 @@
+[
+ {
+  "version": 1,
+  "skills": [
+   {
+    "id": "demo",
+    "name": "demo",
+    "description": "Una prova, 2",
+    "current": 2,
+    "currentSince": 1793271602000,
+    "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":1,"bytes":48,"hash":"da3522334811a2c032e49cf0bec186351ba9c75f9dfb44e59dde0be311100006","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271602000,"source":"md","files":1,"bytes":51,"hash":"d1d0b5c201570604d40b188f2ad4ef3c183ea2abb92165deeb65996a7becbda0","hashV":2,"mdChars":6}],
+    "dir": "<DATA>/skills/demo/2"
+   }
+  ]
+ },
+ {
+  "id": "demo",
+  "name": "demo",
+  "description": "Una prova, 2",
+  "metadata": {},
+  "current": 2,
+  "version": 2,
+  "dir": "<DATA>/skills/demo/2",
+  "body": "corpo\n",
+  "files": [],
+  "totalFiles": 0,
+  "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":1,"bytes":48,"hash":"da3522334811a2c032e49cf0bec186351ba9c75f9dfb44e59dde0be311100006","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271602000,"source":"md","files":1,"bytes":51,"hash":"d1d0b5c201570604d40b188f2ad4ef3c183ea2abb92165deeb65996a7becbda0","hashV":2,"mdChars":6}]
+ }
+]

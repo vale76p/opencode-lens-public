@@ -1,0 +1,220 @@
+/* The Skill module's page */
+/* the period: no gap, 8 px each side, at least 32 px, as the core's period selectors */
+#skill-range { gap: 0; }
+#skill-range button { min-width: 32px; padding: 0 7px; } /* 7 + the 1 px border = 8 px each side */
+
+/* the import panel, the feedback lines and the presets dialog */
+#skill-drop.off { border-style: solid; }
+#skill-drop.off > :not(.skill-fb) { opacity: 0.6; } /* the controls, not the message: the reason has to stay readable */
+#skill-drop { flex-direction: column; align-items: stretch; gap: 10px; }
+.skill-pick-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.skill-mode { margin: 0; padding: 0; border: 0; min-width: 0; display: grid; gap: 6px; font-size: 13px; }
+.skill-mode legend { padding: 0; margin-bottom: 4px; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
+.skill-mode-opt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.skill-mode-opt .caption { margin: 0; flex: 1 1 260px; font-size: 12px; }
+.skill-mode label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.skill-mode input:disabled { cursor: default; }
+.skill-md-note { margin: 0; font-size: 12px; }
+/* one feedback pattern: a status line and an alert line (an error says «Errore:», has an icon and its own colour) */
+/* the status and alert lines are always in the page, so a reader that watches them announces what is put in; without a text they are only visually hidden */
+.skill-fb { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
+.skill-fb:not(.on), .skill-fb span:empty, .presets-notice:empty { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; box-shadow: none; }
+.skill-fb span { display: block; overflow-wrap: anywhere; }
+.skill-fb .fb-err:empty::before { display: none; }
+.skill-fb .fb-ok { color: var(--text-primary); }
+.skill-fb .fb-err { padding: 6px 10px 6px 34px; position: relative; border-radius: 8px; font-weight: 600; color: var(--critical-text); background: color-mix(in srgb, var(--critical) 10%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--critical) 40%, transparent); }
+.skill-fb .fb-err::before { content: "!"; position: absolute; left: 10px; top: 7px; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff; background: var(--critical); }
+.skill-fb .fb-err:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.skill-fb-lib.on { position: sticky; bottom: 8px; margin-top: 10px; padding: 8px 10px; border-radius: 8px; background: var(--surface-1); box-shadow: 0 0 0 1px var(--border), 0 4px 14px rgba(0, 0, 0, 0.12); } /* stays in view while the board is */
+.skill-reason { display: flex; gap: 8px; margin: 0 0 12px; padding: 10px 14px; border-radius: 10px; font-size: 13px; color: var(--text-primary); background: var(--wash); box-shadow: 0 0 0 1px var(--border); }
+.skill-reason[hidden] { display: none; }
+.skill-reason::before { content: "i"; flex: none; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; font-style: italic; color: #fff; background: var(--text-secondary); }
+.skill-prow .ghost:disabled { opacity: 0.4; cursor: default; background: transparent; }
+.skill-pick.bad { color: var(--critical-text); box-shadow: 0 0 0 1px color-mix(in srgb, var(--critical) 45%, transparent); background: color-mix(in srgb, var(--critical) 8%, transparent); }
+/* the presets dialog of this page: wider, as it holds a form per preset */
+.skill-dialog { width: min(640px, calc(100vw - 32px)); }
+.skill-prow { display: block; }
+.skill-prow-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.skill-prow .presets-who .caption { margin: 0; }
+.skill-edit { margin-top: 8px; padding: 10px 12px; border: 0; border-radius: 10px; background: var(--wash); }
+.skill-brief { resize: vertical; min-height: 4.5em; }
+.skill-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.skill-fieldset legend { padding: 0; margin-bottom: 4px; }
+.skill-picks { display: flex; flex-wrap: wrap; gap: 6px; max-height: 180px; overflow: auto; padding: 2px; }
+.skill-pick { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; padding: 3px 9px; border-radius: 99px; box-shadow: 0 0 0 1px var(--border); cursor: pointer; }
+.skill-pick:has(input:checked) { background: var(--accent-wash); box-shadow: 0 0 0 1px var(--accent); }
+.skill-pick:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 1px; }
+.skill-form-acts { display: flex; gap: 8px; }
+.skill-dialog .presets-error, .presets-field-error { margin: 8px 0 0; min-height: 0; font-size: 12.5px; font-weight: 600; color: var(--critical-text); }
+.presets-field-error { margin-top: -2px; }
+.skill-dialog .presets-input[aria-invalid="true"] { box-shadow: 0 0 0 2px var(--critical); }
+.presets-notice { margin: 10px 0 0; padding: 6px 10px; border-radius: 8px; font-size: 12.5px; background: var(--wash); }
+.skill-prow .presets-who .skill-sum.bad { color: var(--critical-text); }
+.skill-pick-gone { display: inline-flex; align-items: center; gap: 4px; }
+.skill-pick-gone .ghost { padding: 2px 8px; font-size: 11.5px; }
+.skill-empty-note { margin: 4px 0 0; }
+.skill-empty-note[hidden] { display: none; }
+.skill-results { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; }
+.skill-results[hidden] { display: none; }
+.skill-result { padding: 4px 10px; border-radius: 8px; overflow-wrap: anywhere; background: var(--wash); }
+.skill-result.refused { color: var(--critical-text); background: color-mix(in srgb, var(--critical) 8%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--critical) 40%, transparent); }
+.skill-result.note { color: var(--text-secondary); background: transparent; padding-left: 0; font-size: 12px; }
+.skill-weight { margin-top: 8px; }
+.skill-weight-text { margin: 0 0 4px; }
+.skill-weight-text.bad { color: var(--critical-text); }
+.skill-weight-bar { margin-bottom: 0; }
+.skill-order-box { margin-top: 8px; }
+.skill-order { list-style: none; counter-reset: skill-order; margin: 4px 0 0; padding: 0; display: grid; gap: 4px; }
+/* the number is a counter, not the list marker: a marker of a flex row does not show */
+.skill-order-row { counter-increment: skill-order; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 3px 8px; border-radius: 8px; box-shadow: 0 0 0 1px var(--border); font-size: 12.5px; }
+.skill-order-row.bad { color: var(--critical-text); }
+.skill-order-row::before { content: counter(skill-order) "."; min-width: 2ch; font-variant-numeric: tabular-nums; }
+.skill-order-id { overflow-wrap: anywhere; }
+.skill-order-row .caption { margin: 0; }
+.skill-cut { color: var(--critical-text); font-weight: 600; font-size: 12px; }
+.skill-order-acts { margin-left: auto; display: inline-flex; gap: 6px; }
+.skill-order-acts .ghost { padding: 4px 10px; font-size: 12px; }
+.skill-order-acts .ghost:disabled { opacity: 0.4; cursor: default; }
+
+/* top bar, hero, import panel and the page-wide drop veil */
+#skill-range[hidden], .skill-import[hidden], .skill-empty[hidden], #skill-board[hidden], .skill-veil[hidden] { display: none; }
+.skill-import { margin-bottom: 16px; }
+.skill-empty { margin: 0 0 16px; padding: 28px 20px; text-align: center; font-size: 14px; color: var(--text-secondary); border: 1px dashed var(--border); border-radius: 14px; }
+.skill-veil { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; pointer-events: none; background: color-mix(in srgb, var(--page) 78%, transparent); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.skill-veil span { padding: 22px 34px; font-size: 18px; font-weight: 650; border-radius: 16px; border: 2px dashed var(--accent); background: var(--accent-wash); color: var(--text-primary); }
+/* the «Annulla» notice after a board move: empty, it stays in the page (a status region), out of sight */
+.skill-toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 45; display: flex; gap: 12px; align-items: center; max-width: calc(100vw - 32px); padding: 9px 10px 9px 14px; border-radius: 10px; font-size: 13px; background: var(--tile); color: var(--tile-ink); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
+.skill-toast:empty { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); box-shadow: none; }
+.skill-toast span { overflow-wrap: anywhere; }
+.skill-toast button { flex: none; border: 0; background: rgba(255, 255, 255, 0.14); color: inherit; font: inherit; font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 7px; cursor: pointer; }
+.skill-toast button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* the board (the library column, one column per preset, «+ Nuovo preset») */
+.sboard { margin-bottom: 16px; }
+.sboard .card-head { margin: 4px 2px 10px; }
+.sboard .card-head h2 { font-size: 15px; }
+.sboard .card-head .caption { margin: 2px 0 0; }
+.sboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; align-items: start; }
+.scol { position: relative; background: var(--wash); border-radius: 12px; box-shadow: inset 0 0 0 1px var(--border); padding: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.scol:focus { outline: none; }
+.scol:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); }
+.scol.lib { background: transparent; box-shadow: none; border: 1px dashed var(--axis); grid-row: span 2; }
+.scol.over { background: var(--accent-wash); box-shadow: inset 0 0 0 2px var(--accent); }
+.scol .sch { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.scol .pn { margin: 0; font-size: 14px; font-weight: 650; min-width: 0; overflow-wrap: anywhere; }
+.scol .sch .n, .scol .sch .caption { margin: 0 0 0 auto; color: var(--text-muted); font-size: 12px; white-space: nowrap; }
+.scol .pbar { width: 4px; height: 16px; border-radius: 2px; flex: none; }
+.skp { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 99px; white-space: nowrap; }
+.skp.bad { color: var(--critical-text); background: color-mix(in srgb, var(--critical) 10%, transparent); }
+.skp.warn { color: var(--text-primary); background: color-mix(in srgb, var(--warning) 24%, transparent); }
+.skp.muted { color: var(--text-secondary); background: var(--surface-1); box-shadow: 0 0 0 1px var(--border); }
+.scmd { display: flex; align-items: center; gap: 8px; }
+.scmd .ghost { padding: 3px 9px; font-size: 12px; }
+.cmd { font: 11.5px ui-monospace, Menlo, monospace; color: var(--text-secondary); background: var(--surface-1); border: 0; box-shadow: 0 0 0 1px var(--border); padding: 2px 7px; border-radius: 6px; cursor: copy; overflow-wrap: anywhere; text-align: left; }
+.cmd:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.scol .scm { margin: 0; font-size: 11.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.scol .skill-weight { margin-top: 0; }
+.scol .skill-weight-text { font-size: 11.5px; }
+.scol .brief { margin: 0; color: var(--text-secondary); font-size: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.scol .stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; } /* an auto track would grow to a card's unwrapped name or description */
+.scol .empty-col { padding: 14px 8px; border: 1px dashed var(--axis); border-radius: 9px; text-align: center; font-size: 12px; color: var(--text-muted); }
+.scol.new { align-items: center; justify-content: center; min-height: 140px; border: 1px dashed var(--axis); background: transparent; box-shadow: none; color: var(--text-muted); cursor: pointer; font: inherit; gap: 4px; }
+.scol.new:hover, .scol.new:focus-visible { color: var(--accent); border-color: var(--accent); }
+.scol.new .hint { font-size: 12px; }
+.scol.onboard { align-items: flex-start; }
+.scol.onboard p { margin: 0; font-size: 13px; color: var(--text-secondary); }
+.sk-filters { flex-wrap: wrap; align-self: flex-start; }
+.sk-filters button { padding: 4px 9px; font-size: 12px; }
+.sk-filters button:disabled { opacity: 0.45; cursor: default; background: transparent; }
+.sk-tools { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.sk-search { flex: 1 1 140px; }
+.sk-search input { width: 100%; min-width: 0; }
+.sk-sort { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; }
+.sk-sort .caption { margin: 0; }
+.sk-sort select { font: inherit; font-size: 12.5px; color: var(--text-primary); background: var(--surface-1); border: 0; box-shadow: 0 0 0 1px var(--axis); border-radius: 8px; padding: 5px 6px; }
+.sk-sort select:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+/* a skill card: in the library (name, preset dots, description, facts) or in a preset («mini»: one line) */
+.sk { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; padding: 8px 10px; border-radius: 9px; background: var(--surface-1); box-shadow: 0 0 0 1px var(--border), 0 1px 2px rgba(0, 0, 0, 0.04); cursor: pointer; }
+.sk[draggable="true"] { cursor: grab; }
+.sk:hover { box-shadow: 0 0 0 1px var(--axis), 0 2px 6px rgba(0, 0, 0, 0.05); }
+.sk.dragging { opacity: 0.35; }
+.sk.ins { box-shadow: 0 -3px 0 0 var(--accent), 0 0 0 1px var(--border); } /* the drop lands before this card */
+.sk.just { background: var(--accent-wash); } /* the skill just imported, for a few seconds (no animation) */
+.sk .grip { color: var(--text-muted); font-size: 10px; letter-spacing: -1px; user-select: none; }
+.sk .nm { flex: 1 1 0; min-width: 0; padding: 0; border: 0; background: none; font: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); text-align: left; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sk span.nm { cursor: default; }
+.sk .nm:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.sk .ds, .sk .mt { order: 2; flex-basis: 100%; }
+.sk .ds { color: var(--text-secondary); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sk .mt { display: flex; flex-wrap: wrap; gap: 2px 8px; color: var(--text-muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.sk .sk-new { color: var(--accent); font-weight: 600; padding: 0 6px; border-radius: 99px; background: var(--accent-wash); }
+.sk .dots { display: inline-flex; gap: 3px; }
+.sk .dots .dot { width: 7px; height: 7px; }
+.sk .sz { display: inline-flex; gap: 6px; color: var(--text-muted); font-size: 11.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sk-state { font-size: 11px; font-weight: 600; white-space: nowrap; }
+.sk-state.bad { color: var(--critical-text); }
+.sk-state.cut { color: var(--text-primary); padding: 0 6px; border-radius: 99px; background: color-mix(in srgb, var(--warning) 24%, transparent); }
+.sk.missing { background: color-mix(in srgb, var(--critical) 7%, var(--surface-1)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--critical) 35%, transparent); cursor: default; }
+.sk.missing .nm { color: var(--critical-text); text-decoration: line-through; }
+.sk.cut { box-shadow: 0 0 0 1px color-mix(in srgb, var(--warning) 60%, transparent); }
+.sk.mini { padding: 6px 8px; }
+.skacts { margin-left: auto; display: inline-flex; gap: 2px; }
+.sk .ghost.skstep, .sk .ghost.skmenu, .sk .ghost.skx { padding: 1px 7px; font-size: 12px; line-height: 1.4; }
+.sk .ghost:disabled { opacity: 0.35; cursor: default; background: transparent; }
+.sk .ghost.skx:hover { color: var(--critical-text); }
+/* with a mouse the actions of a mini-card come on hover or keyboard focus, laid over its right end, so the name has
+   the whole line; still in the page (opacity, not display/visibility), so Tab reaches them. Touch: always in the line */
+@media (hover: hover) {
+  .sk.mini .skacts { position: absolute; top: 50%; right: 4px; transform: translateY(-50%); padding-left: 6px; border-radius: 6px; background: inherit; opacity: 0; pointer-events: none; }
+  .sk.mini:hover .skacts, .sk.mini:focus-within .skacts, .sk.mini:has(.fmenu) .skacts { opacity: 1; pointer-events: auto; }
+}
+@media (max-width: 899.98px) {
+  /* stacked columns; the drag gives way to the menu and the buttons, made big enough for a finger */
+  .sboard-grid { grid-template-columns: minmax(0, 1fr); }
+  .scol.lib { grid-row: auto; }
+  .sk .grip { display: none; }
+  .sk .ghost.skstep, .sk .ghost.skmenu, .sk .ghost.skx { padding: 6px 11px; font-size: 13px; }
+}
+.vk-pill { align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 99px; }
+.vk-pill.ok { color: color-mix(in srgb, var(--good) 45%, white); background: color-mix(in srgb, var(--good) 22%, transparent); }
+.vk-pill.warn { color: color-mix(in srgb, var(--warning) 70%, white); background: color-mix(in srgb, var(--warning) 22%, transparent); }
+.vk-pill.bad { color: color-mix(in srgb, var(--critical) 45%, white); background: color-mix(in srgb, var(--critical) 24%, transparent); }
+.mix .s-used { background: var(--series-1); }
+.mix .s-never { background: color-mix(in srgb, var(--tile-ink) 28%, transparent); }
+
+/* the side panel of one skill (skills-drawer.js) */
+#skill-drawer .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, 0.28); }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 41; width: min(440px, 100vw); box-sizing: border-box; padding: 18px; overflow: auto; display: grid; gap: 16px; align-content: start; background: var(--surface-1); box-shadow: -1px 0 0 var(--border), -16px 0 40px rgba(0, 0, 0, 0.18); }
+.drawer h3 { margin: 0; font-size: 17px; overflow-wrap: anywhere; }
+.drawer h4 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+.drawer .dr-head { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.drawer .dr-status { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-size: 12.5px; color: var(--text-secondary); }
+.drawer .desc2 { margin: 0; color: var(--text-secondary); overflow-wrap: anywhere; }
+.drawer .dr-sec { display: grid; gap: 6px; }
+.drawer .dr-sec p { margin: 0; }
+.drawer .dr-big { font-variant-numeric: tabular-nums; }
+.drawer .dr-err { color: var(--critical-text, var(--critical)); font-size: 12.5px; }
+.drawer .dr-bars { display: grid; gap: 4px; }
+.drawer .dr-bar { display: grid; grid-template-columns: minmax(70px, 38%) 1fr auto; gap: 8px; align-items: center; font-size: 12.5px; }
+.drawer .dr-bar .lbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary); }
+.drawer .dr-bar .track { height: 8px; border-radius: 4px; background: var(--wash); overflow: hidden; }
+.drawer .dr-bar .track i { display: block; height: 100%; border-radius: 4px; background: var(--series-1); }
+.drawer .dr-bar .num { font-variant-numeric: tabular-nums; color: var(--text-muted); }
+.drawer .dr-list { margin: 0; padding-left: 18px; font-size: 12.5px; }
+.drawer .dr-toggles { display: grid; gap: 2px; }
+.drawer .dr-toggles label { display: flex; align-items: center; gap: 8px; padding: 5px 4px; border-radius: 7px; font-size: 13px; }
+.drawer .dr-toggles label:hover { background: var(--wash); }
+.drawer .dr-toggles .nm { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.drawer .pill.warn { color: var(--serious); }
+.drawer .dr-vers { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.drawer .dr-vers li { display: grid; gap: 2px; padding: 8px 10px; border-radius: 9px; box-shadow: 0 0 0 1px var(--border); font-size: 12.5px; }
+.drawer .dr-vhead { display: flex; gap: 8px; align-items: center; }
+.drawer .dr-vacts, .drawer .dr-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.drawer .ghost { padding: 4px 10px; font-size: 12.5px; }
+.drawer .ghost.danger:hover { color: var(--critical-text, var(--critical)); }
+.drawer .skill-body { max-height: 320px; overflow: auto; margin: 0; padding: 10px; border-radius: 8px; background: var(--wash); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.drawer .skill-files { margin: 4px 0 0; padding-left: 18px; }
+.drawer .dr-del { padding-top: 4px; border-top: 1px solid var(--border); }
+.drawer button:focus-visible, .drawer input:focus-visible, .drawer .skill-body:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) { .drawer { animation: dr-in 0.16s ease-out; } }
+@keyframes dr-in { from { transform: translateX(24px); opacity: 0; } }

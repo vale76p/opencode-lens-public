@@ -1,0 +1,32 @@
+// French texts of the example module, on top of the core's catalog (public/lang-fr.js).
+// The key is the Italian text exactly as written in the code, as in lang-en.js; same keys as lang-en.js.
+export default {
+  "Il mio modulo": "Mon module",
+  "Un modulo d'esempio da copiare: un blocco di note con la sua pagina, un widget per la dashboard e un'impostazione": "Un module d'exemple à copier : un bloc-notes avec sa page, un widget pour le dashboard et un réglage",
+  "Nota di benvenuto": "Note de bienvenue",
+  "mostrata in cima alla pagina; vuoto = nessuna": "affichée en haut de la page ; vide = aucune",
+  "Ciao!": "Salut !",
+  "Note del mio modulo": "Notes de mon module",
+  "Quante note hai scritto nel periodo, e l'ultima": "Combien de notes vous avez écrites sur la période, et la dernière",
+  "LENS_MIO_MODULO_NOTE è troppo lunga: al più {max} caratteri": "LENS_MIO_MODULO_NOTE est trop longue : {max} caractères au plus",
+  "le note scritte nella pagina del modulo d'esempio": "les notes écrites dans la page du module d'exemple",
+  "Note del mio modulo (file non valido)": "Notes de mon module (fichier non valide)",
+  "copia di mio-modulo.json fatta quando non era leggibile, prima che un salvataggio lo sostituisse": "copie de mio-modulo.json faite quand il était illisible, avant qu'un enregistrement ne le remplace",
+  "le note del modulo d'esempio": "les notes du module d'exemple",
+  "La nota deve avere da 1 a {max} caratteri": "La note doit faire de 1 à {max} caractères",
+  "Nessuna nota di benvenuto: scrivila da Impostazioni › Moduli.": "Pas de note de bienvenue : écrivez-en une dans Paramètres › Modules.",
+  "Quando": "Quand",
+  "Nota": "Note",
+  "Nessuna nota ancora: scrivine una qui sopra.": "Aucune note pour l'instant : écrivez-en une ci-dessus.",
+  "note nel periodo": {
+    "one": "note sur la période",
+    "other": "notes sur la période",
+  },
+  "Nessuna nota nel periodo": "Aucune note sur la période",
+  "Un blocco di note, per vedere come è fatto un modulo": "Un bloc-notes, pour voir comment est fait un module",
+  "Nuova nota": "Nouvelle note",
+  "Scrivi una nota": "Écrivez une note",
+  "Testo della nota": "Texte de la note",
+  "Aggiungi": "Ajouter",
+  "Le note": "Les notes",
+};

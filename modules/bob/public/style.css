@@ -1,0 +1,32 @@
+/* The IBM Bob module: its page (bob-page.js) and its panel in Impostazioni › Moduli (settings.js) */
+/* the period as the core's ones, 8 px each side */
+#bob-range { gap: 0; }
+#bob-range button { min-width: 32px; padding: 0 7px; } /* 7 + the 1 px border = 8 px each side */
+.bob-tile { background: var(--surface-1); border-radius: 12px; box-shadow: 0 0 0 1px var(--border); padding: 14px 16px; min-width: 0; }
+.bob-tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.bob-tile-label { font-size: 11.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.bob-tile-value { margin-top: 4px; font-size: var(--fs-kpi); font-weight: 650; letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bob-tile-note { margin-top: 2px; font-size: 12px; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bob-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.bob-days { display: flex; align-items: flex-end; gap: 2px; height: 120px; padding-top: 4px; }
+.bob-day { flex: 1 1 0; min-width: 2px; height: 100%; display: flex; align-items: flex-end; }
+.bob-day-bar { display: block; width: 100%; min-height: 1px; border-radius: 2px 2px 0 0; background: var(--series-1); }
+.bob-day:hover .bob-day-bar { background: var(--accent); }
+#bob-recent td.num .chipx, #bob-recent .chipx { font-weight: 600; }
+@media (max-width: 1100px) { .bob-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 800px) { .bob-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .bob-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* the bars of the tables (folders, models, tools) */
+.bob-bar-cell { white-space: nowrap; }
+.bob-bar-wrap { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+.bob-bar { position: relative; width: 56px; height: 2px; background: var(--track); overflow: hidden; }
+.bob-bar .meter-fill { height: 100%; background: var(--bar-neutral); }
+.bob-bar-n { min-width: 62px; text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .bob-bar { display: none; } }
+/* the panel: the state of the reading next to its title, the probes and their output */
+.bob-panel-head { display: flex; align-items: center; gap: 10px; }
+.bob-panel-head .st-h3 { margin: 6px 0; }
+.bob-probes { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.bob-probe-result[hidden] { display: none; }
+.bob-probe-head { display: flex; align-items: center; gap: 8px; margin: 8px 0 6px; }
+.bob-probe-out { max-height: 420px; overflow: auto; white-space: pre; font-size: 12px; }

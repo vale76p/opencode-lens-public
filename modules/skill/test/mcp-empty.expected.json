@@ -1,0 +1,10 @@
+[
+ {"ok":{"text":"Nessun preset di skill: si creano nella pagina Skill di Lens."}},
+ {"error":"preset sconosciuto: boh; non ci sono preset; chiedi preset senza argomenti per l'elenco","tool":true,"status":null},
+ {"error":"preset sconosciuto: boh; non ci sono preset; chiedi preset senza argomenti per l'elenco","tool":true,"status":null},
+ {"ok":{"prompts":[],"snapshot":"[]"}},
+ {"ok":[]},
+ {"ok":"[]"},
+ [{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}}],
+ []
+]

@@ -1,0 +1,59 @@
+<section class="page-view hidden" id="view-skill" aria-labelledby="skill-title">
+  <header class="topbar">
+    <div class="tb-row">
+      <div class="slot s-ident">
+        <span class="tb-ico" data-ico="skill" aria-hidden="true"></span>
+        <div class="tb-title">
+          <h1 id="skill-title" data-i18n>Skill</h1>
+          <p class="ctx" id="skill-ctx" aria-live="polite" data-i18n>La libreria delle tue skill, con le versioni e i preset</p>
+        </div>
+      </div>
+      <div class="slot s-period">
+        <div class="seg" role="radiogroup" aria-label="Periodo" id="skill-range" data-i18n-aria-label hidden>
+          <button type="button" role="radio" aria-checked="false" data-v="7" aria-label="7 giorni" title="7 giorni" data-i18n data-i18n-aria-label data-i18n-title>7 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="30" aria-label="30 giorni" title="30 giorni" data-i18n data-i18n-aria-label data-i18n-title>30 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="90" aria-label="90 giorni" title="90 giorni" data-i18n data-i18n-aria-label data-i18n-title>90 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="0" data-i18n>Tutto</button>
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <div class="slot s-actions">
+        <button class="ghost" type="button" id="skill-new-preset" data-i18n>+ Nuovo preset</button>
+        <button class="ghost" type="button" id="skill-import-open" aria-expanded="false" aria-controls="skill-import" data-i18n>Importa…</button>
+      </div>
+      <div class="slot s-action"></div>
+    </div>
+  </header>
+  <div class="view-body">
+    <p class="skill-reason" id="skill-reason" role="status" hidden></p>
+    <section class="card skill-import" id="skill-import" aria-labelledby="skill-h-import" hidden>
+      <div class="card-head"><div><h2 id="skill-h-import" data-i18n>Importa una skill</h2><p class="caption" data-i18n>Una cartella con un SKILL.md, uno zip, un file .skill o un SKILL.md, anche più insieme: viene controllato e copiato nella libreria, mai eseguito</p></div></div>
+      <div class="up-drop" id="skill-drop">
+        <input type="file" id="skill-file" accept=".zip,.skill,.md" multiple hidden>
+        <input type="file" id="skill-dir" webkitdirectory multiple hidden>
+        <div class="skill-pick-row">
+          <button class="ghost" type="button" id="skill-choose" data-i18n>Scegli i file…</button>
+          <button class="ghost" type="button" id="skill-choose-dir" data-i18n>Scegli una cartella…</button>
+          <span class="caption" data-i18n>oppure trascina qui file e cartelle</span>
+        </div>
+        <fieldset class="skill-mode" id="skill-mode">
+          <legend data-i18n>Se la skill c'è già</legend>
+          <div class="skill-mode-opt"><label><input type="radio" name="skill-mode" value="version" checked aria-describedby="skill-mode-h-version"> <span data-i18n>Nuova versione</span></label><span class="caption" id="skill-mode-h-version" data-i18n>Aggiunge una versione e la mette in uso: le precedenti restano e si recuperano da «Versioni».</span></div>
+          <div class="skill-mode-opt"><label><input type="radio" name="skill-mode" value="overwrite" aria-describedby="skill-mode-h-overwrite"> <span data-i18n>Sovrascrivi la corrente</span></label><span class="caption" id="skill-mode-h-overwrite" data-i18n>Sostituisce i file della versione in uso, senza storico: non si torna indietro.</span></div>
+          <div class="skill-mode-opt"><label><input type="radio" name="skill-mode" value="new" aria-describedby="skill-mode-h-new"> <span data-i18n>Salta se esiste già</span></label><span class="caption" id="skill-mode-h-new" data-i18n>Se la skill c'è già non importa niente.</span></div>
+        </fieldset>
+        <p class="caption skill-md-note" data-i18n>Un SKILL.md da solo aggiorna solo quel file: gli altri vengono ripresi dalla versione in uso.</p>
+        <div class="skill-fb" id="skill-msg"><span class="fb-ok" role="status"></span><span class="fb-err" role="alert" tabindex="-1"></span></div>
+        <ul class="skill-results" id="skill-results" aria-label="Esito dei caricamenti" data-i18n-aria-label hidden></ul>
+      </div>
+    </section>
+    <div id="skill-hero"></div>
+    <p class="skill-empty" id="skill-empty" hidden data-i18n>Nessuna skill. Trascina qui una cartella con un SKILL.md, uno .zip o un .skill: Lens la controlla e la copia, non la esegue.</p>
+    <div id="skill-board"></div>
+    <div class="skill-fb skill-fb-lib" id="skill-lib-msg"><span class="fb-ok" role="status"></span><span class="fb-err" role="alert" tabindex="-1"></span></div>
+    <div id="skill-drawer"></div>
+  </div>
+  <div class="skill-toast" id="skill-toast" role="status"></div>
+  <div class="skill-veil" id="skill-veil" hidden aria-hidden="true"><span data-i18n>Rilascia per importare</span></div>
+</section>
+<dialog class="presets-dialog skill-dialog" id="skill-presets-dialog" aria-labelledby="skill-presets-title"></dialog>

@@ -1,0 +1,6 @@
+[
+ {"version":1,"presets":[],"canSave":true,"rev":"1504178b61469249"},
+ {"version":1,"presets":[],"canSave":false,"rev":"1504178b61469249"},
+ {"version":1,"presets":[{"id":"web","name":"Web Dev","brief":"per il web","skills":["alfa","beta"],"missing":["beta"]}],"canSave":true,"rev":"3bd0733922971959"},
+ "{\n  \"version\": 1,\n  \"presets\": [\n    {\n      \"id\": \"web\",\n      \"name\": \"Web Dev\",\n      \"brief\": \"per il web\",\n      \"skills\": [\n        \"alfa\",\n        \"beta\"\n      ]\n    }\n  ]\n}\n"
+]

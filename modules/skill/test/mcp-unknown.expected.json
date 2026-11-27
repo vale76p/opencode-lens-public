@@ -1,0 +1,1 @@
+[{"error":"preset sconosciuto: boh; id validi: https; chiedi preset senza argomenti per l'elenco","tool":true,"status":null},{"jsonrpc":"2.0","id":1,"result":{"content":[{"type":"text","text":"preset sconosciuto: boh; id validi: https; chiedi preset senza argomenti per l'elenco"}],"isError":true}}]

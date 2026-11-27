@@ -1,0 +1,12 @@
+[
+ {
+  "version": 1,
+  "skills": [
+   {"id":"orfana","name":"orfana","description":"Trovata sul disco","current":1,"currentSince":1793271601000,"versions":[{"n":1,"importedAt":1793271600000,"source":"zip","files":1,"bytes":58,"hash":"b8363865915104c2fe2d3cb24d56af1dc883cfaef0d939a5d2d438a08a216d3f","hashV":2,"mdChars":6}],"dir":"<DATA>/skills/orfana/1"},
+   {"id":"rotta","name":"rotta","description":"Con un indice rotto","current":1,"currentSince":1793271602000,"versions":[{"n":1,"importedAt":1793271600000,"source":"zip","files":1,"bytes":59,"hash":"d102d8db780e9bc1b716b90603589a52b0e2924c971e4f4b0cef3993885195c6","hashV":2,"mdChars":6}],"dir":"<DATA>/skills/rotta/1"}
+  ]
+ },
+ null,
+ "L'indice delle skill (skills.json) non è leggibile: la libreria non viene mostrata e gli import sono sospesi finché non lo ripari o lo sposti.",
+ {"status":409,"errors":["L'indice delle skill (skills.json) non è leggibile: la libreria non viene mostrata e gli import sono sospesi finché non lo ripari o lo sposti."]}
+]

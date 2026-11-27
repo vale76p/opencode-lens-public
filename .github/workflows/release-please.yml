@@ -1,0 +1,80 @@
+name: release-please
+
+# A ogni push su main release-please tiene aperta una PR di rilascio: versione (SemVer dai commit convenzionali feat/fix/BREAKING
+# CHANGE) e CHANGELOG.md. Al merge della PR crea il tag opencode-lens-vX.Y.Z e
+# la release GitHub; il secondo job ci allega lo zip dell'app.
+#
+# Serve "Allow GitHub Actions to create and approve pull requests" in
+# Settings → Actions → General → Workflow permissions.
+#
+# Every action is pinned to a full commit SHA (tag in the comment); Dependabot
+# (.github/dependabot.yml) keeps the SHAs up to date. No permissions at workflow
+# level: each job asks only for what it needs, and no checkout leaves a token in
+# .git/config while repository code runs.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      lens_released: ${{ steps.rp.outputs.release_created }}
+      lens_tag: ${{ steps.rp.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: rp
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  opencode-lens-zip:
+    needs: release-please
+    if: needs.release-please.outputs.lens_released == 'true'
+    runs-on: ubuntu-latest
+    # the signing key is a secret of this environment, which only main may use
+    # (Settings → Environments → release → deployment branches). With a plan that
+    # allows them, required reviewers there make every signature wait for approval.
+    environment: release
+    permissions:
+      contents: write # gh release upload
+      id-token: write # build provenance (Sigstore)
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.release-please.outputs.lens_tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      - name: Tag, versione e changelog coerenti
+        env:
+          TAG: ${{ needs.release-please.outputs.lens_tag }}
+        run: node scripts/changelog.mjs check "$TAG"
+      - name: Test, pacchetto e firma
+        env:
+          LENS_RELEASE_KEY: ${{ secrets.LENS_RELEASE_KEY }}
+          LENS_REQUIRE_SIGNATURE: "1"
+        run: npm run package
+      # who built the zip, from which commit: gh attestation verify <zip> --repo vale76p/opencode-lens-public
+      # GitHub does not store attestations for a user-owned private repository ("Feature not
+      # available"): the step must not stop the upload below, or the release stays without its
+      # zip (0.38.0 and 0.38.1). Once the repository is public the attestation is kept again.
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        continue-on-error: true
+        with:
+          subject-path: dist/opencode-lens-*.zip
+      - name: Zip nella release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.release-please.outputs.lens_tag }}
+        run: |
+          VERSION="$(node -p 'require("./package.json").version')"
+          gh release upload "$TAG" "dist/opencode-lens-$VERSION.zip" --clobber

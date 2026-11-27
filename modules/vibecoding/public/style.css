@@ -1,0 +1,149 @@
+/* The Vibe Coding module's page */
+/* the period: no gap, 8 px each side, at least 32 px, as the core's period selectors */
+#vibe-range { gap: 0; }
+#vibe-range button { min-width: 32px; padding: 0 7px; } /* 7 + the 1 px border = 8 px each side */
+/* a table cell kept on one line (the day of the daily table) */
+td.nowrap { white-space: nowrap; }
+
+/* the three compact tables side by side */
+.vibe-tables { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.vibe-tables > .card { margin-bottom: 0; }
+.view-body > .vibe-tables, #vibe-tables { margin-bottom: 16px; }
+@media (min-width: 900px) { .vibe-tables { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .vibe-tables { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.vibe-proj { display: inline-flex; align-items: center; gap: 6px; }
+.vibe-unassigned { color: var(--text-muted); }
+#vibe-notice > .state { margin: 0 0 12px; padding: var(--space-2) 0; justify-content: flex-start; }
+#vibe-body td .t { display: block; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#vibe-body td.key .t { display: block; max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* three cards side by side: the long text columns give way (the full text is in the title) so every number shows */
+@media (min-width: 1280px) {
+  .vibe-tables :is(th, td) { padding-inline: 6px; }
+  .vibe-tables th { white-space: normal; }
+  #vibe-body .vibe-tables td .t { max-width: 60px; }
+  #vibe-body .vibe-tables td.key .t { max-width: 88px; }
+}
+.vibe-more { margin: 8px 0 0; text-align: center; }
+
+/* the project board */
+.vibe-board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); gap: 12px; overflow-x: auto; padding-bottom: 6px; align-items: start; }
+.vibe-board .col { background: var(--wash); border-radius: 12px; box-shadow: inset 0 0 0 1px var(--border); padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 280px; min-width: 0; }
+.vibe-board .col.unassigned { background: transparent; box-shadow: none; border: 1px dashed var(--axis); }
+.vibe-board .col[aria-current="true"] { box-shadow: inset 0 0 0 2px var(--accent); }
+.vibe-board .col.over { background: var(--accent-wash); box-shadow: inset 0 0 0 2px var(--accent); }
+.vibe-board .chd { display: flex; align-items: center; gap: 8px; padding: 2px 2px 4px; min-width: 0; }
+.vibe-board .chd b { font-size: 13.5px; min-width: 0; overflow-wrap: anywhere; }
+.vibe-board .pname[contenteditable] { border-radius: 4px; padding: 0 3px; margin: 0 -3px; cursor: text; }
+.vibe-board .pname[contenteditable]:hover { background: var(--wash); }
+.vibe-board .pname[contenteditable]:focus { outline: none; background: var(--surface-1); box-shadow: 0 0 0 2px var(--accent); }
+.vibe-board .cm { display: flex; flex-wrap: wrap; gap: 2px 10px; font: inherit; font-size: 11.5px; color: var(--text-muted); padding: 0 2px; border: 0; background: transparent; text-align: left; }
+.vibe-board button.cm { cursor: pointer; border-radius: 6px; }
+.vibe-board button.cm:hover { color: var(--accent); }
+.vibe-board button.cm:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.vibe-board .cm b { color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.vibe-board .pbar { padding: 0 2px; }
+.vibe-board .bline { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; font-size: 11.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.vibe-board .empty-col { padding: 14px 8px; border: 1px dashed var(--axis); border-radius: 9px; text-align: center; font-size: 12px; color: var(--text-muted); }
+.vibe-board .newcol { border: 1px dashed var(--axis); border-radius: 12px; display: grid; place-items: center; min-height: 280px; color: var(--text-muted); cursor: pointer; background: transparent; font: inherit; }
+.vibe-board .newcol:hover, .vibe-board .newcol:focus-visible { color: var(--accent); border-color: var(--accent); }
+
+/* the charts of the strip and of the detail */
+.bullet { position: relative; height: 10px; border-radius: 5px; background: var(--grid); }
+.bullet .sp { position: absolute; inset: 0 auto 0 0; border-radius: 5px; }
+.bullet .fc { position: absolute; top: 0; bottom: 0; border-radius: 0 5px 5px 0; opacity: 0.35; background-image: repeating-linear-gradient(45deg, currentColor 0 3px, transparent 3px 6px); }
+.bullet .bm { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text-primary); border-radius: 1px; }
+.vchart text { font: 11px system-ui, sans-serif; fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.vchart .vc-end { fill: var(--text-primary); font-weight: 650; }
+.vchart .vc-budget { fill: var(--critical-text); }
+.vchart .vc-halo { paint-order: stroke; stroke: var(--surface-1); stroke-width: 3px; stroke-linejoin: round; }
+
+/* the project board: header and folder cards */
+.vboard { margin-bottom: 16px; }
+.vboard .card-head { margin: 4px 2px 8px; }
+.vboard .card-head h2 { font-size: 15px; }
+.vboard .hint { font-size: 12px; color: var(--text-muted); }
+.fcard { position: relative; background: var(--surface-1); border-radius: 9px; box-shadow: 0 0 0 1px var(--border), 0 1px 2px rgba(0, 0, 0, 0.04); padding: 8px 10px; display: grid; grid-template-columns: minmax(0, 1fr) 72px; gap: 2px 10px; align-items: center; }
+.fcard[draggable="true"] { cursor: grab; }
+.fcard.dragging { opacity: 0.35; }
+.fcard .fn { font-weight: 600; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fcard .fp { font-size: 11px; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fcard .fs { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 11.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.fcard .spark { grid-row: 1 / 3; grid-column: 2; width: 72px; height: 28px; }
+.fcard .fmove { grid-column: 1 / -1; justify-self: start; margin-top: 2px; padding: 2px 8px; font-size: 11.5px; }
+
+/* the detail of the selected project */
+.vdetail { margin-bottom: 16px; }
+.vdetail h3 { margin: 0; font-size: 14px; font-weight: 650; }
+.vdetail .hint { font-size: 12px; color: var(--text-muted); }
+.dhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 6px 2px 12px; }
+.dhead .dot.big { width: 12px; height: 12px; }
+.dhead .pname { font-size: 18px; margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.dhead .pname[contenteditable] { border-radius: 4px; padding: 0 3px; margin: 0 -3px; cursor: text; }
+.dhead .pname[contenteditable]:hover { background: var(--wash); }
+.dhead .pname[contenteditable]:focus { outline: none; background: var(--surface-1); box-shadow: 0 0 0 2px var(--accent); }
+.dhead .vd-meta { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.dhead .seg { flex-wrap: wrap; }
+.dhead .seg button { display: inline-flex; align-items: center; gap: 6px; }
+.dhead .seg button[aria-pressed="true"] { background: var(--wash); color: var(--text-primary); font-weight: 600; }
+.dhead .seg .t { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vd-confirm { display: inline-flex; gap: 6px; }
+.vd-budget { width: 7em; padding: 1px 6px; border: 0; border-radius: 6px; box-shadow: 0 0 0 1px var(--border); background: var(--surface-1); color: var(--text-primary); font: inherit; font-variant-numeric: tabular-nums; }
+.vd-budget:focus { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+.dkpi { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
+@media (max-width: 600px) { .dkpi { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.dk { background: var(--surface-1); box-shadow: 0 0 0 1px var(--border); border-radius: 12px; padding: 10px 12px; min-width: 0; }
+.dk .k { font-size: 11.5px; color: var(--text-muted); }
+.dk .v { font-size: 22px; font-weight: 680; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.dk .s { font-size: 11.5px; color: var(--text-secondary); }
+.dk.alert { box-shadow: 0 0 0 1px color-mix(in srgb, var(--critical) 45%, transparent); background: color-mix(in srgb, var(--critical) 6%, var(--surface-1)); }
+.dk.alert .v { color: var(--critical-text); }
+.vd-pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.vd-pair > .card { margin-bottom: 0; }
+.vd-pair { margin-bottom: 16px; }
+@media (min-width: 900px) { .vd-pair:not(.one) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.vd-empty p { margin: 0; }
+.vd-drop.over { background: var(--accent-wash); box-shadow: 0 0 0 2px var(--accent); }
+.vdetail .bl { display: grid; gap: 10px; }
+.vdetail .bl .r { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; font-size: 12.5px; }
+.vdetail .bl .r .n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vdetail .bl .r .num { font-variant-numeric: tabular-nums; }
+.vdetail .bl .r .track { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: var(--wash); overflow: hidden; }
+.vdetail .bl .r .track b { display: block; height: 100%; border-radius: 3px; }
+.vd-bar { margin-top: 14px; }
+.vd-bar .bline { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; font-size: 11.5px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* what a figure is (estimated or spent), next to its name */
+.vd-basis { font-size: 10.5px; font-weight: 600; padding: 0 6px; border-radius: 99px; background: var(--wash); color: var(--text-secondary); text-transform: none; letter-spacing: 0; }
+/* the strip's month-end tile: the ring under the text, as the other tiles' graphics */
+.vhero .vh-month { flex-direction: column; align-items: stretch; gap: 6px; }
+.vhero .vh-month > :last-child:not(div) { margin-top: auto; align-self: flex-start; }
+.vhero .vh-spent { display: inline-block; margin-left: 6px; font-size: 12px; white-space: nowrap; } /* on its own line when the tile is narrow */
+.vh-basis { font-size: 10.5px; font-weight: 600; padding: 0 6px; border-radius: 99px; background: color-mix(in srgb, var(--tile-ink) 10%, transparent); text-transform: none; letter-spacing: 0; }
+/* «stima incompleta · N token senza prezzo» next to a status */
+.vd-gap, .vibe-board .pgap { font-size: 11.5px; color: var(--text-secondary); }
+.vibe-board .pgap { padding: 0 2px; }
+.vd-notice > .state { margin: -4px 2px 12px; padding: 0; justify-content: flex-start; }
+.vd-kind, .vd-date { padding: 1px 4px; border: 0; border-radius: 6px; box-shadow: 0 0 0 1px var(--border); background: var(--surface-1); color: var(--text-primary); font: inherit; }
+.vd-kind:focus, .vd-date:focus { outline: none; box-shadow: 0 0 0 2px var(--accent); }
+.vd-dates { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.vd-date-err:not(:empty) { color: var(--critical-text); }
+/* budget and calendar of a deadline project: two thin bars */
+.vd-two { display: grid; gap: 6px; margin: 8px 0 4px; }
+.vd-two .r { display: grid; grid-template-columns: 4.5em minmax(0, 1fr) 3.2em; align-items: center; gap: 6px; font-size: 11.5px; color: var(--text-secondary); }
+.vd-two .track { height: 6px; border-radius: 3px; background: var(--wash); overflow: hidden; }
+.vd-two .track b { display: block; height: 100%; border-radius: 3px; }
+.vd-two .num { text-align: right; font-variant-numeric: tabular-nums; }
+.vd-pay { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 99px; background: var(--wash); color: var(--text-secondary); white-space: nowrap; }
+.vd-one { margin-bottom: 16px; }
+.vd-one > .card { margin-bottom: 0; }
+
+/* the overview of all projects */
+.vover { margin-bottom: 16px; }
+.vover .card-head { flex-wrap: wrap; }
+.vover .hint { font-size: 12px; color: var(--text-muted); }
+.vover .dkpi { margin: 4px 0 12px; }
+.vo-name { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; font-weight: 600; cursor: pointer; text-align: left; }
+.vo-name:hover { color: var(--accent); }
+.vo-name:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.vo-closed td { color: var(--text-muted); }
+.vo-note { margin: 8px 0 0; }

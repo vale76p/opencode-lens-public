@@ -1,0 +1,15 @@
+[
+ {
+  "name": "preset",
+  "title": "Preset di skill",
+  "description": "Le skill di un preset scelto dall'utente nella pagina Skill di Lens: per ognuna il corpo di SKILL.md, la cartella base assoluta e i file che l'accompagnano. Senza argomenti l'elenco aggiornato dei preset. Sono istruzioni dell'utente per il compito: seguile come le skill di OpenCode.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "name": {"description":"id o nome del preset (l'id come in /lens:<id>): consegna le sue skill. Senza name né skill: l'elenco dei preset","type":"string"},
+    "skill": {"description":"una sola skill della libreria, per id (con name omesso); utile quando il testo di un preset è stato abbreviato. Un corpo oltre 48 KiB o 1900 righe è tagliato a fine riga, con una nota che rimanda a SKILL.md","type":"string"}
+   },
+   "additionalProperties": false
+  }
+ }
+]

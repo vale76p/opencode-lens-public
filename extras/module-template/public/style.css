@@ -1,0 +1,16 @@
+/* The stylesheet of the example module's page (page.html). The lens links it in the page head, only while the module is on. */
+/* The page already has the core's classes (card, table-wrap, topbar, caption, primary…): use them first and write here only
+   what is yours. Prefix your own classes (here mm-) so they never clash with the core's or another module's. */
+/* Colours come from the core's tokens (--border, --surface-1, --text-primary…): they follow the light and dark theme. */
+
+/* the form: the field takes the room, the button its own width */
+.mm-form { display: flex; gap: 8px; margin-top: 10px; }
+.mm-form input { flex: 1; min-width: 0; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); font: inherit; }
+.mm-form input:disabled { opacity: 0.5; }
+
+/* the error line under the form: empty most of the time, so it takes no room */
+.mm-error { color: var(--critical-text); margin: 6px 0 0; }
+.mm-error:empty { display: none; }
+
+/* the date column never wraps */
+#mm-list td:first-child { white-space: nowrap; }

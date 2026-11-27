@@ -1,0 +1,37 @@
+.DS_Store
+node_modules/
+*.db
+*.db-wal
+*.db-shm
+
+# pacchetti: allegati alle release GitHub, non committati
+dist/
+
+# dev lens locale con dati finti
+dev/
+
+# assistenti AI e loro stato locale: non fanno parte del progetto
+.claude/
+.codex/
+.agents/
+.superpowers/
+.taste-skill/
+.playwright-mcp/
+.ua/
+graphify-out/
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+
+# documentazione interna: design, piani, mockup e revisioni restano in locale
+docs/superpowers/
+docs/mockups/
+security-review-*/
+
+# segreti, log, stato e configurazione locale
+.env
+.env.*
+*.log
+.local/
+.vscode/
+.idea/

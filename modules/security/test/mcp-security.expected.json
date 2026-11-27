@@ -1,0 +1,211 @@
+{
+ "nessun guard": {
+  "outcome": {
+   "ok": {
+    "text": "Nessun guard di sicurezza trovato in /tmp/guards.\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792584000000&to=1792670460000"
+  ]
+ },
+ "un guard": {
+  "outcome": {
+   "ok": {
+    "text": "Guard Context7 Guard · nelle ultime 24 h: 12 chiamate, 3 bloccate, tasso 25 % · audit aggiornato 22/10, 13:59\nRilevato: CAT_0 ×12, CAT_1 ×11, CAT_2 ×10, CAT_3 ×9, CAT_4 ×8, CAT_5 ×7, CAT_6 ×6, CAT_7 ×5, CAT_8 ×4, CAT_9 ×3 e altre 4\nEventi: 5 per progetto /work/proj, i 3 più recenti:\n- 22/10, 13:58 bloccata · ctx7_query · «query» · EMAIL, IBAN, PHONE e altre 1 · sha aaaaaaaaaaaa\n- 22/10, 13:51 approvata dall'utente · ctx7_query\n- 22/10, 13:50 weird · x\nSalute: audit ok, policy non valida, plugin ok, Lens ha visto 4 chiamate ai tool sorvegliati e l'audit ne ha 2 (giudizio: guasto — policy non valida, divario tra Lens e audit, 2 righe illeggibili, nessun evento da 3 g)\nPolicy (globale): mode «strict» · deny 7 voci · k (mascherato) · on attivo · n 3.5 · o oggetto · 2 chiavi riservate non mostrate\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792584000000&to=1792670460000",
+   "/api/sessions/ses_1",
+   "/api/security/context7-guard?from=1792584000000&to=1792670460000&directory=%2Fwork%2Fproj&limit=10"
+  ]
+ },
+ "più guard (riepilogo)": {
+  "outcome": {
+   "ok": {
+    "text": "Guard DLP trovati: 2.\n- Context7 Guard: 12 chiamate nelle ultime 24 h, 3 bloccate, ultimo evento 22/10, 13:55, salute ok\n- other-guard: 1 chiamata nelle ultime 24 h, 0 bloccate, ultimo evento mai, salute da controllare\nPer il dettaglio passa guard: context7-guard, other-guard.\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792584000000&to=1792670460000"
+  ]
+ },
+ "guard sconosciuto": {
+  "outcome": {
+   "error": "Error: guard sconosciuto: nope; disponibili: context7-guard, other-guard"
+  },
+  "seen": [
+   "/api/status",
+   "/api/security/nope?from=1792584000000&to=1792670460000&limit=10",
+   "/api/security?from=1792584000000&to=1792670460000"
+  ]
+ },
+ "guard nominato, senza la sessione di chi chiama": {
+  "outcome": {
+   "ok": {
+    "text": "Guard Context7 Guard · nelle ultime 24 h: 12 chiamate, 3 bloccate, tasso 25 % · audit aggiornato 22/10, 13:59\nRilevato: CAT_0 ×12, CAT_1 ×11, CAT_2 ×10, CAT_3 ×9, CAT_4 ×8, CAT_5 ×7, CAT_6 ×6, CAT_7 ×5, CAT_8 ×4, CAT_9 ×3 e altre 4\nEventi: 5 per tutte le sessioni (sessione chiamante sconosciuta), i 3 più recenti:\n- 22/10, 13:58 bloccata · ctx7_query · «query» · EMAIL, IBAN, PHONE e altre 1 · sha aaaaaaaaaaaa\n- 22/10, 13:51 approvata dall'utente · ctx7_query\n- 22/10, 13:50 weird · x\nSalute: audit ok, policy non valida, plugin ok, Lens ha visto 4 chiamate ai tool sorvegliati e l'audit ne ha 2 (giudizio: guasto — policy non valida, divario tra Lens e audit, 2 righe illeggibili, nessun evento da 3 g)\nPolicy (globale): mode «strict» · deny 7 voci · k (mascherato) · on attivo · n 3.5 · o oggetto · 2 chiavi riservate non mostrate\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security/context7-guard?from=1792584000000&to=1792670460000&limit=10"
+  ]
+ },
+ "sessione current": {
+  "outcome": {
+   "ok": {
+    "text": "Guard Context7 Guard · nelle ultime 24 h: 12 chiamate, 3 bloccate, tasso 25 % · audit aggiornato 22/10, 13:59\nRilevato: CAT_0 ×12, CAT_1 ×11, CAT_2 ×10, CAT_3 ×9, CAT_4 ×8, CAT_5 ×7, CAT_6 ×6, CAT_7 ×5, CAT_8 ×4, CAT_9 ×3 e altre 4\nEventi: 5 per sessione ses_1, i 3 più recenti:\n- 22/10, 13:58 bloccata · ctx7_query · «query» · EMAIL, IBAN, PHONE e altre 1 · sha aaaaaaaaaaaa\n- 22/10, 13:51 approvata dall'utente · ctx7_query\n- 22/10, 13:50 weird · x\nSalute: audit ok, policy non valida, plugin ok, Lens ha visto 4 chiamate ai tool sorvegliati e l'audit ne ha 2 (giudizio: guasto — policy non valida, divario tra Lens e audit, 2 righe illeggibili, nessun evento da 3 g)\nPolicy (globale): mode «strict» · deny 7 voci · k (mascherato) · on attivo · n 3.5 · o oggetto · 2 chiavi riservate non mostrate\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792584000000&to=1792670460000",
+   "/api/security/context7-guard?from=1792584000000&to=1792670460000&session=ses_1&limit=10"
+  ]
+ },
+ "sessione current, chi chiama sconosciuto": {
+  "outcome": {
+   "error": "Error: sessione corrente sconosciuta: questo client non manda ai.opencode/sessionID"
+  },
+  "seen": []
+ },
+ "scope all": {
+  "outcome": {
+   "ok": {
+    "text": "Guard Context7 Guard · nelle ultime 24 h: 12 chiamate, 3 bloccate, tasso 25 % · audit aggiornato 22/10, 13:59\nRilevato: CAT_0 ×12, CAT_1 ×11, CAT_2 ×10, CAT_3 ×9, CAT_4 ×8, CAT_5 ×7, CAT_6 ×6, CAT_7 ×5, CAT_8 ×4, CAT_9 ×3 e altre 4\nEventi: 5 per tutte le sessioni, i 3 più recenti:\n- 22/10, 13:58 bloccata · ctx7_query · «query» · EMAIL, IBAN, PHONE e altre 1 · sha aaaaaaaaaaaa\n- 22/10, 13:51 approvata dall'utente · ctx7_query\n- 22/10, 13:50 weird · x\nSalute: audit ok, policy non valida, plugin ok, Lens ha visto 4 chiamate ai tool sorvegliati e l'audit ne ha 2 (giudizio: guasto — policy non valida, divario tra Lens e audit, 2 righe illeggibili, nessun evento da 3 g)\nPolicy (globale): mode «strict» · deny 7 voci · k (mascherato) · on attivo · n 3.5 · o oggetto · 2 chiavi riservate non mostrate\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792584000000&to=1792670460000",
+   "/api/security/context7-guard?from=1792584000000&to=1792670460000&limit=10"
+  ]
+ },
+ "solo bloccate": {
+  "outcome": {
+   "ok": {
+    "text": "Guard Context7 Guard · negli ultimi 7 giorni: 12 chiamate, 3 bloccate, tasso 25 % · audit aggiornato 22/10, 13:59\nRilevato: CAT_0 ×12, CAT_1 ×11, CAT_2 ×10, CAT_3 ×9, CAT_4 ×8, CAT_5 ×7, CAT_6 ×6, CAT_7 ×5, CAT_8 ×4, CAT_9 ×3 e altre 4\nEventi: 5 per progetto /work/proj, solo bloccate, i 3 più recenti:\n- 22/10, 13:58 bloccata · ctx7_query · «query» · EMAIL, IBAN, PHONE e altre 1 · sha aaaaaaaaaaaa\n- 22/10, 13:51 approvata dall'utente · ctx7_query\n- 22/10, 13:50 weird · x\nSalute: audit ok, policy non valida, plugin ok, Lens ha visto 4 chiamate ai tool sorvegliati e l'audit ne ha 2 (giudizio: guasto — policy non valida, divario tra Lens e audit, 2 righe illeggibili, nessun evento da 3 g)\nPolicy (globale): mode «strict» · deny 7 voci · k (mascherato) · on attivo · n 3.5 · o oggetto · 2 chiavi riservate non mostrate\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792065600000&to=1792670460000",
+   "/api/sessions/ses_1",
+   "/api/security/context7-guard?from=1792065600000&to=1792670460000&outcome=blocked&directory=%2Fwork%2Fproj&limit=2"
+  ]
+ },
+ "argomento sconosciuto": {
+  "outcome": {
+   "error": "Error: argomento sconosciuto: bogus"
+  },
+  "seen": []
+ },
+ "guard quieto: nessun evento, policy non trovata, niente rilevato, giudizio ok, confronto non disponibile": {
+  "outcome": {
+   "ok": {
+    "text": "Guard quiet-guard · nelle ultime 24 h: 0 chiamate, 0 bloccate · audit aggiornato 22/10, 13:58\nRilevato: niente\nEventi: nessuno per progetto /work/proj\nSalute: audit vuoto, policy assente, plugin assente, confronto con Lens non disponibile (giudizio: ok)\nPolicy: non trovata (/cfg/opencode/quiet-guard.json)\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792584000000&to=1792670460000",
+   "/api/sessions/ses_1",
+   "/api/security/quiet-guard?from=1792584000000&to=1792670460000&directory=%2Fwork%2Fproj&limit=10"
+  ]
+ },
+ "guard quieto, solo consentite": {
+  "outcome": {
+   "ok": {
+    "text": "Guard quiet-guard · nell'ultima ora: 0 chiamate, 0 bloccate · audit aggiornato 22/10, 13:58\nRilevato: niente\nEventi: nessuno per progetto /work/proj, solo consentite\nSalute: audit vuoto, policy assente, plugin assente, confronto con Lens non disponibile (giudizio: ok)\nPolicy: non trovata (/cfg/opencode/quiet-guard.json)\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security?from=1792666800000&to=1792670460000",
+   "/api/sessions/ses_1",
+   "/api/security/quiet-guard?from=1792666800000&to=1792670460000&outcome=allowed&directory=%2Fwork%2Fproj&limit=10"
+  ]
+ },
+ "guard visto dalla rete: senza file né policy, righe più recenti": {
+  "outcome": {
+   "ok": {
+    "text": "Guard Net Guard · nelle ultime 24 h: 3 chiamate, 1 bloccata, tasso 33 %\nRilevato: SEGRETO ×1\nEventi: 3 per sessione ses_9, i 1 più recenti:\n- 22/10, 13:56 rifiutata dall'utente · webfetch\nSalute: audit ok, policy troppo grande, plugin ok, Lens ha visto 3 chiamate ai tool sorvegliati e l'audit ne ha 3 (giudizio: da controllare — audit letto solo in coda, policy troppo grande, auditLog punta a un altro file)\nPolicy: non trovata\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security/net-guard?from=1792584000000&to=1792670460000&session=ses_9&limit=10"
+  ]
+ },
+ "policy non valida": {
+  "outcome": {
+   "ok": {
+    "text": "Guard broken-guard · nelle ultime 24 h: 1 chiamata, 1 bloccata · audit aggiornato 22/10, 13:59\nRilevato: niente\nEventi: 1 per tutte le sessioni, tutti, dal più recente:\n- 22/10, 13:59 bloccata · bash · SEGRETO\nSalute: audit ok, policy non valida, plugin assente, confronto con Lens non disponibile (giudizio: guasto — policy non valida)\nPolicy: non valida (/cfg/opencode/broken-guard.json)\nDati: collector collegato a OpenCode, ultimo evento 22/10, 13:59; drift API: nessuno."
+   }
+  },
+  "seen": [
+   "/api/status",
+   "/api/security/broken-guard?from=1792584000000&to=1792670460000&limit=10"
+  ]
+ },
+ "metadata": {
+  "name": "security",
+  "title": "Security",
+  "description": "Audit dei guard DLP di OpenCode (es. Context7 Guard): chiamate verso tool MCP esterni consentite o bloccate, categorie rilevate, salute del guard e policy. Niente testo dei prompt. Per un blocco appena visto in chat: session \"current\" e outcome \"blocked\"; lo sha256 a 12 hex è lo stesso del messaggio di blocco.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {
+    "guard": {
+     "description": "nome del guard (es. context7-guard); senza, quello trovato o il riepilogo di tutti",
+     "type": "string"
+    },
+    "session": {
+     "description": "una sessione sola: \"current\" per questa, oppure un id ses_…",
+     "type": "string"
+    },
+    "scope": {
+     "description": "senza session: il progetto di questa sessione o tutte",
+     "type": "string",
+     "enum": [
+      "project",
+      "all"
+     ],
+     "default": "project"
+    },
+    "since": {
+     "description": "periodo, fino a ora",
+     "type": "string",
+     "enum": [
+      "1h",
+      "6h",
+      "24h",
+      "7d"
+     ],
+     "default": "24h"
+    },
+    "outcome": {
+     "description": "solo le chiamate bloccate, solo le consentite o tutte",
+     "type": "string",
+     "enum": [
+      "blocked",
+      "allowed",
+      "all"
+     ],
+     "default": "all"
+    },
+    "limit": {
+     "description": "eventi al massimo",
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 30,
+     "default": 10
+    }
+   },
+   "additionalProperties": false
+  }
+ }
+}

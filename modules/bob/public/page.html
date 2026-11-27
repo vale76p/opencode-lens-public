@@ -1,0 +1,62 @@
+<section class="page-view hidden" id="view-bob" aria-labelledby="bob-title">
+  <header class="topbar">
+    <div class="tb-row">
+      <div class="slot s-ident">
+        <span class="tb-ico" data-ico="bob" aria-hidden="true"></span>
+        <div class="tb-title">
+          <h1 id="bob-title">IBM Bob</h1>
+          <p class="ctx" id="bob-ctx" role="status" aria-live="polite" data-i18n>I task di Bob IDE e Bob Shell</p>
+        </div>
+      </div>
+      <div class="slot s-period">
+        <div class="seg" role="radiogroup" aria-label="Periodo" id="bob-range" data-i18n-aria-label>
+          <button type="button" role="radio" aria-checked="false" data-v="604800000" aria-label="7 giorni" title="7 giorni" data-i18n data-i18n-aria-label data-i18n-title>7 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="2592000000" aria-label="30 giorni" title="30 giorni" data-i18n data-i18n-aria-label data-i18n-title>30 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="0" data-i18n>Tutto</button>
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <div class="slot s-status">
+        <span class="chipx led" id="bob-live"></span>
+      </div>
+      <div class="slot s-action"></div>
+    </div>
+  </header>
+  <div class="view-body">
+    <div id="bob-content" hidden>
+      <div class="bob-tiles" id="bob-tiles" role="group" aria-label="Riepilogo" data-i18n-aria-label></div>
+      <div class="bob-grid">
+        <section class="card" aria-labelledby="h-bob-month">
+          <div class="card-head"><h2 id="h-bob-month" data-i18n>Questo mese</h2></div>
+          <div id="bob-month"></div>
+        </section>
+        <section class="card" aria-labelledby="h-bob-days">
+          <div class="card-head"><h2 id="h-bob-days" data-i18n>Bobcoin per giorno</h2></div>
+          <div id="bob-days"></div>
+        </section>
+      </div>
+      <section class="card" aria-labelledby="h-bob-dirs">
+        <div class="card-head"><h2 id="h-bob-dirs" data-i18n>Per cartella</h2></div>
+        <div id="bob-dirs"></div>
+      </section>
+      <div class="bob-grid">
+        <section class="card" aria-labelledby="h-bob-models">
+          <div class="card-head"><h2 id="h-bob-models" data-i18n>Per modello</h2><p class="caption" data-i18n>Bob sceglie il modello da solo</p></div>
+          <div id="bob-models"></div>
+        </section>
+        <section class="card" aria-labelledby="h-bob-modes">
+          <div class="card-head"><h2 id="h-bob-modes" data-i18n>Per modo</h2></div>
+          <div id="bob-modes"></div>
+        </section>
+      </div>
+      <section class="card" aria-labelledby="h-bob-tools">
+        <div class="card-head"><h2 id="h-bob-tools" data-i18n>Tool</h2></div>
+        <div id="bob-tools"></div>
+      </section>
+      <section class="card" aria-labelledby="h-bob-recent">
+        <div class="card-head"><h2 id="h-bob-recent" data-i18n>Task recenti</h2><p class="caption" data-i18n>Solo numeri: i titoli e i prompt di Bob non arrivano mai alla lens</p></div>
+        <div id="bob-recent"></div>
+      </section>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+opencode-lens — Licenza d'uso proprietaria
+
+Copyright (c) 2026 vale76p. Tutti i diritti riservati.
+
+Il software opencode-lens (codice sorgente, codice compilato, documentazione e
+file che lo accompagnano, di seguito "il Software") è concesso in licenza, non
+venduto. Chi lo riceve direttamente dal titolare, o da una release pubblicata dal
+titolare, ottiene una licenza personale, non esclusiva, non trasferibile e
+revocabile per installarlo ed eseguirlo sui propri computer, al solo scopo di
+osservare l'uso di OpenCode.
+
+Senza un permesso scritto del titolare non è consentito:
+
+1. copiare il Software, in tutto o in parte, salvo le copie necessarie a
+   installarlo ed eseguirlo e una copia di backup;
+2. distribuirlo, pubblicarlo, cederlo, darlo in sublicenza, in prestito o in uso
+   a terzi, anche gratuitamente o come servizio;
+3. modificarlo, tradurlo, adattarlo o crearne opere derivate;
+4. decompilarlo, disassemblarlo o farne il reverse engineering, salvo nei limiti
+   in cui la legge applicabile lo consente nonostante questo divieto;
+5. eliminare o alterare avvisi di copyright, firme dei file (MANIFEST.json,
+   MANIFEST.sig) o firme di codice.
+
+La licenza cessa automaticamente se una di queste condizioni non viene
+rispettata; in quel caso il Software va rimosso da ogni computer.
+
+IL SOFTWARE È FORNITO "COSÌ COM'È", SENZA GARANZIE DI ALCUN TIPO, ESPRESSE O
+IMPLICITE. NEI LIMITI CONSENTITI DALLA LEGGE, IL TITOLARE NON RISPONDE DI DANNI
+DERIVANTI DALL'USO O DALL'IMPOSSIBILITÀ DI USARE IL SOFTWARE.
+
+Questa licenza è regolata dalla legge italiana.

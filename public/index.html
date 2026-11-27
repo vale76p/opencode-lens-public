@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenCode Lens</title>
+  <link rel="stylesheet" href="style.css">
+  <!--lens:modules-head-->
+  <script type="module" src="boot.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail" id="rail">
+      <div class="rail-head">
+        <div class="rail-brand">
+          <span class="rail-tile"><svg class="oc" viewBox="0 0 20 24" aria-hidden="true"><rect class="o" x="2.3" y="2.3" width="15.4" height="19.4" rx="0.5"/><rect class="i" x="6.3" y="12" width="7.4" height="5.8"/></svg></span>
+          <span class="rail-name">OpenCode Lens<span class="rail-sub"><span class="rail-beta" title="Versione beta: formati e dati possono ancora cambiare" data-i18n-title>beta</span><a class="rail-ver" id="ver" href="#novita" title="Versione installata: vedi le novità" data-i18n-title>v–</a></span></span>
+        </div>
+        <button class="rail-menu" type="button" id="rail-menu" aria-expanded="false" aria-controls="rail-panel" aria-label="Menu" data-i18n-aria-label>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+      <div class="rail-panel" id="rail-panel">
+        <button class="rail-collapse" type="button" id="rail-collapse" aria-pressed="false" data-label="Riduci a icone" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15.5 10l-2 2 2 2"/></svg><span class="rail-collapse-text" data-i18n>Riduci a icone</span></button>
+        <nav class="nav" id="nav" aria-label="Viste" data-i18n-aria-label>
+          <div class="nav-group" role="group" aria-labelledby="nav-g-dash">
+            <p class="nav-label" id="nav-g-dash" data-i18n>Dashboard</p>
+            <a href="#adesso" data-page="adesso" data-label="Adesso" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span class="nav-text" data-i18n>Adesso</span><span class="count" id="count-live" title="Prompt in corso" data-i18n-title></span></a>
+            <a href="#analisi" data-page="analisi" data-label="Analisi" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="nav-text" data-i18n>Analisi</span></a>
+            <a href="#monitor" data-page="monitor" data-label="Monitor" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span class="nav-text" data-i18n>Monitor</span></a>
+            <button class="nav-tpl" type="button" id="tpl-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="tpl-menu" data-label="Modello" data-i18n-data-label data-i18n-ctx="layout"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg><span class="nav-text"><span class="tpl-kicker" data-i18n data-i18n-ctx="layout">Modello</span> <b id="tpl-name">–</b></span><svg class="ico tpl-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="nav-group" role="group" aria-labelledby="nav-g-data">
+            <p class="nav-label" id="nav-g-data" data-i18n>Dati</p>
+            <a href="#prompt" data-page="prompt" data-label="Prompt" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg><span class="nav-text" data-i18n>Prompt</span><span class="count" id="count-prompts" title="Prompt di oggi" data-i18n-title></span></a>
+            <a href="#sessioni" data-page="sessioni" data-label="Sessioni" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg><span class="nav-text" data-i18n>Sessioni</span><span class="count" id="count-sessions" title="Sessioni del periodo di Analisi" data-i18n-title></span></a>
+            <!--lens:modules-nav-dati-->
+          </div>
+          <div class="nav-group" role="group" aria-labelledby="nav-g-lens">
+            <p class="nav-label" id="nav-g-lens">Lens</p>
+            <a href="#galleria" data-page="galleria" data-label="Galleria" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="17.5" r="3.5"/></svg><span class="nav-text" data-i18n>Galleria</span></a>
+            <a href="#novita" data-page="novita" data-label="Novità" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span class="nav-text" data-i18n>Novità</span><span class="badge-dot hidden" id="new-dot" role="img" aria-label="nuova versione" data-i18n-aria-label></span></a>
+            <!--lens:modules-nav-lens-->
+            <a href="#impostazioni" data-page="impostazioni" data-label="Impostazioni" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.11 4.95L10.51 2.62L13.49 2.62L13.89 4.95A7.3 7.3 0 0 1 15.65 5.68L17.58 4.31L19.69 6.42L18.32 8.35A7.3 7.3 0 0 1 19.05 10.11L21.38 10.51L21.38 13.49L19.05 13.89A7.3 7.3 0 0 1 18.32 15.65L19.69 17.58L17.58 19.69L15.65 18.32A7.3 7.3 0 0 1 13.89 19.05L13.49 21.38L10.51 21.38L10.11 19.05A7.3 7.3 0 0 1 8.35 18.32L6.42 19.69L4.31 17.58L5.68 15.65A7.3 7.3 0 0 1 4.95 13.89L2.62 13.49L2.62 10.51L4.95 10.11A7.3 7.3 0 0 1 5.68 8.35L4.31 6.42L6.42 4.31L8.35 5.68A7.3 7.3 0 0 1 10.11 4.95z"/><circle cx="12" cy="12" r="3"/></svg><span class="nav-text" data-i18n>Impostazioni</span></a>
+          </div>
+        </nav>
+        <div class="rail-foot">
+          <div class="live" id="conn" role="status" aria-live="polite">
+            <span class="live-dot" id="conn-icon" aria-hidden="true"></span>
+            <span class="live-text"><b id="conn-text" data-i18n>Connessione…</b><small id="conn-detail"></small></span>
+          </div>
+          <div class="live-ctl">
+            <button class="theme-btn live-btn" type="button" id="live-pause" aria-label="Metti in pausa gli aggiornamenti automatici" data-label="Metti in pausa gli aggiornamenti automatici" data-i18n-aria-label data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><span class="theme-text" id="live-pause-text" data-i18n>Pausa</span></button>
+            <button class="theme-btn live-btn" type="button" id="live-refresh" aria-label="Rileggi adesso i dati della pagina" data-label="Rileggi adesso i dati della pagina" data-i18n-aria-label data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v4h-4"/></svg><span class="theme-text" data-i18n>Aggiorna</span></button>
+          </div>
+          <button class="theme-btn" type="button" id="theme" data-label="Tema: sistema" data-i18n-data-label><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M3 19h18"/></svg><span class="theme-text" id="theme-text" data-i18n>Tema: sistema</span></button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-col" id="content">
+      <div class="banner hidden" id="banner" role="status">
+        <span class="banner-icon" aria-hidden="true">!</span>
+        <span id="banner-text"></span>
+      </div>
+      <div class="mod-notice" id="mod-notice" hidden></div>
+
+      <section class="page-view" id="view-dashboard" aria-labelledby="dash-title">
+        <header class="topbar">
+          <div class="tb-row">
+            <div class="slot s-ident">
+              <span class="tb-ico" id="dash-ico" data-ico="adesso" aria-hidden="true"></span>
+              <div class="tb-title">
+                <h1 id="dash-title" data-i18n>Adesso</h1>
+                <p class="ctx" id="adesso-context" data-i18n>Oggi</p>
+                <p class="ctx hidden" id="analisi-context"><span id="analisi-period"></span><span id="analisi-span"></span></p>
+                <p class="ctx hidden" id="monitor-context" data-i18n>Si aggiorna da sola</p>
+              </div>
+            </div>
+            <div class="slot s-period" data-filters="dashboard-period">
+              <div class="seg seg-range" role="radiogroup" aria-label="Periodo" id="f-range" data-i18n-aria-label>
+                <button type="button" role="radio" aria-checked="false" data-v="3600000" aria-label="1 ora" title="1 ora" data-i18n data-i18n-aria-label data-i18n-title>1 h</button>
+                <button type="button" role="radio" aria-checked="false" data-v="28800000" aria-label="8 ore" title="8 ore" data-i18n data-i18n-aria-label data-i18n-title>8 h</button>
+                <button type="button" role="radio" aria-checked="false" data-v="86400000" aria-label="24 ore" title="24 ore" data-i18n data-i18n-aria-label data-i18n-title>24 h</button>
+                <button type="button" role="radio" aria-checked="false" data-v="604800000" aria-label="7 giorni" title="7 giorni" data-i18n data-i18n-aria-label data-i18n-title>7 g</button>
+                <button type="button" role="radio" aria-checked="false" data-v="2592000000" aria-label="30 giorni" title="30 giorni" data-i18n data-i18n-aria-label data-i18n-title>30 g</button>
+                <button type="button" role="radio" aria-checked="false" data-v="0" data-i18n>Tutto</button>
+              </div>
+            </div>
+            <div class="slot s-vista" data-filters="dashboard-vista">
+              <div class="vista-wrap">
+                <button class="vista-btn" type="button" id="f-vista" aria-haspopup="true" aria-expanded="false" aria-controls="f-vista-pop"><span class="vista-k" data-i18n>Vista</span><span class="vista-v" id="f-vista-v"></span><svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+                <div class="vista-pop hidden" id="f-vista-pop" role="group" aria-label="Vista" data-i18n-aria-label>
+                  <p class="vista-group" id="f-by-label" data-i18n>Raggruppa per</p>
+                  <div class="seg" role="radiogroup" aria-labelledby="f-by-label" id="f-by">
+                    <button type="button" role="radio" aria-checked="false" data-v="model" data-i18n>Modello</button>
+                    <button type="button" role="radio" aria-checked="false" data-v="agent" data-i18n>Agente</button>
+                    <button type="button" role="radio" aria-checked="false" data-v="provider" data-i18n>Provider</button>
+                    <button type="button" role="radio" aria-checked="false" data-v="kind" data-i18n>Tipo agente</button>
+                  </div>
+                  <p class="vista-group" id="f-metric-label" data-i18n>Misura in</p>
+                  <div class="seg" role="radiogroup" aria-labelledby="f-metric-label" id="f-metric">
+                    <button type="button" role="radio" aria-checked="false" data-v="tokens" data-i18n>Token</button>
+                    <button type="button" role="radio" aria-checked="false" data-v="cost" data-i18n>Costo</button>
+                    <button type="button" role="radio" aria-checked="false" data-v="steps" data-i18n>Step</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slot s-source">
+              <div class="seg source-seg" role="radiogroup" aria-label="Dati di" id="source-select" hidden title="Quali dati mostrano i widget di riepilogo, giorni, ore e tool, solo in questo browser" data-i18n-aria-label data-i18n-title>
+                <button type="button" role="radio" aria-checked="true" data-v="opencode">OpenCode</button>
+                <button type="button" role="radio" aria-checked="false" data-v="both"></button>
+                <button type="button" role="radio" aria-checked="false" data-v="only"></button>
+              </div>
+            </div>
+            <span class="spacer"></span>
+            <div class="slot s-status">
+              <time class="tb-clock hidden" id="mon-clock"></time>
+              <span class="stamp" id="freshness" hidden></span>
+              <span class="edit-done caption" id="edit-done" role="status" aria-live="polite"></span>
+            </div>
+            <div class="slot s-actions">
+              <button class="ghost tb-btn hidden" type="button" id="fullscreen" aria-label="Schermo intero" title="Schermo intero" data-i18n-aria-label data-i18n-title><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="fs-in" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/><path class="fs-out" d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
+            </div>
+            <div class="slot s-action">
+              <button class="customize hidden" type="button" id="customize" title="Sposta, ridimensiona, aggiungi o togli i widget di questa vista" data-i18n-title><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></svg><span class="visually-hidden" data-i18n>Personalizza</span></button>
+            </div>
+          </div>
+        </header>
+
+        <div class="view-body">
+          <div class="edit-bar hidden" id="edit-bar" role="toolbar" aria-label="Modifica della dashboard" data-i18n-aria-label>
+            <strong id="edit-title" data-i18n>Modifica dashboard</strong>
+            <span class="caption" data-i18n>Trascina ⠿ per spostare, l'angolo per ridimensionare: i widget restano dove li lasci.</span>
+            <span class="edit-spacer"></span>
+            <div class="catalog-wrap">
+              <button class="ghost" type="button" id="edit-add" aria-haspopup="true" aria-expanded="false" aria-controls="catalog" data-i18n>+ Aggiungi widget</button>
+              <div class="catalog hidden" id="catalog" role="group" aria-label="Catalogo dei widget" data-i18n-aria-label></div>
+            </div>
+            <label class="edit-costs" title="Spento, il costo non compare in nessuna vista, pagina o dettaglio" data-i18n-title><input type="checkbox" id="edit-costs" checked> <span data-i18n>Mostra i costi</span></label>
+            <button class="ghost" type="button" id="edit-compact" title="Sposta in alto i widget fino a chiudere gli spazi vuoti" data-i18n data-i18n-title>Compatta</button>
+            <button class="ghost" type="button" id="edit-reset" data-i18n>Ripristina</button>
+            <button class="ghost" type="button" id="edit-cancel" data-i18n>Annulla</button>
+            <button class="primary" type="button" id="edit-save" data-i18n>Salva</button>
+            <span class="caption" id="edit-msg" role="status"></span>
+            <ul class="env-errors hidden" id="edit-errors" role="alert"></ul>
+            <span class="visually-hidden" id="edit-live" aria-live="polite"></span>
+          </div>
+
+          <div class="dash" id="main">
+            <div class="grid" id="grid-adesso"></div>
+            <div class="grid hidden" id="grid-analisi"></div>
+            <div class="grid monitor hidden" id="grid-monitor"></div>
+            <p class="empty-state hidden" id="grid-empty" data-i18n>Questa vista è vuota: premi «Personalizza» e poi «+ Aggiungi widget» per riempirla.</p>
+            <footer class="foot" id="foot"></footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-view hidden" id="view-prompt" aria-labelledby="prompt-title">
+        <header class="topbar">
+          <div class="tb-row">
+            <div class="slot s-ident">
+              <span class="tb-ico" data-ico="prompt" aria-hidden="true"></span>
+              <div class="tb-title">
+                <h1 id="prompt-title" data-i18n>Prompt</h1>
+                <p class="ctx" data-i18n>Ogni prompt del periodo con token, durata ed esito · filtri di Analisi</p>
+              </div>
+            </div>
+            <div class="slot s-period" data-filters="prompt-period"></div>
+            <div class="slot s-vista" data-filters="prompt-vista"></div>
+            <span class="spacer"></span>
+            <div class="slot s-action"></div>
+          </div>
+        </header>
+        <div class="view-body">
+          <div class="page-grid" id="grid-prompt"></div>
+        </div>
+      </section>
+
+      <section class="page-view hidden" id="view-sessioni" aria-labelledby="sessioni-title">
+        <header class="topbar">
+          <div class="tb-row">
+            <div class="slot s-ident">
+              <span class="tb-ico" data-ico="sessioni" aria-hidden="true"></span>
+              <div class="tb-title">
+                <h1 id="sessioni-title" data-i18n>Sessioni</h1>
+                <p class="ctx" data-i18n>Le sessioni del periodo, con la timeline di step e tool · filtri di Analisi</p>
+              </div>
+            </div>
+            <div class="slot s-period" data-filters="sessioni-period"></div>
+            <div class="slot s-vista" data-filters="sessioni-vista"></div>
+            <span class="spacer"></span>
+            <div class="slot s-action"></div>
+          </div>
+        </header>
+        <div class="view-body">
+          <div class="page-grid" id="grid-sessioni"></div>
+        </div>
+      </section>
+
+      <section class="page-view hidden" id="view-galleria" aria-labelledby="gal-title">
+        <header class="topbar">
+          <div class="tb-row">
+            <div class="slot s-ident">
+              <span class="tb-ico" data-ico="galleria" aria-hidden="true"></span>
+              <div class="tb-title">
+                <h1 id="gal-title" data-i18n>Galleria</h1>
+                <p class="ctx" id="gal-context" data-i18n>Ogni stile di ogni widget, con i dati veri</p>
+              </div>
+            </div>
+            <span class="spacer"></span>
+            <div class="slot s-status">
+              <label class="gal-toggle"><input type="checkbox" id="gal-ids"> <span data-i18n>Mostra gli id dei modelli</span></label>
+            </div>
+            <div class="slot s-action"></div>
+          </div>
+        </header>
+        <div class="view-body">
+          <p class="caption gal-intro" data-i18n>Per cambiare lo stile di un widget già in vista premi «Personalizza» nella sua vista e usa il menu «Stile» nella testata. L'interruttore in alto mostra l'id dello stile accanto al titolo anche fuori dalla modifica, solo in questo browser.</p>
+          <p class="caption gal-intro" id="gal-noedit" data-i18n>Per aggiungere i widget da qui servono una finestra larga almeno 700 px e le impostazioni modificabili.</p>
+          <div class="gal-bar">
+            <div class="gal-tabs" id="gal-tabs" role="tablist" aria-label="Vista" data-i18n-aria-label></div>
+            <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="gal-q" placeholder="Cerca per id o nome" aria-label="Cerca per id o nome" autocomplete="off" data-i18n-placeholder data-i18n-aria-label></label>
+            <label class="gal-toggle"><input type="checkbox" id="gal-unused"> <span data-i18n>Solo non in uso</span></label>
+            <nav class="gal-index" id="gal-index" aria-label="Tipi di widget" data-i18n-aria-label></nav>
+            <div class="gal-session gal-compare hidden" id="gal-compare" role="group" aria-label="Confronto" data-i18n-aria-label>
+              <strong id="gal-compare-text"></strong>
+              <span class="edit-spacer"></span>
+              <button class="ghost" type="button" id="gal-compare-clear"></button>
+              <button class="primary" type="button" id="gal-compare-go" data-i18n>Confronta</button>
+            </div>
+            <div class="gal-session hidden" id="gal-session" role="group" aria-label="Modifica in corso" data-i18n-aria-label>
+              <strong id="gal-session-text"></strong>
+              <span class="edit-spacer"></span>
+              <button class="ghost" type="button" id="gal-cancel" data-i18n>Annulla</button>
+              <button class="primary" type="button" id="gal-save" data-i18n>Salva</button>
+            </div>
+            <p class="caption gal-msg" id="gal-msg" role="status"></p>
+            <ul class="env-errors hidden" id="gal-errors" role="alert"></ul>
+          </div>
+          <div class="galleria" id="grid-galleria"></div>
+        </div>
+      </section>
+
+      <!--lens:modules-pages-->
+      <section class="page-view hidden" id="view-impostazioni" aria-labelledby="set-title">
+        <header class="topbar">
+          <div class="tb-row">
+            <div class="slot s-ident">
+              <span class="tb-ico" data-ico="impostazioni" aria-hidden="true"></span>
+              <div class="tb-title">
+                <h1 id="set-title" data-i18n>Impostazioni</h1>
+                <p class="ctx" id="set-ctx"></p>
+              </div>
+            </div>
+            <span class="spacer"></span>
+            <div class="slot s-action">
+              <a class="ghost link-btn" href="https://github.com/vale76p/opencode-lens-public/blob/main/docs/configurazione.md" data-href-en="https://github.com/vale76p/opencode-lens-public/blob/main/docs/en/configurazione.md" data-href-fr="https://github.com/vale76p/opencode-lens-public/blob/main/docs/fr/configurazione.md" target="_blank" rel="noopener noreferrer" aria-label="Guida alla configurazione (si apre in una nuova scheda)" title="Guida alla configurazione (si apre in una nuova scheda)" data-i18n-aria-label data-i18n-title><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M6.5 17a2.5 2.5 0 0 0 0 5H20v-5"/></svg><span class="visually-hidden" data-i18n>Guida alla configurazione (si apre in una nuova scheda)</span></a>
+            </div>
+          </div>
+        </header>
+        <div class="view-body">
+          <div class="st-banner" id="set-banner" role="note">
+            <span class="bi">
+              <svg class="bi-ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+              <svg class="bi-ro hidden" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </span>
+            <div><b id="set-banner-title" data-i18n>Impostazioni</b><span class="muted" id="set-banner-text"></span></div>
+          </div>
+          <div class="st">
+            <nav class="subnav" aria-label="Sezioni delle impostazioni" id="set-nav" data-i18n-aria-label>
+              <a href="#impostazioni/generale" data-sec="generale"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg><span data-i18n>Generale</span><span class="n" hidden></span></a>
+              <a href="#impostazioni/budget" data-sec="budget"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/></svg><span data-i18n>Budget</span><span class="n" hidden></span></a>
+              <a href="#impostazioni/rete" data-sec="rete"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg><span data-i18n>Rete e sicurezza</span><span class="n" hidden></span></a>
+              <a href="#impostazioni/opencode" data-sec="opencode"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="1"/><rect x="9" y="12" width="6" height="5"/></svg>OpenCode<span class="n" hidden></span></a>
+              <a href="#impostazioni/export" data-sec="export"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 21h14"/></svg><span data-i18n>Esportazione</span><span class="n" hidden></span></a>
+              <a href="#impostazioni/lingua" data-sec="lingua"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n>Lingua e formato</span><span class="n" hidden></span></a>
+              <a href="#impostazioni/moduli" data-sec="moduli"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span data-i18n>Moduli</span><span class="n" hidden></span></a>
+              <a href="#impostazioni/aspetto" data-sec="aspetto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span data-i18n>Aspetto</span></a>
+              <a href="#impostazioni/mcp" data-sec="mcp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span data-i18n>Server MCP</span></a>
+              <a href="#impostazioni/aggiornamento" data-sec="aggiornamento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n>Aggiornamento</span></a>
+              <a href="#impostazioni/dati" data-sec="dati"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg><span data-i18n>Dati e file</span></a>
+              <a href="#impostazioni/disinstalla" data-sec="disinstalla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><span data-i18n>Disinstallazione</span></a>
+            </nav>
+            <div class="st-main">
+              <form class="st-form" id="set-form" novalidate>
+                <section class="card st-sec" tabindex="-1" id="sec-generale" aria-labelledby="h-generale">
+                  <header><div><h2 id="h-generale" data-i18n>Generale</h2><p class="caption" data-i18n>Processo, sincronizzazione e log</p></div></header>
+                  <div class="facts" id="set-lens"></div>
+                  <div class="fields" data-group="generale"></div>
+                  <div id="set-unknown"></div>
+                  <div id="set-service">
+                    <h3 class="st-h3" data-i18n>Servizio</h3>
+                    <p class="caption" data-i18n>Riavvia la lens senza cambiare nulla, per esempio dopo aver aggiunto un modulo a mano. La dashboard resta irraggiungibile per qualche secondo.</p>
+                    <div class="up-actions">
+                      <span class="caption up-blocked" id="set-service-note" role="status" aria-live="polite" hidden></span>
+                      <button class="ghost" type="button" id="set-restart" data-i18n>Riavvia la lens</button>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="card st-sec" tabindex="-1" id="sec-budget" aria-labelledby="h-budget">
+                  <header><div><h2 id="h-budget" data-i18n>Budget</h2><p class="caption" data-i18n>Vuoto = nessun budget. La barra mostra il consumo attuale.</p></div></header>
+                  <div class="fields" data-group="budget"></div>
+                  <div class="periods" id="set-periods"></div>
+                  <h3 class="st-h3"><span data-i18n>Per modello</span> <span class="muted" data-i18n>· token al giorno, dai modelli configurati in OpenCode</span></h3>
+                  <p class="caption" id="set-models-caption"></p>
+                  <div class="table-wrap" id="set-models"></div>
+                  <h3 class="st-h3"><span data-i18n>Listino prezzi</span></h3>
+                  <p class="caption" id="set-prices-caption"></p>
+                  <div class="table-wrap" id="set-prices"></div>
+                </section>
+
+                <section class="card st-sec" tabindex="-1" id="sec-rete" aria-labelledby="h-rete">
+                  <header><div><h2 id="h-rete" data-i18n>Rete e sicurezza</h2><p class="caption" data-i18n>Dove ascolta la dashboard e chi può entrare</p></div></header>
+                  <div class="facts" id="set-net"></div>
+                  <div class="fields" data-group="rete"></div>
+                  <div class="callout" id="set-net-warn" hidden><b data-i18n>Attenzione</b><span data-i18n-html>Fuori da localhost serve <code>LENS_TOKEN</code>: senza, la lens rifiuta di partire.</span></div>
+                </section>
+
+                <section class="card st-sec" tabindex="-1" id="sec-opencode" aria-labelledby="h-opencode">
+                  <header><div><h2 id="h-opencode">OpenCode</h2><p class="caption" data-i18n>Come la lens trova il servizio di OpenCode</p></div><span class="sp"></span><span class="chipx led" id="set-oc-state"></span></header>
+                  <div class="facts" id="set-oc"></div>
+                  <div class="fields" data-group="opencode"></div>
+                </section>
+
+                <section class="card st-sec" tabindex="-1" id="sec-export" aria-labelledby="h-export">
+                  <header><div><h2 id="h-export" data-i18n>Esportazione</h2><p class="caption" data-i18n>Etichette di /metrics ed export OTLP verso un collector</p></div><span class="sp"></span><span class="chipx led" id="set-otlp-state"></span></header>
+                  <div class="facts" id="set-otlp"></div>
+                  <div class="fields" data-group="export"></div>
+                </section>
+
+                <section class="card st-sec" tabindex="-1" id="sec-lingua" aria-labelledby="h-lingua">
+                  <header><div><h2 id="h-lingua" data-i18n>Lingua e formato</h2><p class="caption" data-i18n>Lingua dell'interfaccia e formato di date, ore e numeri, indipendenti fra loro</p></div></header>
+                  <div class="fields" data-group="lingua"></div>
+                </section>
+              </form>
+
+              <section class="card st-sec" tabindex="-1" id="sec-moduli" aria-labelledby="h-moduli">
+                <header><div><h2 id="h-moduli" data-i18n>Moduli</h2><p class="caption" data-i18n>Pagine facoltative della lens, spente finché non le attivi: attivarne o spegnerne una riavvia la lens.</p></div></header>
+                <div class="mod-list" id="set-modules"></div>
+              </section>
+
+              <section class="card st-sec" tabindex="-1" id="sec-aspetto" aria-labelledby="h-aspetto">
+                <header><div><h2 id="h-aspetto" data-i18n>Aspetto</h2><p class="caption" data-i18n>Dimensione dei widget di Adesso, Analisi e Monitor, solo in questo browser</p></div></header>
+                <div class="size-row">
+                  <div class="seg" role="radiogroup" aria-label="Dimensione dei widget" id="f-size" data-i18n-aria-label></div>
+                  <span class="muted" id="size-now" aria-live="polite"></span>
+                </div>
+                <p class="caption" data-i18n>Auto adatta i widget alla larghezza della finestra: più piccoli su una finestra stretta, più grandi su un monitor 4K, invariati fra 1500 e 2200 px. Testi, grafici e righe cambiano insieme. Il layout salvato non cambia.</p>
+              </section>
+
+              <section class="card st-sec" tabindex="-1" id="sec-mcp" aria-labelledby="h-mcp">
+                <header><div><h2 id="h-mcp" data-i18n>Server MCP</h2><p class="caption" data-i18n>Lo stato lo legge da OpenCode; acceso e spento si decide in OpenCode</p></div><span class="sp"></span><span class="chipx led" id="set-mcp-state"></span></header>
+                <div class="facts" id="set-mcp"></div>
+                <div class="callout" id="set-mcp-warn" hidden><b data-i18n>Comando non aggiornato</b><span data-i18n-html>Il comando registrato in OpenCode non è quello di questa installazione: sostituiscilo con quello qui sotto, poi <code>opencode2 reload</code>.</span></div>
+                <div class="callout" id="set-mcp-stale" hidden><b data-i18n>OpenCode da riavviare</b><span id="set-mcp-stale-text"></span></div>
+                <h3 class="st-h3"><span data-i18n>Collegarlo a OpenCode</span> <span class="muted" data-i18n>· percorsi di questa installazione</span></h3>
+                <div class="mcp-connect">
+                  <div class="seg" role="group" aria-label="Modo di collegamento" id="set-mcp-tabs" data-i18n-aria-label></div>
+                  <button class="ghost" type="button" id="set-mcp-copy" data-i18n>Copia</button>
+                </div>
+                <pre class="code wrap" id="set-mcp-code"></pre>
+                <p class="caption" data-i18n-html>Il server si deve chiamare <code>lens</code>: con un altro nome la lens non lo riconosce e risulta «non collegato». Il prompt aggiunge solo il server: a quali modelli o agenti abilitarlo lo decidi tu in OpenCode, con il permesso <code>lens_*</code>. Per dare al modello anche il testo degli errori aggiungi <code>--env LENS_MCP_ERROR_TEXT=1</code> prima di <code>lens</code>. Dopo una modifica: <code>opencode2 reload</code>. Dettagli in <a href="https://github.com/vale76p/opencode-lens-public/blob/main/docs/configurazione.md" target="_blank" rel="noopener noreferrer">docs/configurazione.md</a>.</p>
+                <h3 class="st-h3"><span data-i18n>Cosa chiedere ai modelli</span> <span class="muted" data-i18n>· un clic copia la domanda</span></h3>
+                <div class="mcp-qs" id="set-mcp-q"></div>
+              </section>
+
+              <section class="card st-sec" tabindex="-1" id="sec-aggiornamento" aria-labelledby="h-aggiornamento">
+                <header><div><h2 id="h-aggiornamento" data-i18n>Aggiornamento</h2><p class="caption" data-i18n>Da uno zip scaricato a mano: la lens non va su internet</p></div><span class="sp"></span><span class="chipx led" id="set-up-state"></span></header>
+                <div class="facts" id="set-up"></div>
+                <div class="up-drop" id="set-up-drop">
+                  <input type="file" id="set-up-file" accept=".zip,application/zip" hidden>
+                  <button class="ghost" type="button" id="set-up-choose" data-i18n>Scegli lo zip…</button>
+                  <span class="caption" data-i18n>oppure trascinalo qui</span>
+                  <span class="caption up-msg" id="set-up-msg" role="status" aria-live="polite"></span>
+                </div>
+                <div class="up-preview" id="set-up-preview" hidden>
+                  <div class="callout up-unsigned" id="set-up-unsigned" role="note" hidden></div>
+                  <div class="facts" id="set-up-facts"></div>
+                  <ul class="up-warn" id="set-up-warn"></ul>
+                  <div id="set-up-changes"></div>
+                  <label class="up-older" id="set-up-older-row" hidden><input type="checkbox" id="set-up-older"> <span data-i18n>Installa comunque la versione più vecchia</span></label>
+                  <div class="up-actions">
+                    <span class="caption up-blocked" id="set-up-blocked"></span>
+                    <button class="ghost" type="button" id="set-up-cancel" data-i18n>Annulla</button>
+                    <button class="primary" type="button" id="set-up-apply" data-i18n>Installa e riavvia</button>
+                  </div>
+                </div>
+                <pre class="code wrap" id="set-up-log" hidden></pre>
+                <div id="set-app-box" hidden>
+                  <h3 class="st-h3"><span data-i18n>App macOS</span> <span class="chipx led" id="set-app-state"></span></h3>
+                  <p class="caption" data-i18n>OpenCode Lens.app si compila su questo Mac dai sorgenti della lens, in circa un minuto, e resta alla versione della lens: dopo ogni aggiornamento install.sh la ricompila da solo. Se usi la dashboard dall'app, l'app si chiuderà e si riaprirà.</p>
+                  <p class="caption" id="set-app-note" hidden></p>
+                  <div class="up-actions">
+                    <span class="caption up-msg" id="set-app-msg" role="status" aria-live="polite"></span>
+                    <button class="primary" type="button" id="set-app-run" hidden></button>
+                  </div>
+                  <pre class="code wrap" id="set-app-log" hidden></pre>
+                </div>
+                <p class="caption" data-i18n-html>Aggiorna la lens e, se è installata, l'app macOS; l'app Monitor si aggiorna con il suo install.sh. Serve lo zip della release (<code>opencode-lens-X.Y.Z.zip</code>), dalla <a href="https://github.com/vale76p/opencode-lens-public/releases" target="_blank" rel="noopener noreferrer">pagina delle release ↗</a>: i suoi file sono firmati, e la lens rifiuta il «Source code (zip)» e gli zip con file modificati. Se Safari l'ha già estratto, comprimi di nuovo la cartella dal Finder (tasto destro › Comprimi): la firma resta valida. L'installazione la fa l'install.sh dello zip, come da terminale: prima salva una copia del database. Dettagli in <a href="https://github.com/vale76p/opencode-lens-public/blob/main/docs/aggiornamento.md" target="_blank" rel="noopener noreferrer">docs/aggiornamento.md</a>.</p>
+              </section>
+
+              <section class="card st-sec" tabindex="-1" id="sec-dati" aria-labelledby="h-dati">
+                <header><div><h2 id="h-dati" data-i18n>Dati e file</h2><p class="caption" data-i18n>Tutto ciò che la lens scrive e legge. OpenCode non viene modificato.</p></div></header>
+                <div class="facts" id="set-db"></div>
+                <h3 class="st-h3"><span data-i18n>Scritti dalla lens</span> <span class="muted" data-i18n>· tutto ciò che va rimosso per disinstallarla</span></h3>
+                <div class="table-wrap" id="set-written"></div>
+                <h3 class="st-h3" data-i18n>Letti</h3>
+                <div class="table-wrap" id="set-read"></div>
+                <h3 class="st-h3"><span data-i18n>Nel browser</span> <span class="muted" id="set-origin"></span></h3>
+                <div class="table-wrap" id="set-browser"></div>
+              </section>
+
+              <section class="card st-sec" tabindex="-1" id="sec-disinstalla" aria-labelledby="h-disinstalla">
+                <header><div><h2 id="h-disinstalla" data-i18n>Disinstallazione</h2><p class="caption" data-i18n-html>Comandi compilati con i percorsi di questa installazione. Guida passo passo: <a href="https://github.com/vale76p/opencode-lens-public/blob/main/docs/disinstallazione.md" target="_blank" rel="noopener noreferrer">docs/disinstallazione.md</a>.</p></div><span class="sp"></span><button class="ghost" type="button" id="set-un-copy" data-i18n>Copia</button></header>
+                <pre class="code" id="set-uninstall"></pre>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="savebar" id="savebar" hidden role="region" aria-label="Modifiche non salvate" data-i18n-aria-label>
+          <div class="sb-text"><b id="sb-n"></b><span class="names" id="sb-names"></span><span class="caption" id="sb-msg" role="status" aria-live="polite"></span></div>
+          <button class="ghost" type="button" id="sb-undo" data-i18n>Annulla modifiche</button>
+          <button class="primary" type="button" id="sb-save" data-i18n>Salva e riavvia</button>
+          <ul class="env-errors hidden" id="sb-errors" role="alert"></ul>
+        </div>
+      </section>
+
+      <section class="page-view hidden" id="view-novita" aria-labelledby="cl-title">
+        <header class="topbar">
+          <div class="tb-row">
+            <div class="slot s-ident">
+              <span class="tb-ico" data-ico="novita" aria-hidden="true"></span>
+              <div class="tb-title">
+                <h1 id="cl-title" data-i18n>Novità</h1>
+                <p class="ctx" data-i18n>Cosa è cambiato in ogni versione, dal CHANGELOG di quella installata</p>
+              </div>
+            </div>
+            <span class="spacer"></span>
+            <div class="slot s-action"></div>
+          </div>
+        </header>
+        <div class="view-body">
+          <section class="card since" id="since" aria-labelledby="since-h" hidden>
+            <span class="rail-tile since-tile"><svg class="oc" viewBox="0 0 20 24" aria-hidden="true"><rect class="o" x="2.3" y="2.3" width="15.4" height="19.4" rx="0.5"/><rect class="i" x="6.3" y="12" width="7.4" height="5.8"/></svg></span>
+            <div>
+              <h2 id="since-h" data-i18n>Novità</h2>
+              <div class="since-nums" id="since-nums"></div>
+            </div>
+            <button class="ghost" type="button" id="since-seen" data-i18n>Segna come lette</button>
+          </section>
+          <div class="nv">
+            <div class="nv-main">
+              <div class="nv-tools">
+                <div class="seg" role="group" aria-label="Tipo di modifica" id="nv-kinds" data-i18n-aria-label></div>
+                <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="nv-q" placeholder="Cerca nelle novità" aria-label="Cerca nelle novità" autocomplete="off" data-i18n-placeholder data-i18n-aria-label></label>
+              </div>
+              <div class="rel-list" id="changelog"></div>
+            </div>
+            <aside class="nv-aside">
+              <section class="card" aria-labelledby="ver-h">
+                <h2 id="ver-h" data-i18n>Versione installata</h2>
+                <dl class="kv2" id="nv-ver"></dl>
+                <p class="caption" data-i18n>Estrai lo zip di una release sopra la cartella dell'app: la lens se ne accorge entro un minuto e riparte da sola.</p>
+              </section>
+              <section class="card" aria-labelledby="rit-h">
+                <h2 id="rit-h" data-i18n>Ritmo dei rilasci</h2>
+                <p class="caption" data-i18n>Voci per versione, ultime 12</p>
+                <div id="nv-rhythm"></div>
+                <div class="leg" id="nv-leg"></div>
+              </section>
+              <section class="card" aria-labelledby="lnk-h">
+                <h2 id="lnk-h" data-i18n>Collegamenti</h2>
+                <div class="linkrow">
+                  <a href="https://github.com/vale76p/opencode-lens-public/blob/main/CHANGELOG.md" data-href-en="https://github.com/vale76p/opencode-lens-public/blob/main/CHANGELOG.en.md" data-href-fr="https://github.com/vale76p/opencode-lens-public/blob/main/CHANGELOG.fr.md" target="_blank" rel="noopener noreferrer"><span data-i18n>CHANGELOG completo</span> <span data-i18n>GitHub ↗</span></a>
+                  <a href="https://github.com/vale76p/opencode-lens-public/releases" target="_blank" rel="noopener noreferrer"><span data-i18n>Release e zip</span> <span data-i18n>GitHub ↗</span></a>
+                  <a href="https://semver.org/lang/it/" data-href-en="https://semver.org/" data-href-fr="https://semver.org/lang/fr/" target="_blank" rel="noopener noreferrer"><span data-i18n>Come si numerano le versioni</span> <span data-i18n>SemVer ↗</span></a>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="tooltip hidden" id="tooltip" role="tooltip"></div>
+  <div class="tpl-menu hidden" id="tpl-menu" role="menu" aria-label="Modelli di dashboard" data-i18n-aria-label></div>
+  <div class="tpl-pop hidden" id="tpl-pop" role="tooltip"></div>
+  <div class="wset hidden" id="wset" role="dialog" aria-label="Impostazioni del widget" data-i18n-aria-label></div>
+  <dialog class="presets-dialog" id="presets-dialog" aria-labelledby="presets-title"></dialog>
+</body>
+</html>

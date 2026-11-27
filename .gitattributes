@@ -1,0 +1,16 @@
+# Lo "Source code (zip/tar.gz)" che GitHub genera per ogni release e tag usa
+# `git archive`: questi file restano nel repository ma non finiscono nell'archivio.
+# test/ resta fuori tranne il test kit dei moduli, che viaggia con l'app (scripts/package.sh fa lo zip
+# con git archive): marcare /test intera la salterebbe tutta, quindi si marca il contenuto e si tolgono i quattro file
+/test/**                        export-ignore
+/test/module-test-kit.js        -export-ignore
+/test/module-hooks.mjs          -export-ignore
+/test/helpers.js                -export-ignore
+/test/query-plan-check.js       -export-ignore
+/modules/*/test                export-ignore
+/.github                        export-ignore
+/.gitattributes                 export-ignore
+/.gitignore                     export-ignore
+/biome.json                     export-ignore
+/release-please-config.json     export-ignore
+/.release-please-manifest.json  export-ignore

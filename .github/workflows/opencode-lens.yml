@@ -1,0 +1,46 @@
+name: opencode-lens
+
+on:
+  push:
+    branches: [main]
+  # La PR di rilascio la apre release-please col GITHUB_TOKEN (autore
+  # github-actions[bot]): il run che ne nasce resta in attesa di approvazione
+  # (action_required) e, quando la PR viene unita, GitHub lo chiude come
+  # fallito senza job ("workflow file issue"). Quella PR tocca solo questi
+  # file, quindi qui non parte: la stessa versione la controllano il push su
+  # main e, al rilascio, il job opencode-lens-zip di release-please.yml.
+  # Conseguenza: anche una PR che cambia solo questi file salta la CI della PR
+  # e viene controllata dal push su main.
+  pull_request:
+    paths-ignore:
+      - .release-please-manifest.json
+      - CHANGELOG.md
+      - README.md
+      - README.en.md
+      - README.fr.md
+      - package.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      - run: npm test
+      - name: Lint (Biome)
+        run: npm run lint
+      - name: Versione e changelog coerenti
+        run: node scripts/changelog.mjs check
+      - name: Sintassi degli script (bash -n)
+        run: |
+          bash -n install.sh
+          bash -n uninstall.sh
+          bash -n scripts/package.sh

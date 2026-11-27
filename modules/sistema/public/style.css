@@ -1,0 +1,123 @@
+/* The Sistema module's page */
+#view-sistema [hidden] { display: none !important; }
+#view-sistema .card { padding: 16px 20px 18px; margin-bottom: 0; }
+.sys-body { display: grid; gap: 16px; align-content: start; }
+/* the search of processes, ports and agents sits in the bar */
+.sys-search { width: 300px; height: 32px; box-sizing: border-box; background: var(--sheet); box-shadow: 0 0 0 1px var(--control-edge); }
+.sys-search input { width: 100%; min-width: 0; }
+.sys-search:focus-within { box-shadow: 0 0 0 2px var(--text-primary); }
+@container bar (max-width: 900px) { .sys-search { width: 220px; } }
+/* what to look at first: one sentence, the worst in bold, its level as a dot */
+.sys-finding { display: flex; align-items: flex-start; gap: 10px; margin: 0; font-size: 15px; line-height: 22px; }
+.sys-finding b { font-weight: 600; }
+.sys-finding-rest { color: var(--text-secondary); }
+.sys-finding .sys-dot { margin-top: 8px; }
+.sys-dot { flex: none; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--text-muted); }
+.sys-dot.good { background: var(--good); }
+.sys-dot.warn { background: var(--warning); }
+.sys-dot.bad { background: var(--critical); }
+.sys-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.sys-head h2 { margin: 0; font-size: 14px; font-weight: 600; }
+.sys-head .caption { margin-left: auto; font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
+.sys-head .caption:empty { display: none; }
+/* from the source to the database: three nodes and what goes between them */
+.sys-chain { display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr) 120px minmax(0, 1fr); }
+.sys-node { min-width: 0; }
+.sys-node h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+.sys-state { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 400; color: var(--text-secondary); }
+.sys-state.bad { color: var(--critical-text); }
+.sys-node dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 3px 12px; margin: 0; font-size: 13px; }
+.sys-node dt { color: var(--text-secondary); white-space: nowrap; }
+.sys-node dd { margin: 0; min-width: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.sys-node dd.mono { font-size: 12.5px; }
+.sys-node dd.bad { color: var(--critical-text); }
+.sys-link { position: relative; padding: 30px 8px 0; text-align: center; font-size: 12px; color: var(--text-secondary); }
+.sys-link::before { content: ""; position: absolute; left: 8px; right: 16px; top: 10px; border-top: 1px solid var(--control-edge); }
+.sys-link::after { content: ""; position: absolute; right: 8px; top: 6px; border: 4.5px solid transparent; border-left: 7px solid var(--control-edge); }
+/* rows of three cards that share their bottom edge */
+.sys-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+/* CPU and memory live: Galleria G1, a new sample every 2 s */
+.sys-live { display: flex; flex-direction: column; }
+.sys-live-head { display: flex; align-items: flex-start; gap: 12px; }
+.sys-live-head h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 600; }
+.sys-live-head .caption { margin: 2px 0 0; font-size: 12px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.sys-live-head .caption .warn { color: var(--chip-warn-fg); }
+.sys-live-v { margin-left: auto; font-size: 26px; line-height: 30px; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sys-live-v small { margin-left: 3px; font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--text-secondary); }
+.sys-fig { position: relative; margin: 0; min-width: 0; }
+/* G1 keeps 22 px under the plot for the hours, dropped here: the figure tucks into the card's padding */
+.sys-live-fig { flex: 1; min-height: 150px; margin: 8px -8px -12px; }
+.sys-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--good); animation: sys-pulse 2s ease-out infinite; }
+@keyframes sys-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 45%, transparent); } 100% { box-shadow: 0 0 0 7px transparent; } }
+@media (prefers-reduced-motion: reduce) { .sys-pulse { animation: none; } }
+/* disk, swap and battery: Galleria B10, one row each; B10 insets its rows 12 px, pulled out to the card's edge */
+.sys-segs { display: grid; gap: 2px; margin: 0 -12px; }
+.sys-seg { position: relative; margin: 0; height: 52px; min-width: 0; }
+.sys-net { display: flex; align-items: baseline; gap: 16px; margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--grid); font-size: 13px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.sys-net b { font-weight: 500; color: var(--text-primary); }
+.sys-net-if { margin-left: auto; font-size: 12px; color: var(--text-secondary); }
+/* key-value lists: the label in grey, the figure right-aligned */
+.sys-kv { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sys-kv td { padding: 5px 0; border-bottom: 1px solid var(--grid); vertical-align: baseline; }
+.sys-kv tr:last-child td { border-bottom: 0; }
+.sys-kv td:first-child { color: var(--text-secondary); padding-right: 12px; }
+.sys-kv td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.sys-kv td.mono { font-size: 12.5px; }
+.sys-kv td.sec { color: var(--text-secondary); }
+.sys-kv td.bad { color: var(--critical-text); }
+.sys-kv td.warn { color: var(--chip-warn-fg); }
+.sys-kv em { display: inline-block; min-width: 44px; margin-left: 6px; font-style: normal; color: var(--text-secondary); }
+.sys-none { color: var(--text-secondary); }
+.sys-sw { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 2px; }
+/* the memory: what is taken in three shades of one blue, what macOS can give back in greys */
+.sys-m1 { background: var(--kind-cwrite); }
+.sys-m2 { background: var(--series-1); }
+.sys-m3 { background: var(--kind-cread); }
+.sys-m4 { background: var(--bar-neutral); }
+.sys-m5 { background: var(--track); box-shadow: inset 0 0 0 1px var(--border); }
+/* processes, ports and launch agents: one card, a tab each */
+#view-sistema .sys-inv { padding-top: 0; }
+.sys-tabs { display: flex; align-items: center; gap: 12px; margin: 0 -20px 4px; padding: 0 20px; border-bottom: 1px solid var(--grid); }
+.sys-tablist { display: flex; gap: 24px; }
+.sys-tablist button { position: relative; flex: none; white-space: nowrap; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 14px; color: var(--text-secondary); }
+.sys-tablist button:hover { color: var(--text-primary); }
+.sys-tablist button[aria-selected="true"] { color: var(--text-primary); font-weight: 600; }
+.sys-tablist button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--text-primary); }
+.sys-n { margin-left: 4px; font-weight: 400; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.sys-tabs .sp { flex: 1; }
+.sys-check { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); cursor: pointer; }
+.sys-more { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; }
+.sys-more .caption { font-size: 12px; color: var(--text-secondary); }
+.sys-more-btn { flex: none; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.sys-more-btn:hover { text-decoration: underline; }
+tr.sys-mine td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+td.sys-name { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 1200px) {
+  .sys-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sys-row > .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (max-width: 1000px) {
+  .sys-chain { grid-template-columns: minmax(0, 1fr); }
+  .sys-link { height: 26px; padding: 0; }
+  .sys-link::before { left: 4px; right: auto; top: 4px; bottom: 4px; border-top: 0; border-left: 1px solid var(--control-edge); }
+  .sys-link::after, .sys-link span { display: none; }
+  .sys-node dl { grid-template-columns: 140px minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  #view-sistema .card { padding: 14px 16px 16px; }
+  .sys-row { grid-template-columns: minmax(0, 1fr); }
+  .sys-tabs { margin: 0 -16px 4px; padding: 0 16px; overflow-x: auto; }
+  .sys-tablist { gap: 18px; }
+  .sys-tabs .seg, .sys-check { display: none; }
+  .sys-finding { font-size: 14px; line-height: 21px; }
+  td.sys-name { max-width: 180px; }
+  .sys-node dl { grid-template-columns: auto minmax(0, 1fr); }
+}
+/* the bars of the process tables */
+.sys-bar-cell { white-space: nowrap; }
+.sys-bar-wrap { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; }
+.sys-bar { position: relative; width: 56px; height: 2px; background: var(--track); overflow: hidden; }
+.sys-bar .meter-fill { height: 100%; background: var(--bar-neutral); }
+.sys-bar-n { min-width: 62px; text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .sys-bar { display: none; } }

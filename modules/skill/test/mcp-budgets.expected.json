@@ -1,0 +1,341 @@
+[
+ {
+  "ok": {
+   "text": {
+    "long": "9edb9f85c30a6ad2c81734081343d8695f1426259bfd1fd7ff3302b71f511e62",
+    "codePoints": 38808,
+    "bytes": 38831,
+    "lines": 25,
+    "head": "Preset «P» (p) · skill: a, b, c, d\n<skill_content name=\"a\">\nDescrizione: «d»\nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "tail": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\nCartella base di questa skill: /data/skills/d/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ {
+  "ok": {
+   "description": "Skill del preset p",
+   "text": {
+    "long": "6d695de9cbca884d75d346191a3dd7e73c60e841dfdb29f2388e769130e115b4",
+    "codePoints": 38852,
+    "bytes": 38875,
+    "lines": 27,
+    "head": "Usa queste skill per il compito che segue.\n\nPreset «P» (p) · skill: a, b, c, d\n<skill_content name=\"a\">\nDescrizione: «d»\nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "tail": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD\nCartella base di questa skill: /data/skills/d/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ [{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/a","params":{}},{"path":"/api/skills/b","params":{}},{"path":"/api/skills/c","params":{}},{"path":"/api/skills/d","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/a","params":{}},{"path":"/api/skills/b","params":{}},{"path":"/api/skills/c","params":{}},{"path":"/api/skills/d","params":{}}],
+ [
+  {"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":"p","sessionId":"ses_1","skills":[{"id":"a","full":true,"version":0},{"id":"b","full":true,"version":1},{"id":"c","full":false,"version":2},{"id":"d","full":true,"version":3}]},"uuid":true,"recent":true},
+  {"path":"/api/skill-loads","rest":{"channel":"lens-prompt","preset":"p","sessionId":null,"skills":[{"id":"a","full":true,"version":0},{"id":"b","full":true,"version":1},{"id":"c","full":false,"version":2},{"id":"d","full":true,"version":3}]},"uuid":true,"recent":true}
+ ],
+ {
+  "ok": {
+   "text": {
+    "long": "8781bda66954cbaf5347329465b70d7c25dea0b6348feb40457a8fa5e9d48052",
+    "codePoints": 4243,
+    "bytes": 4261,
+    "lines": 1218,
+    "head": "Preset «P» (p) · skill: a, b, c\n<skill_content name=\"a\">\nDescrizione: «d»\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\na",
+    "tail": "\nCartella base di questa skill: /data/skills/b/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>\n<skill_content name=\"c\">\nDescrizione: «d»\npiccola\nCartella base di questa skill: /data/skills/c/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ {
+  "ok": {
+   "description": "Skill del preset p",
+   "text": {
+    "long": "10a7f4bf27932c2c245d7408cfb98253de299003725d6cf874ecdb02e7dddd7d",
+    "codePoints": 4287,
+    "bytes": 4305,
+    "lines": 1220,
+    "head": "Usa queste skill per il compito che segue.\n\nPreset «P» (p) · skill: a, b, c\n<skill_content name=\"a\">\nDescrizione: «d»\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab\nab",
+    "tail": "\nCartella base di questa skill: /data/skills/b/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>\n<skill_content name=\"c\">\nDescrizione: «d»\npiccola\nCartella base di questa skill: /data/skills/c/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ [{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/a","params":{}},{"path":"/api/skills/b","params":{}},{"path":"/api/skills/c","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/a","params":{}},{"path":"/api/skills/b","params":{}},{"path":"/api/skills/c","params":{}}],
+ [
+  {"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":"p","sessionId":"ses_1","skills":[{"id":"a","full":true,"version":0},{"id":"b","full":false,"version":1},{"id":"c","full":true,"version":2}]},"uuid":true,"recent":true},
+  {"path":"/api/skill-loads","rest":{"channel":"lens-prompt","preset":"p","sessionId":null,"skills":[{"id":"a","full":true,"version":0},{"id":"b","full":false,"version":1},{"id":"c","full":true,"version":2}]},"uuid":true,"recent":true}
+ ],
+ {
+  "ok": {
+   "text": {
+    "long": "cfc32791362464265f06717c04676a22b400a95e391cb8e2cfe1971f44676c75",
+    "codePoints": 10466,
+    "bytes": 30479,
+    "lines": 13,
+    "head": "Preset «P» (p) · skill: a, b\n<skill_content name=\"a\">\nDescrizione: «d»\n漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢",
+    "tail": "artono da lì.\n</skill_content>\n<skill_content name=\"b\">\nDescrizione: «d»\nTesto non incluso per dimensione: leggi SKILL.md con il tool read, oppure chiedi preset con skill=\"b\".\nCartella base di questa skill: /data/skills/b/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ {
+  "ok": {
+   "description": "Skill del preset p",
+   "text": {
+    "long": "9c7ceb430f7458ff66559f5e322eed8c13b97db899433a590bbe419a574ff88d",
+    "codePoints": 10510,
+    "bytes": 30523,
+    "lines": 15,
+    "head": "Usa queste skill per il compito che segue.\n\nPreset «P» (p) · skill: a, b\n<skill_content name=\"a\">\nDescrizione: «d»\n漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢",
+    "tail": "artono da lì.\n</skill_content>\n<skill_content name=\"b\">\nDescrizione: «d»\nTesto non incluso per dimensione: leggi SKILL.md con il tool read, oppure chiedi preset con skill=\"b\".\nCartella base di questa skill: /data/skills/b/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ [{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/a","params":{}},{"path":"/api/skills/b","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/a","params":{}},{"path":"/api/skills/b","params":{}}],
+ [
+  {"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":"p","sessionId":"ses_1","skills":[{"id":"a","full":true,"version":0},{"id":"b","full":false,"version":1}]},"uuid":true,"recent":true},
+  {"path":"/api/skill-loads","rest":{"channel":"lens-prompt","preset":"p","sessionId":null,"skills":[{"id":"a","full":true,"version":0},{"id":"b","full":false,"version":1}]},"uuid":true,"recent":true}
+ ],
+ {
+  "ok": {
+   "text": {
+    "long": "12f7d05a7f30a2b7a051ce24d3083f2a44c1ad157b69775c835a6f9e4343f9dd",
+    "codePoints": 39976,
+    "bytes": 40065,
+    "lines": 100,
+    "head": "Preset «P» (p) · skill: s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47, s48, s49, s50, s51, s52, s53, s54, s55, s56, s",
+    "tail": "/data/skills/s15/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>\nSkill «s16» non inclusa per dimensione: chiedi preset con skill=\"s16\".\nSkill «s17» non inclusa per dimensione: chiedi preset con skill=\"s17\".\n… e altre 42 skill non incluse: chiedi preset con skill=\"<id>\""
+   }
+  }
+ },
+ {
+  "ok": {
+   "description": "Skill del preset p",
+   "text": {
+    "long": "bfac0567a0660151987375edcfe2fbf813be1d8030d99ccaa4117d04edfa63c5",
+    "codePoints": 40020,
+    "bytes": 40109,
+    "lines": 102,
+    "head": "Usa queste skill per il compito che segue.\n\nPreset «P» (p) · skill: s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47, s4",
+    "tail": "/data/skills/s15/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>\nSkill «s16» non inclusa per dimensione: chiedi preset con skill=\"s16\".\nSkill «s17» non inclusa per dimensione: chiedi preset con skill=\"s17\".\n… e altre 42 skill non incluse: chiedi preset con skill=\"<id>\""
+   }
+  }
+ },
+ [
+  {"path":"/api/skill-presets","params":{}},
+  {"path":"/api/skills/s0","params":{}},
+  {"path":"/api/skills/s1","params":{}},
+  {"path":"/api/skills/s2","params":{}},
+  {"path":"/api/skills/s3","params":{}},
+  {"path":"/api/skills/s4","params":{}},
+  {"path":"/api/skills/s5","params":{}},
+  {"path":"/api/skills/s6","params":{}},
+  {"path":"/api/skills/s7","params":{}},
+  {"path":"/api/skills/s8","params":{}},
+  {"path":"/api/skills/s9","params":{}},
+  {"path":"/api/skills/s10","params":{}},
+  {"path":"/api/skills/s11","params":{}},
+  {"path":"/api/skills/s12","params":{}},
+  {"path":"/api/skills/s13","params":{}},
+  {"path":"/api/skills/s14","params":{}},
+  {"path":"/api/skills/s15","params":{}},
+  {"path":"/api/skills/s16","params":{}},
+  {"path":"/api/skills/s17","params":{}},
+  {"path":"/api/skills/s18","params":{}},
+  {"path":"/api/skills/s19","params":{}},
+  {"path":"/api/skills/s20","params":{}},
+  {"path":"/api/skills/s21","params":{}},
+  {"path":"/api/skills/s22","params":{}},
+  {"path":"/api/skills/s23","params":{}},
+  {"path":"/api/skills/s24","params":{}},
+  {"path":"/api/skills/s25","params":{}},
+  {"path":"/api/skills/s26","params":{}},
+  {"path":"/api/skills/s27","params":{}},
+  {"path":"/api/skills/s28","params":{}},
+  {"path":"/api/skills/s29","params":{}},
+  {"path":"/api/skills/s30","params":{}},
+  {"path":"/api/skills/s31","params":{}},
+  {"path":"/api/skills/s32","params":{}},
+  {"path":"/api/skills/s33","params":{}},
+  {"path":"/api/skills/s34","params":{}},
+  {"path":"/api/skills/s35","params":{}},
+  {"path":"/api/skills/s36","params":{}},
+  {"path":"/api/skills/s37","params":{}},
+  {"path":"/api/skills/s38","params":{}},
+  {"path":"/api/skills/s39","params":{}},
+  {"path":"/api/skills/s40","params":{}},
+  {"path":"/api/skills/s41","params":{}},
+  {"path":"/api/skills/s42","params":{}},
+  {"path":"/api/skills/s43","params":{}},
+  {"path":"/api/skills/s44","params":{}},
+  {"path":"/api/skills/s45","params":{}},
+  {"path":"/api/skills/s46","params":{}},
+  {"path":"/api/skills/s47","params":{}},
+  {"path":"/api/skills/s48","params":{}},
+  {"path":"/api/skills/s49","params":{}},
+  {"path":"/api/skills/s50","params":{}},
+  {"path":"/api/skills/s51","params":{}},
+  {"path":"/api/skills/s52","params":{}},
+  {"path":"/api/skills/s53","params":{}},
+  {"path":"/api/skills/s54","params":{}},
+  {"path":"/api/skills/s55","params":{}},
+  {"path":"/api/skills/s56","params":{}},
+  {"path":"/api/skills/s57","params":{}},
+  {"path":"/api/skills/s58","params":{}},
+  {"path":"/api/skills/s59","params":{}},
+  {"path":"/api/skill-presets","params":{}},
+  {"path":"/api/skills/s0","params":{}},
+  {"path":"/api/skills/s1","params":{}},
+  {"path":"/api/skills/s2","params":{}},
+  {"path":"/api/skills/s3","params":{}},
+  {"path":"/api/skills/s4","params":{}},
+  {"path":"/api/skills/s5","params":{}},
+  {"path":"/api/skills/s6","params":{}},
+  {"path":"/api/skills/s7","params":{}},
+  {"path":"/api/skills/s8","params":{}},
+  {"path":"/api/skills/s9","params":{}},
+  {"path":"/api/skills/s10","params":{}},
+  {"path":"/api/skills/s11","params":{}},
+  {"path":"/api/skills/s12","params":{}},
+  {"path":"/api/skills/s13","params":{}},
+  {"path":"/api/skills/s14","params":{}},
+  {"path":"/api/skills/s15","params":{}},
+  {"path":"/api/skills/s16","params":{}},
+  {"path":"/api/skills/s17","params":{}},
+  {"path":"/api/skills/s18","params":{}},
+  {"path":"/api/skills/s19","params":{}},
+  {"path":"/api/skills/s20","params":{}},
+  {"path":"/api/skills/s21","params":{}},
+  {"path":"/api/skills/s22","params":{}},
+  {"path":"/api/skills/s23","params":{}},
+  {"path":"/api/skills/s24","params":{}},
+  {"path":"/api/skills/s25","params":{}},
+  {"path":"/api/skills/s26","params":{}},
+  {"path":"/api/skills/s27","params":{}},
+  {"path":"/api/skills/s28","params":{}},
+  {"path":"/api/skills/s29","params":{}},
+  {"path":"/api/skills/s30","params":{}},
+  {"path":"/api/skills/s31","params":{}},
+  {"path":"/api/skills/s32","params":{}},
+  {"path":"/api/skills/s33","params":{}},
+  {"path":"/api/skills/s34","params":{}},
+  {"path":"/api/skills/s35","params":{}},
+  {"path":"/api/skills/s36","params":{}},
+  {"path":"/api/skills/s37","params":{}},
+  {"path":"/api/skills/s38","params":{}},
+  {"path":"/api/skills/s39","params":{}},
+  {"path":"/api/skills/s40","params":{}},
+  {"path":"/api/skills/s41","params":{}},
+  {"path":"/api/skills/s42","params":{}},
+  {"path":"/api/skills/s43","params":{}},
+  {"path":"/api/skills/s44","params":{}},
+  {"path":"/api/skills/s45","params":{}},
+  {"path":"/api/skills/s46","params":{}},
+  {"path":"/api/skills/s47","params":{}},
+  {"path":"/api/skills/s48","params":{}},
+  {"path":"/api/skills/s49","params":{}},
+  {"path":"/api/skills/s50","params":{}},
+  {"path":"/api/skills/s51","params":{}},
+  {"path":"/api/skills/s52","params":{}},
+  {"path":"/api/skills/s53","params":{}},
+  {"path":"/api/skills/s54","params":{}},
+  {"path":"/api/skills/s55","params":{}},
+  {"path":"/api/skills/s56","params":{}},
+  {"path":"/api/skills/s57","params":{}},
+  {"path":"/api/skills/s58","params":{}},
+  {"path":"/api/skills/s59","params":{}}
+ ],
+ [
+  {
+   "path": "/api/skill-loads",
+   "rest": {
+    "channel": "lens-preset",
+    "preset": "p",
+    "sessionId": "ses_1",
+    "skills": [
+     {"id":"s0","full":true,"version":0},
+     {"id":"s1","full":true,"version":1},
+     {"id":"s2","full":true,"version":2},
+     {"id":"s3","full":true,"version":3},
+     {"id":"s4","full":true,"version":4},
+     {"id":"s5","full":true,"version":5},
+     {"id":"s6","full":true,"version":6},
+     {"id":"s7","full":true,"version":7},
+     {"id":"s8","full":true,"version":8},
+     {"id":"s9","full":false,"version":9},
+     {"id":"s10","full":false,"version":10},
+     {"id":"s11","full":false,"version":11},
+     {"id":"s12","full":false,"version":12},
+     {"id":"s13","full":false,"version":13},
+     {"id":"s14","full":false,"version":14},
+     {"id":"s15","full":false,"version":15}
+    ]
+   },
+   "uuid": true,
+   "recent": true
+  },
+  {
+   "path": "/api/skill-loads",
+   "rest": {
+    "channel": "lens-prompt",
+    "preset": "p",
+    "sessionId": null,
+    "skills": [
+     {"id":"s0","full":true,"version":0},
+     {"id":"s1","full":true,"version":1},
+     {"id":"s2","full":true,"version":2},
+     {"id":"s3","full":true,"version":3},
+     {"id":"s4","full":true,"version":4},
+     {"id":"s5","full":true,"version":5},
+     {"id":"s6","full":true,"version":6},
+     {"id":"s7","full":true,"version":7},
+     {"id":"s8","full":true,"version":8},
+     {"id":"s9","full":false,"version":9},
+     {"id":"s10","full":false,"version":10},
+     {"id":"s11","full":false,"version":11},
+     {"id":"s12","full":false,"version":12},
+     {"id":"s13","full":false,"version":13},
+     {"id":"s14","full":false,"version":14},
+     {"id":"s15","full":false,"version":15}
+    ]
+   },
+   "uuid": true,
+   "recent": true
+  }
+ ],
+ {
+  "ok": {
+   "text": {
+    "long": "7868749c6a872e87cdb8e1dbb8fe1a829a5b32f075df69c6102a5d04a0abd06b",
+    "codePoints": 16600,
+    "bytes": 49008,
+    "lines": 168,
+    "head": "<skill_content name=\"s\">\nDescrizione: «d»\n漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢\n漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢\n漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢",
+    "tail": "漢漢\n漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢漢\n… testo tagliato: il resto è in SKILL.md, nella cartella base qui sotto\nCartella base di questa skill: /data/skills/s/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ [{"path":"/api/skills/s","params":{}}],
+ [{"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":null,"sessionId":"ses_1","skills":[{"id":"s","full":false,"version":4}]},"uuid":true,"recent":true}],
+ {
+  "ok": {
+   "text": {
+    "long": "978fccd4ceb31e77fa2946ac29b4367e6eaa91fa025106588d177e007107dd98",
+    "codePoints": 10492,
+    "bytes": 10500,
+    "lines": 1900,
+    "head": "<skill_content name=\"s\">\nDescrizione: «d»\nr0\nr1\nr2\nr3\nr4\nr5\nr6\nr7\nr8\nr9\nr10\nr11\nr12\nr13\nr14\nr15\nr16\nr17\nr18\nr19\nr20\nr21\nr22\nr23\nr24\nr25\nr26\nr27\nr28\nr29\nr30\nr31\nr32\nr33\nr34\nr35\nr36\nr37\nr38\nr39\nr40\nr41\nr42\nr43\nr44\nr45\nr46\nr47\nr48\nr49\nr50\nr51\nr52\nr53\nr54\nr55\nr56\nr57\nr58\nr59\nr60\nr61\nr62\nr63\nr64\nr65\nr66\n",
+    "tail": "6\nr1877\nr1878\nr1879\nr1880\nr1881\nr1882\nr1883\nr1884\nr1885\nr1886\nr1887\nr1888\nr1889\nr1890\nr1891\nr1892\nr1893\n… testo tagliato: il resto è in SKILL.md, nella cartella base qui sotto\nCartella base di questa skill: /data/skills/s/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ [{"path":"/api/skills/s","params":{}}],
+ [{"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":null,"sessionId":"ses_1","skills":[{"id":"s","full":false,"version":4}]},"uuid":true,"recent":true}],
+ {
+  "ok": {
+   "text": {
+    "long": "022524273f4893b06be0212ae1b2fd01d4fd4fed55be581189d6d442203a7732",
+    "codePoints": 12465,
+    "bytes": 49151,
+    "lines": 7,
+    "head": "<skill_content name=\"s\">\nDescrizione: «d»\n😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+    "tail": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀\n… testo tagliato: il resto è in SKILL.md, nella cartella base qui sotto\nCartella base di questa skill: /data/skills/s/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"
+   }
+  }
+ },
+ [{"path":"/api/skills/s","params":{}}],
+ [{"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":null,"sessionId":"ses_1","skills":[{"id":"s","full":false,"version":4}]},"uuid":true,"recent":true}]
+]

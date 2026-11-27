@@ -1,0 +1,85 @@
+<section class="page-view hidden" id="view-security" aria-labelledby="sec-title">
+  <header class="topbar">
+    <div class="tb-row">
+      <div class="slot s-ident">
+        <span class="tb-ico" data-ico="security" aria-hidden="true"></span>
+        <div class="tb-title">
+          <h1 id="sec-title" data-i18n>Security</h1>
+          <p class="ctx" id="sec-ctx" role="status" aria-live="polite" data-i18n>I guard DLP che proteggono i tool MCP</p>
+        </div>
+      </div>
+      <div class="slot s-period">
+        <div class="seg" role="radiogroup" aria-label="Periodo" id="sec-range" data-i18n-aria-label>
+          <button type="button" role="radio" aria-checked="false" data-v="604800000" aria-label="7 giorni" title="7 giorni" data-i18n data-i18n-aria-label data-i18n-title>7 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="2592000000" aria-label="30 giorni" title="30 giorni" data-i18n data-i18n-aria-label data-i18n-title>30 g</button>
+          <button type="button" role="radio" aria-checked="false" data-v="0" data-i18n>Tutto</button>
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <div class="slot s-status">
+        <span class="chipx led" id="sec-live"></span>
+      </div>
+      <div class="slot s-action"></div>
+    </div>
+  </header>
+  <div class="view-body">
+    <div class="callout" id="sec-restricted" hidden><b data-i18n>Vista ridotta</b><span data-i18n>Aprendo la dashboard dalla rete si vedono solo date, esiti, tool, categorie e salute dei guard. Oggetti, dettagli, sessioni e policy si vedono solo dal computer su cui gira la lens.</span></div>
+    <section class="card" id="sec-empty" aria-labelledby="h-sec-empty" hidden>
+      <div class="card-head"><h2 id="h-sec-empty" data-i18n>Nessun guard trovato</h2></div>
+      <p class="caption" data-i18n>Un guard DLP lascia il suo audit in un file che finisce con .audit.jsonl: la lens lo legge in sola lettura. Finché non ce n'è uno nelle cartelle cercate, questa pagina resta vuota.</p>
+      <div id="sec-dirs-box" hidden>
+        <p class="caption" data-i18n>Cartelle cercate</p>
+        <pre class="code" id="sec-dirs"></pre>
+      </div>
+      <p class="caption"><a href="https://github.com/vale76p/opencode-lens-public/blob/main/docs/sicurezza.md" data-href-en="https://github.com/vale76p/opencode-lens-public/blob/main/docs/en/sicurezza.md" data-href-fr="https://github.com/vale76p/opencode-lens-public/blob/main/docs/fr/sicurezza.md" target="_blank" rel="noopener noreferrer" data-i18n>Come si scrive un guard ↗</a></p>
+    </section>
+    <div id="sec-state"></div>
+    <div id="sec-content" hidden>
+      <div class="sec-guards" id="sec-guards" role="group" aria-label="Guard" data-i18n-aria-label></div>
+      <section class="sec-hero" id="sec-hero" aria-label="Riepilogo" data-i18n-aria-label></section>
+      <div class="sec-grid sec-grid-top">
+        <section class="card" aria-labelledby="h-sec-health">
+          <div class="card-head"><h2 id="h-sec-health" data-i18n>Salute</h2><span class="chipx led" id="sec-verdict"></span></div>
+          <div class="sec-verdict" id="sec-verdict-box"></div>
+          <ul class="sec-health" id="sec-health"></ul>
+        </section>
+        <section class="card" aria-labelledby="h-sec-policy">
+          <div class="card-head"><h2 id="h-sec-policy" data-i18n>Policy</h2><span class="chipx led" id="sec-posture" hidden></span></div>
+          <div id="sec-policy"></div>
+        </section>
+      </div>
+      <div class="sec-grid sec-grid-events">
+        <section class="card" aria-labelledby="h-sec-events">
+          <div class="card-head">
+            <h2 id="h-sec-events" data-i18n>Eventi</h2>
+            <div class="seg" role="group" aria-label="Esito" id="sec-outcome" data-i18n-aria-label>
+              <button type="button" data-k="all" aria-pressed="true" data-i18n>Tutti</button>
+              <button type="button" data-k="blocked" aria-pressed="false" data-i18n>Solo blocchi</button>
+            </div>
+          </div>
+          <div class="sec-chart" id="sec-timeline"></div>
+          <div class="table-wrap" id="sec-events"></div>
+          <div class="sec-pager" id="sec-pager" hidden>
+            <button type="button" class="ghost" id="sec-prev" data-i18n>Precedenti</button>
+            <span class="caption" id="sec-span" role="status"></span>
+            <button type="button" class="ghost" id="sec-next" data-i18n>Successivi</button>
+          </div>
+        </section>
+        <div class="sec-side">
+          <section class="card" aria-labelledby="h-sec-cats">
+            <div class="card-head"><h2 id="h-sec-cats" data-i18n>Cosa è stato rilevato</h2></div>
+            <div id="sec-cats"></div>
+          </section>
+          <section class="card" aria-labelledby="h-sec-tools">
+            <div class="card-head"><h2 id="h-sec-tools" data-i18n>Per tool</h2></div>
+            <div id="sec-tools"></div>
+          </section>
+          <section class="card" aria-labelledby="h-sec-hours">
+            <div class="card-head"><div><h2 id="h-sec-hours" data-i18n>Quando succede</h2><p class="caption" data-i18n>Blocchi per giorno della settimana e ora</p></div></div>
+            <div id="sec-hours"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

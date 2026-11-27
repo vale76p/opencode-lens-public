@@ -1,0 +1,19 @@
+[
+ {"ok":{"text":"Preset di skill in Lens (chiedi con name, oppure /lens:<id> in OpenCode):\n- https · «Debugging HTTPS»: «TLS e certificati» · skill: tls, sparita (assente)"}},
+ {
+  "ok": {
+   "text": "Preset «Debugging HTTPS» (https): «TLS e certificati» · skill: tls, sparita (assente)\n<skill_content name=\"tls\">\nDescrizione: «Debug TLS»\n# TLS\ncorpo\nCartella base di questa skill: /data/skills/tls/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n<skill_files>\n<file>/data/skills/tls/1/scripts/check.sh</file>\n</skill_files>\n… e altri 2 file in /data/skills/tls/1\n</skill_content>\nSkill «sparita» assente dalla libreria di Lens."
+  }
+ },
+ {
+  "ok": {
+   "description": "Skill del preset https",
+   "text": "Usa queste skill per il compito che segue.\n\nPreset «Debugging HTTPS» (https): «TLS e certificati» · skill: tls, sparita (assente)\n<skill_content name=\"tls\">\nDescrizione: «Debug TLS»\n# TLS\ncorpo\nCartella base di questa skill: /data/skills/tls/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n<skill_files>\n<file>/data/skills/tls/1/scripts/check.sh</file>\n</skill_files>\n… e altri 2 file in /data/skills/tls/1\n</skill_content>\nSkill «sparita» assente dalla libreria di Lens."
+  }
+ },
+ {"ok":{"prompts":[{"id":"https","name":"Debugging HTTPS","brief":"TLS e certificati","skills":["tls","sparita"],"missing":["sparita"]}],"snapshot":"[{\"id\":\"https\",\"name\":\"Debugging HTTPS\",\"brief\":\"TLS e certificati\",\"skills\":[\"tls\",\"sparita\"]}]"}},
+ {"ok":["Preset di skill in Lens (chiedi con name, oppure /lens:<id> in OpenCode):","- https · «Debugging HTTPS»: «TLS e certificati» · skill: tls, sparita (assente)"]},
+ {"ok":"[{\"id\":\"https\",\"name\":\"Debugging HTTPS\",\"brief\":\"TLS e certificati\",\"skills\":[\"tls\",\"sparita\"]}]"},
+ [{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/tls","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skills/tls","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}},{"path":"/api/skill-presets","params":{}}],
+ [{"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":"https","sessionId":"ses_1","skills":[{"id":"tls","full":true,"version":2}]},"uuid":true,"recent":true},{"path":"/api/skill-loads","rest":{"channel":"lens-prompt","preset":"https","sessionId":"ses_2","skills":[{"id":"tls","full":true,"version":2}]},"uuid":true,"recent":true}]
+]

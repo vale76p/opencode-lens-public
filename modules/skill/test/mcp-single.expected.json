@@ -1,0 +1,9 @@
+[
+ {"ok":{"text":"<skill_content name=\"tls\">\nDescrizione: «d»\ncorpo\nCartella base di questa skill: /data/skills/tls/1\nI percorsi relativi (scripts/, references/…) partono da lì.\n</skill_content>"}},
+ {"ok":{"text":"Skill «nessuna» assente dalla libreria di Lens."}},
+ {"error":"Lens ha risposto HTTP 500 su /api/skills/rotta","tool":true,"status":500},
+ {"ok":{"text":"Skill «a/b» assente dalla libreria di Lens."}},
+ {"error":"argomento sconosciuto: nome","tool":true,"status":null},
+ [{"path":"/api/skills/tls","params":{}},{"path":"/api/skills/nessuna","params":{}},{"path":"/api/skills/rotta","params":{}},{"path":"/api/skills/a%2Fb","params":{}}],
+ [{"path":"/api/skill-loads","rest":{"channel":"lens-preset","preset":null,"sessionId":"ses_1","skills":[{"id":"tls","full":true,"version":3}]},"uuid":true,"recent":true}]
+]

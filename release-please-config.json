@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "include-component-in-tag": true,
+  "tag-separator": "-",
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "bump-minor-pre-major": true,
+      "component": "opencode-lens",
+      "package-name": "opencode-lens",
+      "changelog-path": "CHANGELOG.md",
+      "changelog-sections": [
+        {
+          "type": "feat",
+          "section": "Aggiunto"
+        },
+        {
+          "type": "fix",
+          "section": "Corretto"
+        },
+        {
+          "type": "perf",
+          "section": "Modificato"
+        },
+        {
+          "type": "refactor",
+          "section": "Modificato"
+        },
+        {
+          "type": "revert",
+          "section": "Rimosso"
+        },
+        {
+          "type": "docs",
+          "section": "Documentazione"
+        },
+        {
+          "type": "test",
+          "section": "Test",
+          "hidden": true
+        },
+        {
+          "type": "ci",
+          "section": "CI",
+          "hidden": true
+        },
+        {
+          "type": "build",
+          "section": "Build",
+          "hidden": true
+        },
+        {
+          "type": "chore",
+          "section": "Varie",
+          "hidden": true
+        }
+      ],
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "README.md"
+        },
+        {
+          "type": "generic",
+          "path": "README.en.md"
+        },
+        {
+          "type": "generic",
+          "path": "README.fr.md"
+        },
+        {
+          "type": "generic",
+          "path": "extras/module-template/module.js"
+        },
+        {
+          "type": "generic",
+          "path": "docs/moduli-custom.md"
+        },
+        {
+          "type": "generic",
+          "path": "docs/en/moduli-custom.md"
+        },
+        {
+          "type": "generic",
+          "path": "docs/fr/moduli-custom.md"
+        }
+      ]
+    }
+  }
+}

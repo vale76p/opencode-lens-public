@@ -1,0 +1,138 @@
+[
+ {"ok":{"id":"pdf-tools","version":1}},
+ {"ok":{"id":"pdf-tools","version":1,"unchanged":true}},
+ {"ok":{"id":"pdf-tools","version":1,"unchanged":true}},
+ {"status":409,"errors":["esiste già una skill «pdf-tools»: aggiungi una versione o sovrascrivi la corrente"]},
+ {"ok":{"id":"note","version":1}},
+ {"ok":{"id":"note","version":2}},
+ {"ok":{"id":"note","version":2,"unchanged":true}},
+ {"ok":{"id":"pdf-tools","version":2}},
+ {"ok":{"id":"pdf-tools","version":2}},
+ {"status":400,"errors":["modalità di import non valida: \"boh\" (ammesse: version, overwrite, new)"]},
+ {"status":400,"errors":["SKILL.md non ha description: senza, il modello non sa quando usarla"]},
+ {"status":400,"errors":["lo zip contiene più skill (a/b, c/d): comprimi la cartella di una sola skill e importala"]},
+ {"status":400,"errors":["SKILL.md non è UTF-8 valido"]},
+ {
+  "version": 1,
+  "skills": [
+   {
+    "id": "pdf-tools",
+    "name": "pdf-tools",
+    "description": "Lavora sui PDF, v2 bis",
+    "current": 2,
+    "currentSince": 1793271605000,
+    "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271605000,"source":"md","files":3,"bytes":100,"hash":"754a13bb050a0638dd7efa74ebd95b670844f7fd4fe25412b2e7344e825dd96d","hashV":2,"mdChars":11}]
+   },
+   {
+    "id": "note",
+    "name": "note",
+    "description": "Prende appunti meglio",
+    "current": 2,
+    "currentSince": 1793271603000,
+    "versions": [{"n":1,"importedAt":1793271602000,"source":"md","files":1,"bytes":53,"hash":"e704909eb7f877999504521827255e2062ef3329565f18e596c9e599599257ea","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271603000,"source":"md","files":1,"bytes":62,"hash":"3b43bc1e84a26a9ecd48700782bd68388406f0c75df18166d505d7d054d4ef9a","hashV":2,"mdChars":8}]
+   }
+  ]
+ },
+ {
+  "ok": {
+   "version": 1,
+   "skills": [
+    {
+     "id": "pdf-tools",
+     "name": "pdf-tools",
+     "description": "Lavora sui PDF, v2 bis",
+     "current": 2,
+     "currentSince": 1793271605000,
+     "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271605000,"source":"md","files":3,"bytes":100,"hash":"754a13bb050a0638dd7efa74ebd95b670844f7fd4fe25412b2e7344e825dd96d","hashV":2,"mdChars":11}],
+     "dir": "<DATA>/skills/pdf-tools/2"
+    },
+    {
+     "id": "note",
+     "name": "note",
+     "description": "Prende appunti meglio",
+     "current": 2,
+     "currentSince": 1793271603000,
+     "versions": [{"n":1,"importedAt":1793271602000,"source":"md","files":1,"bytes":53,"hash":"e704909eb7f877999504521827255e2062ef3329565f18e596c9e599599257ea","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271603000,"source":"md","files":1,"bytes":62,"hash":"3b43bc1e84a26a9ecd48700782bd68388406f0c75df18166d505d7d054d4ef9a","hashV":2,"mdChars":8}],
+     "dir": "<DATA>/skills/note/2"
+    }
+   ]
+  }
+ },
+ {
+  "ok": {
+   "id": "pdf-tools",
+   "name": "pdf-tools",
+   "description": "Lavora sui PDF, v2 bis",
+   "metadata": {},
+   "current": 2,
+   "version": 2,
+   "dir": "<DATA>/skills/pdf-tools/2",
+   "body": "nuovissimo\n",
+   "files": ["<DATA>/skills/pdf-tools/2/references/a.md","<DATA>/skills/pdf-tools/2/scripts/run.sh"],
+   "totalFiles": 2,
+   "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271605000,"source":"md","files":3,"bytes":100,"hash":"754a13bb050a0638dd7efa74ebd95b670844f7fd4fe25412b2e7344e825dd96d","hashV":2,"mdChars":11}]
+  }
+ },
+ {
+  "ok": {
+   "id": "pdf-tools",
+   "name": "pdf-tools",
+   "description": "Lavora sui PDF",
+   "metadata": {},
+   "current": 2,
+   "version": 1,
+   "dir": "<DATA>/skills/pdf-tools/1",
+   "body": "corpo\n",
+   "files": ["<DATA>/skills/pdf-tools/1/references/a.md","<DATA>/skills/pdf-tools/1/scripts/run.sh"],
+   "totalFiles": 2,
+   "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271605000,"source":"md","files":3,"bytes":100,"hash":"754a13bb050a0638dd7efa74ebd95b670844f7fd4fe25412b2e7344e825dd96d","hashV":2,"mdChars":11}]
+  }
+ },
+ {"ok":null},
+ {"ok":null},
+ {"ok":null},
+ {"ok":null},
+ {"status":404,"errors":["la skill «pdf-tools» non ha la versione 7"]},
+ {"status":404,"errors":["skill sconosciuta: nessuna"]},
+ {
+  "version": 1,
+  "skills": [
+   {
+    "id": "pdf-tools",
+    "name": "pdf-tools",
+    "description": "Lavora sui PDF",
+    "current": 1,
+    "currentSince": 1793271606000,
+    "versions": [{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271605000,"source":"md","files":3,"bytes":100,"hash":"754a13bb050a0638dd7efa74ebd95b670844f7fd4fe25412b2e7344e825dd96d","hashV":2,"mdChars":11}]
+   },
+   {
+    "id": "note",
+    "name": "note",
+    "description": "Prende appunti meglio",
+    "current": 2,
+    "currentSince": 1793271603000,
+    "versions": [{"n":1,"importedAt":1793271602000,"source":"md","files":1,"bytes":53,"hash":"e704909eb7f877999504521827255e2062ef3329565f18e596c9e599599257ea","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271603000,"source":"md","files":1,"bytes":62,"hash":"3b43bc1e84a26a9ecd48700782bd68388406f0c75df18166d505d7d054d4ef9a","hashV":2,"mdChars":8}]
+   }
+  ]
+ },
+ {"status":400,"errors":["la versione 1 di «pdf-tools» è quella in uso: attiva un'altra versione prima di toglierla"]},
+ {"ok":null},
+ {
+  "version": 1,
+  "skills": [
+   {"id":"pdf-tools","name":"pdf-tools","description":"Lavora sui PDF","current":1,"currentSince":1793271606000,"versions":[{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6}]},
+   {
+    "id": "note",
+    "name": "note",
+    "description": "Prende appunti meglio",
+    "current": 2,
+    "currentSince": 1793271603000,
+    "versions": [{"n":1,"importedAt":1793271602000,"source":"md","files":1,"bytes":53,"hash":"e704909eb7f877999504521827255e2062ef3329565f18e596c9e599599257ea","hashV":2,"mdChars":6},{"n":2,"importedAt":1793271603000,"source":"md","files":1,"bytes":62,"hash":"3b43bc1e84a26a9ecd48700782bd68388406f0c75df18166d505d7d054d4ef9a","hashV":2,"mdChars":8}]
+   }
+  ]
+ },
+ {"ok":null},
+ {"status":404,"errors":["skill sconosciuta: note"]},
+ {"version":1,"skills":[{"id":"pdf-tools","name":"pdf-tools","description":"Lavora sui PDF","current":1,"currentSince":1793271606000,"versions":[{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6}]}]},
+ {"ok":{"version":1,"skills":[{"id":"pdf-tools","name":"pdf-tools","description":"Lavora sui PDF","current":1,"currentSince":1793271606000,"versions":[{"n":1,"importedAt":1793271601000,"source":"zip","files":3,"bytes":87,"hash":"b85a0eac5d7e034a37a31463ddd9ab890f1c8802daf0398edfa2d5d0b0832268","hashV":2,"mdChars":6}],"dir":"<DATA>/skills/pdf-tools/1"}]}}
+]

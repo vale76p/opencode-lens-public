@@ -1,0 +1,72 @@
+<section class="page-view hidden" id="view-sistema" aria-labelledby="sys-title">
+  <header class="topbar">
+    <div class="tb-row">
+      <div class="slot s-ident">
+        <span class="tb-ico" data-ico="sistema" aria-hidden="true"></span>
+        <div class="tb-title">
+          <h1 id="sys-title" data-i18n>Sistema</h1>
+          <p class="ctx" id="sys-ctx" data-i18n>Il computer su cui gira la lens</p>
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <div class="slot s-status">
+        <span class="chipx led" id="sys-live"></span>
+      </div>
+      <div class="slot s-actions">
+        <label class="search sys-search" id="sys-find"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="sys-q" placeholder="Cerca per PID, porta o nome" aria-label="Cerca processi, porte e agenti di avvio per PID, porta o nome" autocomplete="off" spellcheck="false" data-i18n-placeholder data-i18n-aria-label></label>
+      </div>
+      <div class="slot s-action"></div>
+    </div>
+  </header>
+  <div class="view-body sys-body">
+    <p class="sys-finding" id="sys-finding" role="status"></p>
+    <section class="card sys-card" id="sys-chain-card" aria-labelledby="h-sys-chain">
+      <header class="sys-head"><h2 id="h-sys-chain" data-i18n>Dalla sorgente al database</h2><span class="caption" id="sys-chain-note"></span></header>
+      <div class="sys-chain" id="sys-chain"></div>
+    </section>
+    <div class="sys-row">
+      <section class="card sys-card sys-live" id="sys-cpu-card" aria-labelledby="h-sys-cpu">
+        <header class="sys-live-head"><div><h2 id="h-sys-cpu">CPU <span class="sys-pulse" title="Dal vivo: un campione ogni 2 s" aria-hidden="true" data-i18n-title></span></h2><p class="caption" id="sys-cpu-note"></p></div><b class="sys-live-v" id="sys-cpu-v"></b></header>
+        <figure class="model sys-fig sys-live-fig" id="sys-cpu-fig"></figure>
+      </section>
+      <section class="card sys-card sys-live" id="sys-ram-card" aria-labelledby="h-sys-ram">
+        <header class="sys-live-head"><div><h2 id="h-sys-ram"><span data-i18n>Memoria</span> <span class="sys-pulse" title="Dal vivo: un campione ogni 2 s" aria-hidden="true" data-i18n-title></span></h2><p class="caption" id="sys-ram-note"></p></div><b class="sys-live-v" id="sys-ram-v"></b></header>
+        <figure class="model sys-fig sys-live-fig" id="sys-ram-fig"></figure>
+      </section>
+      <section class="card sys-card" id="sys-slow-card" aria-labelledby="h-sys-slow">
+        <header class="sys-head"><h2 id="h-sys-slow" data-i18n>Disco e batteria</h2><span class="caption" data-i18n>cambiano lentamente</span></header>
+        <div class="sys-segs" id="sys-segs"></div>
+        <p class="sys-net" id="sys-net" hidden></p>
+      </section>
+    </div>
+    <div class="sys-row">
+      <section class="card sys-card" id="sys-mem-card" aria-labelledby="h-sys-mem" hidden>
+        <header class="sys-head"><h2 id="h-sys-mem" data-i18n>Ripartizione della memoria</h2><span class="caption" id="sys-mem-note"></span></header>
+        <table class="sys-kv" id="sys-mem"></table>
+      </section>
+      <section class="card sys-card" aria-labelledby="h-sys-lens">
+        <header class="sys-head"><h2 id="h-sys-lens">Lens</h2><span class="caption" id="sys-lens-note"></span></header>
+        <table class="sys-kv" id="sys-lens"></table>
+      </section>
+      <section class="card sys-card" aria-labelledby="h-sys-oc">
+        <header class="sys-head"><h2 id="h-sys-oc">OpenCode</h2><span class="caption" data-i18n>il servizio che la lens osserva</span></header>
+        <table class="sys-kv" id="sys-oc"></table>
+      </section>
+    </div>
+    <section class="card sys-card sys-inv" id="sys-inv" aria-label="Processi, porte e agenti di avvio" data-i18n-aria-label>
+      <div class="sys-tabs" id="sys-tabs">
+        <div class="sys-tablist" role="tablist" aria-label="Processi, porte e agenti di avvio" data-i18n-aria-label>
+          <button type="button" role="tab" id="sys-tab-proc" data-k="proc" aria-selected="true" aria-controls="sys-inv-body"><span data-i18n>Processi</span> <span class="sys-n" id="sys-n-proc"></span></button>
+          <button type="button" role="tab" id="sys-tab-ports" data-k="ports" aria-selected="false" aria-controls="sys-inv-body" tabindex="-1"><span data-i18n>In ascolto</span> <span class="sys-n" id="sys-n-ports"></span></button>
+          <button type="button" role="tab" id="sys-tab-agents" data-k="agents" aria-selected="false" aria-controls="sys-inv-body" tabindex="-1"><span data-i18n>Agenti di avvio</span> <span class="sys-n" id="sys-n-agents"></span></button>
+        </div>
+        <span class="sp"></span>
+        <div class="seg" role="group" aria-label="Ordina i processi" id="sys-sort" data-i18n-aria-label><button type="button" data-k="cpu" aria-pressed="true">CPU</button><button type="button" data-k="memory" aria-pressed="false" data-i18n>Memoria</button></div>
+        <label class="sys-check" id="sys-net-only-wrap" hidden><input type="checkbox" id="sys-net-only"> <span data-i18n>Solo raggiungibili dalla rete</span></label>
+      </div>
+      <div class="table-wrap" id="sys-inv-body" role="tabpanel" aria-labelledby="sys-tab-proc"></div>
+      <div class="sys-more"><span class="caption" id="sys-inv-note"></span><button type="button" class="sys-more-btn" id="sys-more" hidden></button></div>
+    </section>
+    <div class="callout" id="sys-restricted" hidden><b data-i18n>Da questo computer</b><span data-i18n>Processi, porte in ascolto e agenti di avvio si vedono solo aprendo la dashboard dal computer su cui gira la lens.</span></div>
+  </div>
+</section>

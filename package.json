@@ -1,0 +1,27 @@
+{
+  "name": "opencode-lens",
+  "version": "0.51.0",
+  "description": "Osservabilità locale per OpenCode V2: token, modelli, costi, tool, errori.",
+  "type": "module",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "bin": {
+    "opencode-lens": "src/main.js"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/main.js",
+    "check": "node --disable-warning=ExperimentalWarning src/main.js --check",
+    "resync": "node --disable-warning=ExperimentalWarning src/main.js --resync",
+    "verify": "node --disable-warning=ExperimentalWarning scripts/verify.mjs",
+    "test": "node --disable-warning=ExperimentalWarning --import ./test/module-hooks.mjs --test test/*.test.js modules/*/test/*.test.js extras/module-template/test/*.test.js",
+    "test:integration": "node --disable-warning=ExperimentalWarning --test test/integration/*.test.js",
+    "test:macos": "node --disable-warning=ExperimentalWarning --test test/macos/*.test.js",
+    "lint": "npx --yes @biomejs/biome@2.5.15 lint --error-on-warnings src public scripts modules test extras",
+    "package": "bash scripts/package.sh",
+    "changelog:check": "node scripts/changelog.mjs check",
+    "release:notes": "node scripts/changelog.mjs notes"
+  }
+}

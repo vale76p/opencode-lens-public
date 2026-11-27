@@ -1,0 +1,40 @@
+<!-- The markup of the page of the example module. The lens puts this section in the dashboard where it keeps the
+     pages of the modules (only when the module is on); public/page.js fills it.
+     - The section id is "view-" + the module id.
+     - Texts you write here are Italian; mark the element with data-i18n (or data-i18n-placeholder, data-i18n-aria-label
+       for an attribute) and the lens translates it with lang-en.js / lang-fr.js. The mark's content is the key.
+     - No inline style attribute and no script tag: the page's content security policy blocks them. Styles go in
+       style.css, code in page.js.
+     - Ids are shared by the whole dashboard, so prefix yours (here "mm-"). -->
+<section class="page-view hidden" id="view-mio-modulo" aria-labelledby="mm-title">
+  <header class="topbar">
+    <div class="tb-row">
+      <div class="slot s-ident">
+        <!-- data-ico: the title bar copies the icon of the menu entry with this id -->
+        <span class="tb-ico" data-ico="mio-modulo" aria-hidden="true"></span>
+        <div class="tb-title">
+          <h1 id="mm-title" data-i18n>Il mio modulo</h1>
+          <p class="ctx" data-i18n>Un blocco di note, per vedere come è fatto un modulo</p>
+        </div>
+      </div>
+      <span class="spacer"></span>
+      <div class="slot s-action"></div>
+    </div>
+  </header>
+  <div class="view-body">
+    <section class="card" aria-labelledby="mm-h-new">
+      <header class="card-head"><h2 id="mm-h-new" data-i18n>Nuova nota</h2></header>
+      <!-- the welcome note of the setting LENS_MIO_MODULO_NOTE, written by page.js -->
+      <p class="caption" id="mm-welcome"></p>
+      <form class="mm-form" id="mm-form">
+        <input type="text" id="mm-text" maxlength="200" placeholder="Scrivi una nota" aria-label="Testo della nota" autocomplete="off" data-i18n-placeholder data-i18n-aria-label>
+        <button type="submit" class="primary" id="mm-add" data-i18n>Aggiungi</button>
+      </form>
+      <p class="caption mm-error" id="mm-error" role="alert"></p>
+    </section>
+    <section class="card" aria-labelledby="mm-h-list">
+      <header class="card-head"><h2 id="mm-h-list" data-i18n>Le note</h2></header>
+      <div class="table-wrap" id="mm-list"></div>
+    </section>
+  </div>
+</section>
