@@ -60,4 +60,5 @@ jobs:
       - name: App macOS (npm run test:macos)
         run: |
           npm run test:macos 2>&1 | tee "$RUNNER_TEMP/macos.log"
-          grep -q '^ℹ skipped 0$' "$RUNNER_TEMP/macos.log" || { echo "::error::test:macos saltato"; exit 1; }
+          # riepilogo «ℹ skipped 0» nel terminale, «# skipped 0» (TAP) in CI
+          grep -qE '^(ℹ|#) skipped 0$' "$RUNNER_TEMP/macos.log" || { echo "::error::test:macos saltato"; exit 1; }
