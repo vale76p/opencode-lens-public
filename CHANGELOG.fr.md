@@ -4,6 +4,14 @@ Toutes les modifications importantes d'opencode-lens. Format [Keep a Changelog](
 
 Depuis la 0.3.0, les entrées sont écrites par [release-please](https://github.com/googleapis/release-please) à partir des commits conventionnels (`feat:` → Ajouté, `fix:` → Corrigé, …) dans la PR de release, où on peut les affiner avant le merge. Chaque version a un tag git `opencode-lens-vX.Y.Z` et une [release GitHub](https://github.com/vale76p/opencode-lens-public/releases) avec le zip. Le dashboard affiche le même changelog dans la page **Nouveautés**. Comment publier : [README](README.fr.md#versions-et-releases). Ceci est la traduction française de [CHANGELOG.md](CHANGELOG.md), la source italienne : les versions pas encore traduites s'affichent en italien.
 
+## [0.51.1](https://github.com/vale76p/opencode-lens-public/compare/opencode-lens-v0.51.0...opencode-lens-v0.51.1) (2026-11-27)
+
+
+### Documentation
+
+* **opencode-lens:** liens vers OpenCode Lens Monitor, désormais public (it/en/fr) ([8be0509](https://github.com/vale76p/opencode-lens-public/commit/8be05097cadd0496b70f0cf93fed93ff47961bcc))
+* **opencode-lens:** README pour le dépôt public : ce qu'elle fait, comment elle fonctionne, utilisation et modules (it/en/fr) ([7de6ff6](https://github.com/vale76p/opencode-lens-public/commit/7de6ff646e1f20c8ad03b5497bcc7f965562e395))
+
 ## [0.51.0] (2026-11-21)
 
 
