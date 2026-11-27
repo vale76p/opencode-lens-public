@@ -95,7 +95,7 @@ export default {
   id: "mio-modulo",
   name: "Il mio modulo",
   description: "Un modulo d'esempio da copiare: un blocco di note con la sua pagina, un widget per la dashboard e un'impostazione",
-  lens: "0.51.0", // x-release-please-version
+  lens: "0.51.1", // x-release-please-version
   menu: { group: "dati", order: 90, icon: '<path d="M5 4h11l3 3v13H5z"/><path d="M8 11h8M8 15h6"/>' },
   page: { title: "Il mio modulo" },
   server: () => import("./server/index.js"),

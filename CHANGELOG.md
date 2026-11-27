@@ -4,6 +4,14 @@ Tutte le modifiche rilevanti di opencode-lens. Formato [Keep a Changelog](https:
 
 Dalla 0.3.0 le voci le scrive [release-please](https://github.com/googleapis/release-please) dai commit convenzionali (`feat:` → Aggiunto, `fix:` → Corretto, …) nella PR di rilascio, dove si possono rifinire prima del merge. Ogni versione ha un tag git `opencode-lens-vX.Y.Z` e una [release su GitHub](https://github.com/vale76p/opencode-lens-public/releases) con lo zip. La dashboard mostra lo stesso changelog nella pagina **Novità**. Come si rilascia: [README](README.md#versioni-e-rilasci).
 
+## [0.51.1](https://github.com/vale76p/opencode-lens-public/compare/opencode-lens-v0.51.0...opencode-lens-v0.51.1) (2026-11-27)
+
+
+### Documentazione
+
+* **opencode-lens:** link a OpenCode Lens Monitor, ora pubblico (it/en/fr) ([8be0509](https://github.com/vale76p/opencode-lens-public/commit/8be05097cadd0496b70f0cf93fed93ff47961bcc))
+* **opencode-lens:** README per il repo pubblico: cosa fa, come funziona, uso e moduli (it/en/fr) ([7de6ff6](https://github.com/vale76p/opencode-lens-public/commit/7de6ff646e1f20c8ad03b5497bcc7f965562e395))
+
 ## [0.51.0] (2026-11-21)
 
 
@@ -1381,4 +1389,3 @@ Prima versione. Verificata contro OpenCode V2 beta 17823.
 - **Segnalazione del drift dell'API** beta: avviso in dashboard, `/api/status` e `/metrics` quando gli eventi cambiano forma.
 - **Installazione** come LaunchAgent macOS con `install.sh` / `uninstall.sh` (`--purge` per eliminare DB e log).
 - **Test** `node:test` senza dipendenze, con un finto servizio OpenCode; pacchetto `dist/opencode-lens-0.1.0.zip` creato da `scripts/package.sh`.
-

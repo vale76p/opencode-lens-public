@@ -1,6 +1,6 @@
 {
   "name": "opencode-lens",
-  "version": "0.51.0",
+  "version": "0.51.1",
   "description": "Osservabilità locale per OpenCode V2: token, modelli, costi, tool, errori.",
   "type": "module",
   "private": true,
