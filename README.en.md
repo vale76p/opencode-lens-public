@@ -2,207 +2,230 @@
 
 🌐 [Italiano](README.md) · English · [Français](README.fr.md)
 
-**Version 0.51.0** <!-- x-release-please-version --> · [What's new](CHANGELOG.en.md) · [Releases](https://github.com/vale76p/opencode-lens-public/releases)
+**Version 0.51.0** <!-- x-release-please-version --> · [What's new](CHANGELOG.en.md) · [Releases](https://github.com/vale76p/opencode-lens-public/releases) · [MIT](LICENSE) licence
 
-Local observability for **OpenCode V2**: tokens, models called, costs, latencies, tools and errors, read from the OpenCode background service and shown in a dashboard at `http://127.0.0.1:4777`.
+**Local observability for [OpenCode](https://opencode.ai) V2.** OpenCode Lens attaches read-only to the OpenCode service running in the background, counts the tokens, costs, models, tools, errors and timings of every session, and shows them in a dashboard at `http://127.0.0.1:4777`, in a JSON API and on `/metrics` for Prometheus.
 
-The dashboard shows:
+It answers questions like: *how much have I used today? at this pace, will I go over this week's budget? which model or agent costs the most? why have requests been failing since this morning?* The models working in OpenCode can ask the same questions through the lens's MCP server.
 
-- **Today**: the day's tokens with the breakdown, the `LENS_LIMIT_*` budget with the end-of-day projection, hour by hour and, with weekly and monthly budgets, week and month (also on `/api/budget` for the OpenCode Lens Monitor app); the day starts at midnight or at the hour of `LENS_RESET_HOUR`;
-- **Per model today**: each model's tokens of today with its own daily budget, how much is left and when it resets, also as a single-model gauge; the models come from the OpenCode configuration and the budgets are set in Settings;
-- **Running prompts**: the prompt OpenCode is executing, with time, steps, tools, tokens and context fill;
-- tokens, cost, cache, latency and tools of the period, per model, agent, provider or agent type (primary or subagent);
-- **Prompts**: the list of the period's prompts with outcome, duration, steps, tools and tokens, and their **distribution** (median, p95, average duration); and the **interaction**: permissions with the wait time, commits and the weight of subagents;
-- **Last year**: a daily calendar of 53 weeks;
-- paged sessions, with the total of the subagents and a **timeline** of steps and tools, with the pauses highlighted;
-- **Customize dashboard**: the blocks are widgets on a 12-column grid; they move by dragging, resize from the corner, are configured (period, metric, grouping, title), removed or added from the catalog, even the same one several times, including the **gauges** and the trend as columns or line. Navigation is in a **sidebar**. The dashboard has three views, **Now** (the budget day, the running prompt), **Analysis** (period, token distribution per prompt, list of prompts) and **Monitor** (to keep on a screen, also full screen); every widget with several chart models has a **style** to choose while editing, and the **Gallery** shows them all with real data; the layout is saved in the lens (`dashboard-v2.json` next to the database), is personal and does not end up in the package. Guide: [docs/en/dashboard.md](docs/en/dashboard.md);
-- **Settings** (paths, database, environment variables editable from the dashboard with the LaunchAgent, **language** and **format** of dates, times and numbers) and **What's new** (changelog). The dashboard is in Italian, English and French: language and format follow the browser, or are chosen in Settings (`LENS_LANG`, `LENS_LOCALE`; see [docs/en/traduzioni.md](docs/en/traduzioni.md));
+Everything stays on your computer: no external service, no account, zero npm dependencies, no build.
 
-With the **MCP server** (`opencode-lens mcp`) the models working in OpenCode can also ask Lens for budget, aggregated errors, usage and sessions: “why are the requests failing?”, “compare this week with the last one”. It is registered with the line printed by `opencode-lens mcp install`: see [docs/en/configurazione.md](docs/en/configurazione.md#mcp-server-for-opencode). The skills you import in the **Skill** page are grouped into **presets**: the MCP offers them to OpenCode as `/lens:<id>` commands and as a `preset` tool, with the text of `SKILL.md`, the base folder and the files ([details](docs/en/configurazione.md#prompts)).
+## What it does
 
-The lens does not touch the sessions: it listens to the event stream of the shared service, rereads the messages to get exact numbers and saves counts, timings and names in a local SQLite database, plus the session titles (`LENS_STORE_TITLES=0` excludes them), each session's working folder and the error messages, redacted (keys, tokens, home folder) and truncated to 500 characters. The text of prompts, answers and tool output is not saved.
+- **Today's budget and usage.** Today's tokens, cost and steps against the budgets you choose (`LENS_LIMIT_*`, also weekly, monthly and per model), with the end-of-day projection, hour by hour, and what is left.
+- **What OpenCode is doing right now.** The running prompt with time, steps, tools, tokens and context fill.
+- **Analysis of a period.** Trend over time, working rhythm, share by model, agent, provider or agent type, cache, latencies (p50/p95), the heaviest prompts, the calendar of the last year.
+- **Prompts and sessions.** Every prompt with outcome, duration, steps, tools and tokens; every session with its subagents and a timeline of steps and tools, with the pauses highlighted; permissions, commits and waiting times.
+- **Customizable dashboard.** Widgets on a 12-column grid to move, resize and configure, with gauges, column or line charts and different styles; three views (**Now**, **Analysis**, **Monitor** to keep full screen) and a **Gallery** of every widget with real data.
+- **MCP server for OpenCode.** Models can ask Lens for budgets, aggregated errors, usage and sessions (“compare this week with last week”).
+- **API, Prometheus and OTLP.** A local JSON API, `/metrics` with counters that never go down, and OTLP export to an OpenTelemetry collector.
+- **Optional modules.** Extra pages to turn on when you need them: Vibe Coding, System, Security, IBM Bob and Skill, plus the ones you write (see [Modules](#modules)).
+- **Extras.** The **lens-guard** OpenCode plugin, which switches to a fallback model when the provider runs out of quota or does not answer, and an optional macOS app with the dashboard in a native window.
+
+The interface is in Italian, English and French: language and the format of dates and numbers follow the browser, or are chosen in Settings.
+
+## How it works
+
+```
+OpenCode service ──SSE (live)──┐
+  (~/.local/state/opencode/    ├─► collector ─► local SQLite ─► dashboard · JSON API · /metrics · MCP
+   service.json) ──backfill ───┘
+```
+
+1. **Discovery.** The lens reads `~/.local/state/opencode/service.json` for the address and password of the OpenCode service, and reads it again on every reconnection.
+2. **Live and backfill.** It listens to the service's event stream and, at intervals, reads sessions and messages again: the assistant message is the authoritative source, so the numbers come out exact even after a disconnection.
+3. **Store.** Every write is an idempotent upsert by ID into a local SQLite database (`node:sqlite`), and the totals are reconciled with OpenCode's (`npm run verify`).
+
+**What it stores and what it does not.** It stores counts, timings and names (models, agents, tools), session titles (`LENS_STORE_TITLES=0` leaves them out), the working folder of each session and error messages, redacted (keys, tokens, home) and cut to 500 characters. It **does not store** the text of prompts, the responses or tool output. It does not touch sessions and does not proxy OpenCode's API.
+
+**Security.** By default it listens only on `127.0.0.1`, checks the `Host` header and accepts few writes, only from this computer. To expose it on the network `LENS_TOKEN` is mandatory (see [docs/en/configurazione.md](docs/en/configurazione.md#remote-exposure)).
+
+The details are in [docs/en/architettura.md](docs/en/architettura.md).
 
 ## Requirements
 
-- **Node ≥ 22.13**: it uses the built-in `node:sqlite`. Zero npm dependencies, no build. If it is not there, `install.sh` downloads Node 24 LTS into the app folder, without `sudo`.
-- **OpenCode V2** (`opencode2`), started at least once, so that the shared service writes `~/.local/state/opencode/service.json`. Checked on OpenCode v2.0.26.
-- macOS for the installation as a service (launchd). Manual start on Linux too.
-- Access to the repository, which is private: from the browser with your GitHub account, or with the authenticated [GitHub CLI](https://cli.github.com) (`gh auth login`).
-
-OpenCode V1 (`opencode`) is not supported: it has a different server API.
+- **OpenCode V2** (`opencode2`), started at least once, so that the shared service writes `service.json`. Checked on OpenCode v2.0.26. OpenCode V1 (`opencode`) is not supported: it has a different server API.
+- **Node ≥ 22.13** (it uses the built-in `node:sqlite`). If there is none, `install.sh` downloads Node 24 LTS into the app folder, without `sudo`.
+- **macOS** to install it as a service (launchd). On **Linux** the lens is started by hand.
 
 ## Installation
 
-On macOS the lens runs as a launchd service from `~/Applications/opencode-lens`. Everything stays in your user folder, without `sudo` or administrator permissions: it is fine on a company Mac too.
+On macOS the lens runs as a launchd service from `~/Applications/opencode-lens`. Everything stays in your user folder, without `sudo` or administrator rights.
 
-1. From the [release page](https://github.com/vale76p/opencode-lens-public/releases) download `opencode-lens-<version>.zip`, or “Source code (zip)”: both work.
-2. Double-click the zip in the Downloads folder (Safari usually extracts it by itself).
-3. Open the Terminal and run the `install.sh` of the extracted folder. It is a single command: type `bash `, drag `install.sh` into the window and press Enter. Or:
+1. From the [releases page](https://github.com/vale76p/opencode-lens-public/releases) download `opencode-lens-<version>.zip` (or “Source code (zip)”: both work).
+2. Extract the zip (double-click it in the Downloads folder).
+3. In Terminal run the `install.sh` of the extracted folder: type `bash `, drag `install.sh` into the window and press Return. Or:
 
    ```bash
    bash ~/Downloads/opencode-lens*/install.sh
    ```
 
-   If there are several versions in Downloads, the command stops: name the right folder, that is `opencode-lens` for the release zip or `opencode-lens-opencode-lens-v<version>` for the Source code.
+4. Open `http://127.0.0.1:4777`.
 
-To see first what is already installed (service, version, database, old copies, Homebrew) without changing anything: `bash …/install.sh --check`.
-
-`install.sh`:
-
-- saves a copy of the database and of the plist in `~/Library/Application Support/opencode-lens/backup/` (it keeps the last three);
-- copies into `~/Applications/opencode-lens` only the files needed to run the lens (no tests or development files, except the module test kit in `test/`, to try your own modules: see [docs/en/moduli.md](docs/en/moduli.md#trying-a-module)) and removes the download quarantine;
-- uses the Node ≥ 22.13 in the `PATH`; if there is none, or it is older, it downloads Node 24 LTS from nodejs.org into `~/Applications/opencode-lens/node`, checking its checksum. If nodejs.org is not reachable (company proxy), point to an internal mirror with `LENS_NODE_MIRROR=https://…/dist bash …/install.sh`;
-- installs the service with `opencode-lens service install`, which starts right away and at every login, and waits for it to answer. For another port: `LENS_PORT=4800 bash …/install.sh`;
-- if the service was starting from another folder extracted from a zip, it moves it to the Trash. A clone stays where it is; for Homebrew it prints the commands to remove it.
-
-Database, dashboard layout and service variables are never touched. To switch from a version installed in another way (zip in another folder, Homebrew, clone), and to restore a copy, see [docs/en/aggiornamento.md](docs/en/aggiornamento.md).
-
-Dashboard at `http://127.0.0.1:4777`. The app is in `~/Applications/opencode-lens`, the service in `~/Library/LaunchAgents/local.opencode-lens.plist`, database and dashboard layout in `~/Library/Application Support/opencode-lens/`, logs in `~/Library/Logs/opencode-lens/lens.log`. The downloaded zip and the extracted folder can be deleted.
-
-**Update**: the same steps with the new zip. `install.sh` replaces the app and keeps the Node already downloaded, the database and the service variables (budgets, `LENS_TOKEN`, port). Since 0.17.0 the same can be done from the dashboard: **Settings › Update**, you upload the zip and the lens runs its `install.sh` (see [docs/en/aggiornamento.md](docs/en/aggiornamento.md#from-the-dashboard)).
-
-With the GitHub CLI steps 1-3 become:
+With the [GitHub CLI](https://cli.github.com) steps 1-3 are a single command:
 
 ```bash
 D="$(mktemp -d)" && gh release download -R vale76p/opencode-lens-public -p 'opencode-lens-[0-9]*.zip' -D "$D" && unzip -q "$D"/opencode-lens-[0-9]*.zip -d "$D" && bash "$D"/opencode-lens/install.sh
 ```
 
-Without a tag `gh release download` downloads the latest release.
+`install.sh` first saves a copy of the database and of the plist, copies only the files that are needed, uses or downloads Node (checking its checksum; behind a company proxy `LENS_NODE_MIRROR` points to an internal mirror), installs the service, which starts right away and at every login, and waits until it answers. For another port: `LENS_PORT=4800 bash …/install.sh`. To see what is already installed without changing anything: `bash …/install.sh --check`.
 
-The lens command is `opencode-lens`, the name its messages and this documentation also use; to have it in the shell add to `~/.zshrc`:
+| What | Where |
+|---|---|
+| app | `~/Applications/opencode-lens` |
+| service | `~/Library/LaunchAgents/local.opencode-lens.plist` |
+| database and dashboard layout | `~/Library/Application Support/opencode-lens/` |
+| log | `~/Library/Logs/opencode-lens/lens.log` |
+
+**Updating**: the same steps with the new zip, or from the dashboard in **Settings › Update**. Database, layout and service variables (budgets, `LENS_TOKEN`, port) are kept. Details, and switching from versions installed in other ways: [docs/en/aggiornamento.md](docs/en/aggiornamento.md).
+
+**Uninstalling**: `opencode-lens service uninstall` (with `--purge` also database, layout and log); to really remove everything, [docs/en/disinstallazione.md](docs/en/disinstallazione.md).
+
+## Usage
+
+### The dashboard
+
+| Page | What it shows |
+|---|---|
+| **Now** | the budget day: usage, per-model budgets, the running prompt |
+| **Analysis** | a period of your choice (7 days to start with): trend, rhythm, share by model or agent, heaviest prompts |
+| **Monitor** | to keep open on a screen, also full screen; it refreshes by itself |
+| **Prompts**, **Sessions** | the full lists, with the filters of Analysis and the timeline of each session |
+| **Gallery** | every widget and its styles with your data, to add to the dashboard |
+| **What's new** | the changelog of the installed version |
+| **Settings** | paths, environment variables (editable from the dashboard when the lens runs as a service), language and format, modules, update |
+
+With **Customize** every view becomes a grid of widgets to edit; the layout is saved in the lens and is personal. Full guide: [docs/en/dashboard.md](docs/en/dashboard.md).
+
+### The command
+
+The command is `opencode-lens`. To have it in the shell add to `~/.zshrc`:
 
 ```bash
 alias opencode-lens='node ~/Applications/opencode-lens/src/main.js'
 ```
 
-If `install.sh` downloaded Node, use `~/Applications/opencode-lens/node/bin/node` instead of `node`.
-
-Service management:
+(if `install.sh` downloaded Node, use `~/Applications/opencode-lens/node/bin/node` instead of `node`).
 
 ```bash
+opencode-lens                              # starts collector + dashboard (by hand, also on Linux)
+opencode-lens --check                      # checks that it finds the OpenCode service, then exits
+opencode-lens --resync                     # reads all sessions again from scratch, then keeps running
 opencode-lens service status               # loaded? answering? paths
-opencode-lens service install --port 4800  # change port (the other variables stay)
 opencode-lens service stop | start | restart
+opencode-lens service install --port 4800  # changes the port (the other variables stay)
 opencode-lens service open                 # opens the dashboard in the browser, with the token
-opencode-lens service uninstall [--purge]  # with --purge also database, layout and logs
+opencode-lens mcp install                  # prints the line that registers the MCP server in OpenCode
 ```
 
-To give Lens to OpenCode models as an MCP server: `opencode-lens mcp install` prints the `opencode2 mcp add …` line to run ([details](docs/en/configurazione.md#mcp-server-for-opencode)).
+### Budgets and configuration
 
-`service install` checks the Node version and that the port is free, tries the connection to OpenCode (if it is not running, fine: the lens connects when it starts), writes the plist and waits for `/healthz` to answer. Run again on an existing installation it keeps its `EnvironmentVariables`, such as budgets and `LENS_TOKEN`, and changes the port only with `--port`. If Node comes from Homebrew, the plist holds its stable path (`/opt/homebrew/opt/node/…`), which stays valid after every Node update.
+The lens is configured with environment variables, which as a service can also be changed from **Settings** (the lens restarts by itself). The most used:
 
-To really remove everything (browser data and integrations too) follow [docs/en/disinstallazione.md](docs/en/disinstallazione.md). The **Settings** page of the dashboard shows the same commands already filled in with your paths.
-
-## From a clone (development)
-
-```bash
-git clone https://github.com/vale76p/opencode-lens-public.git opencode-lens && cd opencode-lens
-npm run check     # checks that it finds the OpenCode service
-npm start         # collector + dashboard at http://127.0.0.1:4777
-npm run resync    # rereads all sessions from scratch, then stays active
-npm run verify    # compares the DB with OpenCode's totals, session by session (-v for the detail)
-node src/main.js --help
-```
-
-As a service from the clone: `node src/main.js service install` (or `./install.sh`, which inside a clone copies nothing and uses the Node in the `PATH`; with `LENS_PORT=4800 ./install.sh` for the port; `./uninstall.sh [--purge]` to remove it). They are the same command: the plist points to the clone folder. If you use a version manager (nvm, fnm, volta, asdf) and change Node version, run it again.
-
-To switch from a clone to the zip, or the other way round, `service install` from the new folder is enough: it rewrites the plist and keeps variables, database and layout.
-
-## Documentation
-
-| Document | Content |
+| Variable | What it is for |
 |---|---|
-| [docs/en/dashboard.md](docs/en/dashboard.md) | customizable dashboard: sidebar, views and pages, editing, keyboard, widget settings, catalog, styles, Gallery, where it is saved and how to go back to an older lens |
-| [docs/en/sicurezza.md](docs/en/sicurezza.md) | Security page: OpenCode's DLP guards, how Lens finds them (a `<name>.audit.jsonl` is enough), health, what is visible over the network, the `security` MCP tool (from the Security module) and the `/metrics` series |
-| [docs/en/architettura.md](docs/en/architettura.md) | discovery, live flow + backfill, idempotency, dashboard styles and models, components |
-| [docs/en/metriche.md](docs/en/metriche.md) | meaning of the numbers, local API, `/metrics` and Prometheus |
-| [docs/en/configurazione.md](docs/en/configurazione.md) | environment variables, prices of local models, MCP server for OpenCode, remote access, security and privacy |
-| [docs/en/aggiornamento.md](docs/en/aggiornamento.md) | switching from previous versions (zip, Homebrew, clone): check, cleanup, database copies |
-| [docs/en/troubleshooting.md](docs/en/troubleshooting.md) | common problems and known limits of the beta |
-| [docs/en/disinstallazione.md](docs/en/disinstallazione.md) | what the lens writes and how to remove it completely |
-| [docs/en/app-macos.md](docs/en/app-macos.md) | optional macOS app: the dashboard in a native window with Dock, notifications and launch at login; build, installation, uninstall |
-| [docs/en/moduli.md](docs/en/moduli.md) | the modules (Vibe Coding, System, Security, IBM Bob, Skill) and your own: turning them on, states, API and the full contract of a module |
-| [docs/en/moduli-custom.md](docs/en/moduli-custom.md) | writing a module of your own, step by step (the guide the `lens_module_guide` MCP tool gives): folder, manifest, routes, page, widgets, verification, typical mistakes |
-| [docs/en/traduzioni.md](docs/en/traduzioni.md) | languages (Italian, English, French), how texts are added and changed, glossary |
-| [CHANGELOG.en.md](CHANGELOG.en.md) | versions (also in the **What's new** page of the dashboard); Italian original in [CHANGELOG.md](CHANGELOG.md), French in [CHANGELOG.fr.md](CHANGELOG.fr.md) |
+| `LENS_LIMIT_TOKENS`, `LENS_LIMIT_COST`, `LENS_LIMIT_STEPS` | daily budgets (with `_WEEKLY` and `_MONTHLY` for week and month) |
+| `LENS_MODEL_LIMITS` | daily budget of single models |
+| `LENS_MODEL_PRICES` | prices of local models or of models without a price list |
+| `LENS_RESET_HOUR` | the hour the budget day starts (midnight to start with) |
+| `LENS_PORT`, `LENS_HOST`, `LENS_TOKEN` | port, address and access token |
+| `LENS_RETENTION_DAYS` | after how many days the details are summed up by day |
+| `LENS_OTLP_ENDPOINT` | export to an OpenTelemetry collector |
+| `LENS_MODULES` | the modules that are on |
 
-The rest of the documentation exists in [Italian](docs/) (the original), [English](docs/en/) and [French](docs/fr/), with the same file names.
+The full list is in [docs/en/configurazione.md](docs/en/configurazione.md).
 
-## Structure
+### The MCP server
 
-```
-opencode-lens/
-├── src/                  # collector, SQLite store, queries, HTTP server, MCP server, about/changelog
-├── public/               # dashboard in ES modules without build: sidebar, widget grid, chart models, editor, Gallery, Settings, What's new, language catalogs
-├── docs/                 # documentation (Italian; en/ and fr/ translated)
-├── test/                 # node:test tests, with a fake OpenCode service
-├── extras/
-│   ├── opencode/         # OpenCode plugin lens-guard
-│   ├── macos/            # optional macOS app (Swift, built with app.sh)
-│   └── module-template/  # example module to copy when writing your own (docs/en/moduli-custom.md)
-├── scripts/
-│   ├── package.sh        # tests + dist/opencode-lens-<version>.zip
-│   ├── changelog.mjs     # version/changelog/tag consistency, release notes
-│   └── verify.mjs        # reconciliation with OpenCode's totals
-├── dist/                 # package created by npm run package (not committed)
-├── install.sh            # from a clone: opencode-lens service install
-├── uninstall.sh          # from a clone: opencode-lens service uninstall
-├── CHANGELOG.md          # with CHANGELOG.en.md and CHANGELOG.fr.md
-└── package.json
-```
+`opencode-lens mcp install` gives you the `opencode2 mcp add …` line to run once. From then on the models in OpenCode have the tools `lens_budget`, `lens_errors`, `lens_usage` and `lens_sessions`, plus those of the modules that are on, and can answer “how much do I have left today on Opus?” or “which are the most expensive sessions of the month?”. Details: [docs/en/configurazione.md](docs/en/configurazione.md#mcp-server-for-opencode).
+
+### API and metrics
+
+The local JSON API (`/api/summary`, `/api/budget`, `/api/runs`, `/api/status`…) is described in [docs/en/metriche.md](docs/en/metriche.md#local-api); `/metrics` is ready for Prometheus and Grafana ([docs/en/metriche.md](docs/en/metriche.md#prometheus--grafana)), and so is the [OTLP export](docs/en/metriche.md#otlp-export).
+
+## Modules
+
+A **module** is an optional part of the lens: an extra page in the menu, with its own APIs, its own widgets for the dashboard and possibly its own MCP tools and tables. All modules start **off**: an off module has no menu entry, no routes, no background work and no metrics. Everything else (Now, Analysis, Monitor, Prompts, Sessions, Gallery, What's new, Settings) is the core and is always there.
+
+Five modules are included:
+
+| Module | What it adds |
+|---|---|
+| **Vibe Coding** | working time, costs and tokens by project and by folder |
+| **System** | the computer the lens runs on: CPU, memory, battery, processes |
+| **Security** | what OpenCode's DLP guards let through or blocked, read from their audit files; also as the MCP tool `lens_security` ([docs/en/sicurezza.md](docs/en/sicurezza.md)) |
+| **IBM Bob** | the tasks of Bob IDE and Bob Shell, with a selector to see them next to OpenCode or on their own |
+| **Skill** | the library of your skills with their versions and how much OpenCode uses them; it groups them into **presets** that the MCP offers to OpenCode as `/lens:<id>` commands |
+
+**Turning them on.** From **Settings › Modules**, with the *Turn on* button of each card; or, with the lens started by hand, with `LENS_MODULES` (for example `LENS_MODULES=sistema,vibecoding`). A module that does not start goes into error on its own: the lens and the other modules keep working.
+
+**Your own modules.** You can write your own and put them in the `modules/` folder next to the database (on macOS `~/Library/Application Support/opencode-lens/modules/`), which updates leave alone; they can also be installed from a zip in **Settings › Update**. A module reads the database read-only and writes only to its own tables. To get started:
+
+- copy the example module [extras/module-template/](extras/module-template/);
+- follow the step-by-step guide [docs/en/moduli-custom.md](docs/en/moduli-custom.md), written for an LLM too;
+- or ask the model in OpenCode: the MCP tools `lens_module_guide` and `lens_module_check` give it the guide with your installation's values and check the module without turning it on.
+
+The full contract (manifest, routes, widgets, tables, settings, MCP) is in [docs/en/moduli.md](docs/en/moduli.md).
 
 ## Development
 
 ```bash
-npm test                  # node:test, no dependencies
-npm run test:integration  # against a real opencode2 (skipped if absent)
-npm run lint              # Biome via npx, no dependency in the project
-npm run test:macos        # really builds the optional macOS app (macOS only, skipped without the Command Line Tools)
-npm run package           # tests + dist/opencode-lens-<version>.zip, checked by extracting it
+git clone https://github.com/vale76p/opencode-lens-public.git opencode-lens && cd opencode-lens
+npm run check             # checks that it finds the OpenCode service
+npm start                 # collector + dashboard at http://127.0.0.1:4777
+npm test                  # node:test tests, with a fake OpenCode service
+npm run lint              # Biome via npx
+npm run test:integration  # against a real opencode2 (skipped if there is none)
+npm run verify            # compares the database with OpenCode's totals, session by session
+npm run package           # tests + dist/opencode-lens-<version>.zip
 ```
 
-The tests run against a fake OpenCode service (a local HTTP server with a temporary `service.json`, Basic auth, SSE stream and cursor pagination) and check that *Σ steps + Σ internal tasks* matches the session totals. The `.github/workflows/opencode-lens.yml` workflow runs them with Node 22 on every push to `main` and every pull request (except those touching only the files of the release-please release PR: manifest, `CHANGELOG.md`, `README.md`, `package.json`), together with lint and `npm run changelog:check`.
+There is nothing to install: no npm dependencies and no build. The dashboard is made of ES modules read from disk on every request, so reloading the browser is enough. To run it as a service from the clone: `node src/main.js service install` (the plist points to the clone folder).
 
-`npm run test:integration` starts a real `opencode2 serve` in temporary folders (its own HOME and XDG, no credentials) with a fake OpenAI-compatible model: the tools really run (`read`, `shell` with a `git commit`, a permission asked and answered) and the test checks that steps, costs, runs, prompts, commits and permissions recorded by the lens match OpenCode. It does not run in CI because it requires `opencode2`: run it before a release and after every OpenCode update (`OPENCODE_BIN` for a different binary).
+The tests run against a fake OpenCode service (temporary `service.json`, Basic auth, SSE stream, pagination) and check that *Σ steps + Σ internal tasks* matches the session totals. `npm run test:integration` starts a real `opencode2 serve` in temporary folders, with a fake OpenAI-compatible model. `npm run test:macos` builds the optional macOS app ([docs/en/app-macos.md](docs/en/app-macos.md)).
 
-`npm run test:macos` really builds and signs the optional macOS app in `extras/macos/` without starting it; it is skipped off macOS or without the Command Line Tools. CI runs only its static checks, inside `npm test`. See [docs/en/app-macos.md](docs/en/app-macos.md#development).
+```
+opencode-lens/
+├── src/                  # collector, SQLite store, queries, HTTP server, MCP server
+├── public/               # dashboard in ES modules, no build
+├── modules/              # the included modules (Vibe Coding, System, Security, IBM Bob, Skill)
+├── docs/                 # documentation (Italian, translated in docs/en and docs/fr)
+├── test/                 # node:test tests, with a fake OpenCode service
+├── extras/
+│   ├── opencode/         # lens-guard OpenCode plugin
+│   ├── macos/            # optional macOS app (Swift)
+│   └── module-template/  # example module to copy
+├── scripts/              # package, changelog, check of the totals, release signing
+├── install.sh            # installation as a service
+└── uninstall.sh
+```
 
 ## Versions and releases
 
-[SemVer](https://semver.org/) versions with a single source: `version` in `package.json`. From there `--version`, `/api/status`, `/api/about`, the `opencode_lens_build_info` metric and the dashboard (next to the title and in the **What's new** page) read it.
+[SemVer](https://semver.org) versions with a single source: `version` in `package.json`. Releases are prepared by [release-please](https://github.com/googleapis/release-please) from the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) on `main`: `feat(opencode-lens): …` makes a *minor*, `fix(opencode-lens): …` a *patch*, `!` or `BREAKING CHANGE:` a *major*; `test`, `ci`, `build` and `chore` do not appear in the changelog. Merging the release PR creates the `opencode-lens-vX.Y.Z` tag with the GitHub release and the signed app zip.
 
-| Changes | When |
+The `local.opencode-lens` service, the plist, the data folder and the log have never changed path since 0.1.0, and `install.sh` updates from any previous version: changing them would be a *major* change.
+
+## Documentation
+
+The documents keep their Italian file names in every language.
+
+| Document | Content |
 |---|---|
-| *major* | local API, database schema or installation incompatible with the previous version |
-| *minor* | new compatible features |
-| *patch* | fixes |
+| [docs/en/dashboard.md](docs/en/dashboard.md) | dashboard: views and pages, editing, widgets, catalog, styles, Gallery |
+| [docs/en/configurazione.md](docs/en/configurazione.md) | environment variables, budgets, prices, MCP server, lens-guard plugin, remote access, security and privacy |
+| [docs/en/metriche.md](docs/en/metriche.md) | meaning of the numbers, local API, `/metrics`, Prometheus, OTLP |
+| [docs/en/moduli.md](docs/en/moduli.md) | modules: turning them on, states, API and full contract |
+| [docs/en/moduli-custom.md](docs/en/moduli-custom.md) | writing a module of your own, step by step |
+| [docs/en/sicurezza.md](docs/en/sicurezza.md) | the Security module and OpenCode's DLP guards |
+| [docs/en/architettura.md](docs/en/architettura.md) | discovery, live + backfill flow, idempotency, components |
+| [docs/en/aggiornamento.md](docs/en/aggiornamento.md) | updating and switching from previous versions |
+| [docs/en/troubleshooting.md](docs/en/troubleshooting.md) | common problems and known limits |
+| [docs/en/disinstallazione.md](docs/en/disinstallazione.md) | what the lens writes and how to remove it completely |
+| [docs/en/app-macos.md](docs/en/app-macos.md) | the optional macOS app |
+| [docs/en/traduzioni.md](docs/en/traduzioni.md) | languages, texts and glossary |
+| [CHANGELOG.en.md](CHANGELOG.en.md) | versions, also in the **What's new** page of the dashboard ([it](CHANGELOG.md), [fr](CHANGELOG.fr.md)) |
 
-Releases are prepared by [release-please](https://github.com/googleapis/release-please) from the [conventional commits](https://www.conventionalcommits.org/) on `main`:
+## Licence
 
-| Commit | Changelog section | Version |
-|---|---|---|
-| `feat(opencode-lens): …` | Added | *minor* |
-| `fix(opencode-lens): …` | Fixed | *patch* |
-| `perf:` / `refactor:` | Changed | *patch* |
-| `docs:` | Documentation | *patch* |
-| `!` after the type, or `BREAKING CHANGE:` in the body | | *major* |
-| `test:`, `ci:`, `build:`, `chore:` | do not appear | |
-
-(The changelog sections are written in Italian in `CHANGELOG.md`: Aggiunto, Corretto, Modificato, Documentazione.)
-
-At every push to `main` the `.github/workflows/release-please.yml` workflow keeps a “chore(main): release opencode-lens X.Y.Z” PR up to date with the version in `package.json`, the new entry in `CHANGELOG.md` and `.release-please-manifest.json`. The entries can be polished by hand in the PR before the merge, and in the same PR the translations of the new version are added to `CHANGELOG.en.md` and `CHANGELOG.fr.md` (if they are missing, the **What's new** page shows that version in Italian; `npm run changelog:check` reports them). On merge release-please creates the tag `opencode-lens-vX.Y.Z` and the GitHub release; the second job checks tag and changelog (`npm run changelog:check`), reruns tests and package and attaches the app zip, `opencode-lens-X.Y.Z.zip`.
-
-To install the lens you use the app zip or the “Source code” GitHub adds to every release, and `install.sh` installs from both in the same way:
-
-| Zip | Extracted folder | Content |
-|---|---|---|
-| `opencode-lens-X.Y.Z.zip` (attached by the workflow) | `opencode-lens/` | only the files needed to run the lens, tested by the job that builds the package |
-| “Source code (zip)” (generated by GitHub on the tag) | `opencode-lens-opencode-lens-vX.Y.Z/` | the whole repository, tests and development files included; `install.sh` copies only what is needed |
-
-To try `main` before a release the branch's “Download ZIP” (`opencode-lens-main/`) also works: the version shown stays that of the last release until release-please updates it.
-
-The installation is part of the compatibility. The `local.opencode-lens` service, plist, data folder (`~/Library/Application Support/opencode-lens`) and logs have never changed path since 0.1.0, and `install.sh` updates from any previous version ([docs/en/aggiornamento.md](docs/en/aggiornamento.md)). Changing one of these paths, or requiring a manual step to update, is a *major* change.
-
-Before merging a release PR: `npm run test:integration` and `npm run test:macos` locally and, from an extracted zip, `bash install.sh --check` to see that it recognizes the existing installation. The release-please PR, created with the Actions token, does not start the CI by itself; the tests run anyway in the job that builds the zip, after the tag.
-
-The workflow needs “Allow GitHub Actions to create and approve pull requests” in the repository's *Settings → Actions → General → Workflow permissions*.
+[MIT](LICENSE) © 2026 vale76p. OpenCode Lens is an independent project, not affiliated with OpenCode or IBM.
